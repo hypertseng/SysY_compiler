@@ -1,8 +1,8 @@
 CMakeFiles/IR.dir/src/ir/ir_instruction.cpp.o: \
- /mnt/d/junior_2/Compilation_Principle/compiler2/src/ir/ir_instruction.cpp \
+ /mnt/d/junior_2/Compilation_Principle/compiler/src/ir/ir_instruction.cpp \
  /usr/include/stdc-predef.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir_instruction.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir_operand.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir_instruction.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir_operand.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -129,7 +129,7 @@ CMakeFiles/IR.dir/src/ir/ir_instruction.cpp.o: \
  /usr/include/c++/11/bits/functional_hash.h \
  /usr/include/c++/11/bits/hash_bytes.h \
  /usr/include/c++/11/bits/basic_string.tcc \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir_operator.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir_operator.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \

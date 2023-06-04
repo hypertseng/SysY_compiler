@@ -1,7 +1,7 @@
 CMakeFiles/jsoncpp.dir/src/third_party/jsoncpp/jsoncpp.cpp.o: \
- /mnt/d/junior_2/Compilation_Principle/compiler2/src/third_party/jsoncpp/jsoncpp.cpp \
+ /mnt/d/junior_2/Compilation_Principle/compiler/src/third_party/jsoncpp/jsoncpp.cpp \
  /usr/include/stdc-predef.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/json/json.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/json/json.h \
  /usr/include/c++/11/cstring \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

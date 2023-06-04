@@ -1,8 +1,8 @@
 CMakeFiles/IR.dir/src/ir/ir_program.cpp.o: \
- /mnt/d/junior_2/Compilation_Principle/compiler2/src/ir/ir_program.cpp \
+ /mnt/d/junior_2/Compilation_Principle/compiler/src/ir/ir_program.cpp \
  /usr/include/stdc-predef.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir_program.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir_function.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir_program.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir_function.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -132,9 +132,9 @@ CMakeFiles/IR.dir/src/ir/ir_program.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/11/bits/charconv.h \
  /usr/include/c++/11/bits/basic_string.tcc \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir_operand.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir_instruction.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir_operator.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir_operand.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir_instruction.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir_operator.h \
  /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/exception \
  /usr/include/c++/11/bits/exception_ptr.h \

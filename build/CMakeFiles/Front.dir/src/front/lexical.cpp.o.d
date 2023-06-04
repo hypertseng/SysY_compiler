@@ -1,8 +1,8 @@
 CMakeFiles/Front.dir/src/front/lexical.cpp.o: \
- /mnt/d/junior_2/Compilation_Principle/compiler2/src/front/lexical.cpp \
+ /mnt/d/junior_2/Compilation_Principle/compiler/src/front/lexical.cpp \
  /usr/include/stdc-predef.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/front/lexical.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/front/token.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/front/lexical.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/front/token.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

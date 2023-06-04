@@ -89,7 +89,6 @@ frontend::STE frontend::SymbolTable::get_ste(string id) const
 
 frontend::Analyzer::Analyzer() : tmp_cnt(0), symbol_table()
 {
-    TODO;
 }
 
 ir::Program frontend::Analyzer::get_ir_program(CompUnit *root)

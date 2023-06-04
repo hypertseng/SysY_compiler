@@ -1,9 +1,9 @@
 CMakeFiles/Front.dir/src/front/syntax.cpp.o: \
- /mnt/d/junior_2/Compilation_Principle/compiler2/src/front/syntax.cpp \
+ /mnt/d/junior_2/Compilation_Principle/compiler/src/front/syntax.cpp \
  /usr/include/stdc-predef.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/front/syntax.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/front/abstract_syntax_tree.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/front/token.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/front/syntax.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/front/abstract_syntax_tree.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/front/token.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -130,7 +130,7 @@ CMakeFiles/Front.dir/src/front/syntax.cpp.o: \
  /usr/include/c++/11/bits/functional_hash.h \
  /usr/include/c++/11/bits/hash_bytes.h \
  /usr/include/c++/11/bits/basic_string.tcc \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/json/json.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/json/json.h \
  /usr/include/c++/11/cstring /usr/include/string.h /usr/include/strings.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_tempbuf.h \
@@ -180,12 +180,12 @@ CMakeFiles/Front.dir/src/front/syntax.cpp.o: \
  /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/deque \
  /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
  /usr/include/c++/11/stack /usr/include/c++/11/bits/stl_stack.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir_operand.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir_operator.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir_instruction.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir_function.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir_program.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir_operand.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir_operator.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir_instruction.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir_function.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir_program.h \
  /usr/include/c++/11/set /usr/include/c++/11/bits/stl_set.h \
  /usr/include/c++/11/bits/stl_multiset.h /usr/include/c++/11/iostream \
  /usr/include/c++/11/cassert /usr/include/assert.h

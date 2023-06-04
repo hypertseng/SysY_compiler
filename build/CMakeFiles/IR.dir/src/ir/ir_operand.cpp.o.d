@@ -1,7 +1,7 @@
 CMakeFiles/IR.dir/src/ir/ir_operand.cpp.o: \
- /mnt/d/junior_2/Compilation_Principle/compiler2/src/ir/ir_operand.cpp \
+ /mnt/d/junior_2/Compilation_Principle/compiler/src/ir/ir_operand.cpp \
  /usr/include/stdc-predef.h \
- /mnt/d/junior_2/Compilation_Principle/compiler2/./include/ir/ir_operand.h \
+ /mnt/d/junior_2/Compilation_Principle/compiler/./include/ir/ir_operand.h \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
