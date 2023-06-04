@@ -1,0 +1,18 @@
+{
+    "files.associations": {
+        "xstring": "cpp",
+        "vector": "cpp",
+        "algorithm": "cpp",
+        "atomic": "cpp",
+        "cmath": "cpp",
+        "ctime": "cpp",
+        "fstream": "cpp",
+        "memory": "cpp",
+        "ranges": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "xstddef": "cpp",
+        "xutility": "cpp"
+    }
+}

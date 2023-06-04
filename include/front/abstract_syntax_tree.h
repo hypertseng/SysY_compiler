@@ -194,6 +194,7 @@ struct InitVal: AstNode{
 };
 
 struct FuncType: AstNode{
+    Type t;
     /**
      * @brief constructor
      */

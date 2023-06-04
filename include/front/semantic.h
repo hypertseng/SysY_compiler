@@ -47,12 +47,13 @@ map<std::string,ir::Function*>* get_lib_funcs();
 struct SymbolTable{
     vector<ScopeInfo> scope_stack;
     map<std::string,ir::Function*> functions;
+    int block_cnt=0;
 
     /**
      * @brief enter a new scope, record the infomation in scope stacks
      * @param node: a Block node, entering a new Block means a new name scope
      */
-    void add_scope(Block*);
+    void add_scope(string name);
 
     /**
      * @brief exit a scope, pop out infomations
@@ -95,6 +96,7 @@ struct Analyzer {
     int tmp_cnt;
     vector<ir::Instruction*> g_init_inst;
     SymbolTable symbol_table;
+    ir::Program ir_program; // the final ir program
 
     /**
      * @brief constructor
@@ -103,19 +105,19 @@ struct Analyzer {
 
     // analysis functions
     ir::Program get_ir_program(CompUnit*);
-    void analysisCompUnit(CompUnit*, vector<ir::Instruction*>&);
+    void analysisCompUnit(CompUnit*, ir::Program&);
     void analysisDecl(Decl*, vector<ir::Instruction*>&);
     void analysisFuncDef(FuncDef*, ir::Function&);
     void analysisConstDecl(ConstDecl*, vector<ir::Instruction*>&);
-    void analysisBType(BType*, vector<ir::Instruction*>&);
+    void analysisBType(BType*);
     void analysisConstDef(ConstDef*, vector<ir::Instruction*>&);
     void analysisConstInitVal(ConstInitVal*, vector<ir::Instruction*>&);
     void analysisVarDecl(VarDecl*, vector<ir::Instruction*>&);
     void analysisVarDef(VarDef*, vector<ir::Instruction*>&);
     void analysisInitVal(InitVal*, vector<ir::Instruction*>&);
-    void analysisFuncType(FuncType*, vector<ir::Instruction*>&);
-    void analysisFuncFParam(FuncFParam*, vector<ir::Instruction*>&);
-    void analysisFuncFParams(FuncFParams*, vector<ir::Instruction*>&);
+    void analysisFuncType(FuncType*);
+    void analysisFuncFParam(FuncFParam*, ir::Function&);
+    void analysisFuncFParams(FuncFParams*, ir::Function&);
     void analysisBlock(Block*, vector<ir::Instruction*>&);
     void analysisBlockItem(BlockItem*, vector<ir::Instruction*>&);
     void analysisStmt(Stmt*, vector<ir::Instruction*>&);
@@ -125,8 +127,8 @@ struct Analyzer {
     void analysisPrimaryExp(PrimaryExp*, vector<ir::Instruction*>&);
     void analysisNumber(Number*, vector<ir::Instruction*>&);
     void analysisUnaryExp(UnaryExp*, vector<ir::Instruction*>&);
-    void analysisUnaryOp(UnaryOp*, vector<ir::Instruction*>&);
-    void analysisFuncRParams(FuncRParams*, vector<ir::Instruction*>&);
+    void analysisUnaryOp(UnaryOp*);
+    void analysisFuncRParams(FuncRParams*, vector<ir::Instruction*>&, ir::CallInst&);
     void analysisMulExp(MulExp*, vector<ir::Instruction*>&);
     void analysisAddExp(AddExp*, vector<ir::Instruction*>&);
     void analysisRelExp(RelExp*, vector<ir::Instruction*>&);
