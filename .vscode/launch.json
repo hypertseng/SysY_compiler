@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/compiler",
+            "args": [
+                "${workspaceFolder}/test/testcase/basic/04_arr_defn3.sy",
+                "-s2",
+                "-o",
+                "./test.ir"
+            ],
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            // "miDebuggerPath": "/usr/local/bin/gdb",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ],
+}

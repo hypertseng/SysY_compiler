@@ -698,6 +698,6 @@ bool Parser::parseConstExp(frontend::ConstExp * root)
 void Parser::log(AstNode * node)
 {
 	#ifdef DEBUG_PARSER
-	std::cout << "in parse" << toString(node->type) << ", cur_token_type::" << toString(token_stream[index].type) << ", token_val::" << token_stream[index].value << '\n';
+	// std::cout << "in parse" << toString(node->type) << ", cur_token_type::" << toString(token_stream[index].type) << ", token_val::" << token_stream[index].value << '\n';
 	#endif
 }

@@ -43,7 +43,8 @@ void frontend::SymbolTable::add_scope(string name)
 {
     ScopeInfo scopeinfo;
     scopeinfo.cnt = block_cnt;
-    scopeinfo.name = name + std::to_string(block_cnt++);
+    scopeinfo.name = name;
+    block_cnt++;
     scope_stack.push_back(scopeinfo);
 }
 
@@ -56,7 +57,7 @@ void frontend::SymbolTable::exit_scope()
 // 输入一个变量名, 返回其在当前作用域下重命名后的名字 (相当于加后缀)
 string frontend::SymbolTable::get_scoped_name(string id) const
 {
-    return id + "_" + scope_stack.back().name;
+    return id + "_" + scope_stack.back().name + "_" + std::to_string(scope_stack.back().cnt);
 }
 
 // 输入一个变量名, 在符号表中寻找最近的同名变量, 返回对应的 Operand(注意，此 Operand 的 name 是重命名后的)
@@ -65,12 +66,13 @@ Operand frontend::SymbolTable::get_operand(string id) const
     for (auto it = scope_stack.rbegin(); it != scope_stack.rend(); ++it)
     {
         auto scope = *it;
-        auto ste = scope.table.find(get_scoped_name(id));
+        auto ste = scope.table.find(id);
         if (ste != scope.table.end())
         {
             return ste->second.operand;
         }
     }
+    assert(0 && "get_operand failed");
 }
 
 // 输入一个变量名, 在符号表中寻找最近的同名变量, 返回 STE
@@ -79,12 +81,13 @@ frontend::STE frontend::SymbolTable::get_ste(string id) const
     for (auto it = scope_stack.rbegin(); it != scope_stack.rend(); ++it)
     {
         auto scope = *it;
-        auto ste = scope.table.find(get_scoped_name(id));
+        auto ste = scope.table.find(id);
         if (ste != scope.table.end())
         {
             return ste->second;
         }
     }
+    assert(0 && "get_ste failed");
 }
 
 frontend::Analyzer::Analyzer() : tmp_cnt(0), symbol_table()
@@ -104,6 +107,8 @@ ir::Program frontend::Analyzer::get_ir_program(CompUnit *root)
         symbol_table.functions[it->first] = it->second;
     // 遍历AST，开始分析
     analysisCompUnit(root, ir_program);
+    // 将全局变量的初始化指令加入到global函数中
+    symbol_table.functions["global"]->InstVec.insert(symbol_table.functions["global"]->InstVec.end(), g_init_inst.begin(), g_init_inst.end());
     // 将全局变量加入到ir_program的globalVal中
     for (auto it = symbol_table.scope_stack[0].table.begin(); it != symbol_table.scope_stack[0].table.end(); it++)
     {
@@ -113,13 +118,13 @@ ir::Program frontend::Analyzer::get_ir_program(CompUnit *root)
             for (int i = 0; i < it->second.dimension.size(); i++)
                 arr_len *= it->second.dimension[i];
             // 添加重命名后的全局变量
-            ir_program.globalVal.push_back({{symbol_table.get_scoped_name(it->second.operand.name), it->second.operand.type}, arr_len});
+            ir_program.globalVal.push_back({{it->second.operand.name, Type::IntPtr}, arr_len});
         }
         else
         {
             // 执行IR变量重命名, 并丢弃常量
             // if (it->second.operand.type != Type::FloatLiteral && it->second.operand.type != Type::IntLiteral)
-            ir_program.globalVal.push_back({{symbol_table.get_scoped_name(it->second.operand.name), it->second.operand.type}});
+            ir_program.globalVal.push_back({{it->second.operand.name, it->second.operand.type}});
         }
     }
     // 为全局函数添加return
@@ -128,6 +133,18 @@ ir::Program frontend::Analyzer::get_ir_program(CompUnit *root)
                                                         ir::Operand(), ir::Operator::_return);
     global_func->addInst(globalreturn);
     ir_program.addFunction(*global_func);
+    // 在irprogram中main函数开头调用全局函数global
+    ir::Operand op1 = {symbol_table.functions["global"]->name, ir::Type::null};
+    ir::Operand returnval = {"t0", ir::Type::null};
+    ir::CallInst *callinst = new ir::CallInst(op1, returnval);
+    for (int i = 0; i < ir_program.functions.size(); i++)
+    {
+        if (ir_program.functions[i].name == "main")
+        {
+            ir_program.functions[i].InstVec.insert(ir_program.functions[i].InstVec.begin(), callinst);
+            break;
+        }
+    }
     return ir_program;
 }
 
@@ -143,7 +160,6 @@ void frontend::Analyzer::analysisCompUnit(CompUnit *root, ir::Program &)
             auto decl = dynamic_cast<Decl *>(root->children[0]);
             assert(decl);
             analysisDecl(decl, g_init_inst);
-            symbol_table.functions["global"]->InstVec.insert(symbol_table.functions["global"]->InstVec.end(), g_init_inst.begin(), g_init_inst.end());
         }
         // CompUnit -> FuncDef [CompUnit]
         else
@@ -165,7 +181,6 @@ void frontend::Analyzer::analysisCompUnit(CompUnit *root, ir::Program &)
             auto node = dynamic_cast<Decl *>(root->children[0]);
             assert(node);
             analysisDecl(node, g_init_inst);
-            symbol_table.functions["global"]->InstVec.insert(symbol_table.functions["global"]->InstVec.end(), g_init_inst.begin(), g_init_inst.end());
         }
         // CompUnit -> FuncDef
         else
@@ -229,7 +244,7 @@ void frontend::Analyzer::analysisConstDef(ConstDef *root, vector<ir::Instruction
     // ConstDef -> Ident { '[' ConstExp ']' } '=' ConstInitVal
     GET_CHILD_PTR(ident, Term, 0);
     root->arr_name = ident->token.value;
-    symbol_table.scope_stack[0].table.insert({ident->token.value, {root->arr_name}});
+    symbol_table.scope_stack[0].table.insert({ident->token.value, {symbol_table.get_scoped_name(root->arr_name)}});
     for (int i = 2; i < root->children.size(); i += 3)
     {
         if (dynamic_cast<ConstExp *>(root->children[i]))
@@ -291,6 +306,18 @@ void frontend::Analyzer::analysisVarDecl(VarDecl *root, vector<ir::Instruction *
     for (int i = 1; i < root->children.size() - 1; i += 2)
     {
         ANALYSIS(vardef, VarDef, i);
+        // 为变量添加btype
+        symbol_table.scope_stack.back().table[vardef->arr_name].operand.type = btype->t;
+        // 如果是数组，则ir不需要添加btype
+        if (!dynamic_cast<ConstExp *>(vardef->children[2]))
+        {
+            buffer.back()->des.type = btype->t;
+        }
+        if (buffer.back()->op1.type == Type::null)
+        {
+            buffer.back()->op1.type = Type::IntLiteral; // 定义变量时，如果没有初始化，则默认初始化为0
+            buffer.back()->op1.name = "0";
+        }
     }
 }
 
@@ -300,23 +327,81 @@ void frontend::Analyzer::analysisVarDef(VarDef *root, vector<ir::Instruction *> 
 {
     GET_CHILD_PTR(ident, Term, 0);
     root->arr_name = ident->token.value;
-    symbol_table.scope_stack[0].table.insert({ident->token.value, {root->arr_name}});
+    symbol_table.scope_stack.back().table.insert({root->arr_name, {symbol_table.get_scoped_name(ident->token.value)}});
     for (int i = 2; i < root->children.size(); i += 3)
     {
         if (dynamic_cast<ConstExp *>(root->children[i]))
         {
             ANALYSIS(constexp, ConstExp, i);
-            symbol_table.scope_stack[0].table[ident->token.value].dimension.push_back(stoi(constexp->v));
+            symbol_table.scope_stack.back().table[ident->token.value].dimension.push_back(stoi(constexp->v));
         }
         else
         {
             break;
         }
     }
-    // VarDef -> Ident { '[' ConstExp ']' }
+    // VarDef -> Ident { '[' ConstExp ']' } '=' InitVal
     if (dynamic_cast<InitVal *>(root->children[root->children.size() - 1]))
     {
         ANALYSIS(initval, InitVal, root->children.size() - 1);
+        // 添加定义变量def指令
+        if (dynamic_cast<ConstExp *>(root->children[2]))
+        {
+            // 添加分配数组ir指令
+            // 计算数组大小
+            int arr_len = 1;
+            for (int i = 0; i < symbol_table.scope_stack.back().table[ident->token.value].dimension.size(); i++)
+                arr_len *= symbol_table.scope_stack.back().table[ident->token.value].dimension[i];
+            Operand op1 = {std::to_string(arr_len), Type::IntLiteral};
+            Operand des = {symbol_table.get_scoped_name(root->arr_name), Type::IntPtr};
+            buffer.push_back(new Instruction({op1}, {}, des, Operator::alloc));
+            // 按子节点initval->v中的值来添加初始化数组ir指令
+            auto initval = dynamic_cast<InitVal *>(root->children[root->children.size() - 1]);
+            auto initval_v = initval->v;
+            auto initval_t = initval->t;
+            // 按逗号分割initval_v
+            vector<string> initval_v_vec;
+            int pos = 0;
+            for (int i = 0; i < initval_v.size(); i++)
+            {
+                if (initval_v[i] == ',')
+                {
+                    initval_v_vec.push_back(initval_v.substr(pos, i - pos));
+                    pos = i + 1;
+                }
+                if (i == initval_v.size() - 1)
+                    initval_v_vec.push_back(initval_v.substr(pos, i - pos + 1));
+            }
+            for (int i = 0; i < initval_v_vec.size(); i++)
+            {
+                Operand op1 = {symbol_table.get_scoped_name(root->arr_name), Type::IntPtr};
+                Operand op2 = {std::to_string(i), Type::IntLiteral};
+                Operand des = {initval_v_vec[i], Type::IntLiteral};
+                buffer.push_back(new Instruction(op1, op2, des, Operator::store));
+            }
+        }
+        else
+        {
+            buffer.push_back(new Instruction({initval->v, initval->t}, {}, {symbol_table.get_operand(root->arr_name)}, Operator::def));
+        }
+    }
+    // VarDef -> Ident { '[' ConstExp ']' }
+    else
+    {
+        // 添加定义变量def指令
+        if (dynamic_cast<ConstExp *>(root->children[2]))
+        {
+            // 添加分配数组ir指令
+            // 计算数组大小
+            int arr_len = 1;
+            for (int i = 0; i < symbol_table.scope_stack.back().table[ident->token.value].dimension.size(); i++)
+                arr_len *= symbol_table.scope_stack.back().table[ident->token.value].dimension[i];
+            Operand op1 = {std::to_string(arr_len), Type::IntLiteral};
+            Operand des = {symbol_table.get_scoped_name(root->arr_name), Type::IntPtr};
+            buffer.push_back(new Instruction({op1}, {}, des, Operator::alloc));
+        }
+        else
+            buffer.push_back(new Instruction({}, {}, {symbol_table.get_operand(root->arr_name)}, Operator::def));
     }
 }
 
@@ -371,7 +456,7 @@ void frontend::Analyzer::analysisFuncDef(FuncDef *root, ir::Function &function)
     root->n = ident->token.value;
     function.name = root->n;
     function.returnType = root->t;
-    symbol_table.scope_stack.push_back({0, "fp", map_str_ste()});
+    symbol_table.add_scope(root->n);
     symbol_table.functions.insert({root->n, &function});
     auto params = dynamic_cast<FuncFParams *>(root->children[3]);
     if (params)
@@ -416,7 +501,7 @@ void frontend::Analyzer::analysisFuncFParam(FuncFParam *root, ir::Function &func
         analysisBType(btype);
         GET_CHILD_PTR(ident, Term, 1);
         function.ParameterList.push_back({ident->token.value, btype->t});
-        symbol_table.scope_stack[0].table.insert({ident->token.value, {ident->token.value}});
+        symbol_table.scope_stack[0].table.insert({ident->token.value, {symbol_table.get_scoped_name(ident->token.value)}});
     }
     // FuncFParam -> BType Ident '[' ']' { '[' Exp ']' }
     else
@@ -425,7 +510,7 @@ void frontend::Analyzer::analysisFuncFParam(FuncFParam *root, ir::Function &func
         analysisBType(btype);
         GET_CHILD_PTR(ident, Term, 1);
         function.ParameterList.push_back({ident->token.value, btype->t});
-        symbol_table.scope_stack[0].table.insert({ident->token.value, {ident->token.value}});
+        symbol_table.scope_stack[0].table.insert({ident->token.value, {symbol_table.get_scoped_name(ident->token.value)}});
         for (int i = 5; i < root->children.size(); i += 3)
         {
             if (dynamic_cast<Exp *>(root->children[i]))
@@ -476,52 +561,6 @@ void frontend::Analyzer::analysisBlockItem(BlockItem *root, vector<ir::Instructi
     }
 }
 
-// enum class Operator
-// {
-//     _return, // return   op1
-//     _goto,   // goto     [op1=cond_var/null],    des = offset
-//     call,    // call     op1 = func_name,    des = retval  /* func.name = function, func.type = return type*/
-//     // alloc [arr_size]*4 byte space on stack for array named [arr_name], do not use this for global arrays
-//     alloc,  // alloc    op1 = arr_size,     des = arr_name
-//     store,  // store    des,    op1,    op2    op2为下标 -> 偏移量  op1为 store 的数组名, des 为被存储的变量
-//     load,   // load     des,    op1,    op2    op2为下标 -> 偏移量  op1为 load 的数组名, des 为被赋值变量
-//     getptr, // op1: arr_name, op2: arr_off
-
-//     def,
-//     fdef,
-//     mov,
-//     fmov,
-//     cvt_i2f, // convert [Int]op1 to [Float]des
-//     cvt_f2i, // convert [Float]op1 to [Int]des
-//     add,
-//     addi,
-//     fadd,
-//     sub,
-//     subi,
-//     fsub,
-//     mul,
-//     fmul,
-//     div,
-//     fdiv,
-//     mod,
-//     lss,
-//     flss,
-//     leq,
-//     fleq,
-//     gtr,
-//     fgtr,
-//     geq,
-//     fgeq,
-//     eq,
-//     feq,
-//     neq,
-//     fneq,
-//     _not,
-//     _and,
-//     _or,
-//     __unuse__
-// };
-
 // Stmt -> LVal '=' Exp ';' | Block | 'if' '(' Cond ')' Stmt [ 'else' Stmt ] | 'while' '(' Cond ')' Stmt | 'break' ';' | 'continue' ';' | 'return' [Exp] ';' | [Exp] ';'
 void frontend::Analyzer::analysisStmt(Stmt *root, vector<ir::Instruction *> &buffer)
 {
@@ -533,12 +572,13 @@ void frontend::Analyzer::analysisStmt(Stmt *root, vector<ir::Instruction *> &buf
         GET_CHILD_PTR(exp, Exp, 2);
         analysisExp(exp, buffer);
         Operand op1 = {exp->v, exp->t};
-        Operand op2 = {lval->v, lval->t};
-        buffer.push_back(new Instruction({op1, op2, {}, Operator::mov}));
+        Operand des = {lval->v, lval->t};
+        buffer.push_back(new Instruction({op1, {}, des, Operator::mov}));
     }
     // Stmt -> Block
     else if (dynamic_cast<Block *>(root->children[0]))
     {
+        symbol_table.add_scope("block");
         GET_CHILD_PTR(block, Block, 0);
         analysisBlock(block, buffer);
     }
@@ -618,17 +658,35 @@ void frontend::Analyzer::analysisCond(Cond *root, vector<ir::Instruction *> &buf
 void frontend::Analyzer::analysisLVal(LVal *root, vector<ir::Instruction *> &buffer)
 {
     GET_CHILD_PTR(ident, Term, 0);
-    root->v = symbol_table.get_scoped_name(ident->token.value);
-    root->t = symbol_table.get_ste(ident->token.value).operand.type;
+    Operand real_ident = symbol_table.get_ste(ident->token.value).operand; // 实际参与运算的变量
+    root->v = real_ident.name;
+    root->t = real_ident.type;
     root->is_computable = true;
-    for (int i = 1; i < root->children.size(); i += 3)
+    // 计算多维数组的偏移量
+    int offset = 0;
+    vector<int> index;
+    for (int i = 2; i < root->children.size(); i += 3)
     {
         GET_CHILD_PTR(exp, Exp, i);
         analysisExp(exp, buffer);
-        Operand op1 = {exp->v, exp->t};
-        Operand op2 = {root->v, root->t};
-        Operand des = {root->v, root->t};
-        buffer.push_back(new Instruction({op1, op2, des, Operator::add}));
+        index.push_back(stoi(exp->v));
+    }
+    for (int i = 0; i < index.size(); i++)
+    {
+        int arr_len = 1;
+        for (int j = i + 1; j < index.size(); j++)
+            arr_len *= symbol_table.get_ste(ident->token.value).dimension[j];
+        offset += index[i] * arr_len;
+    }
+    root->i = offset;
+    // 如果是数组，则添加load指令
+    if (root->children.size() > 1)
+    {
+        Operand op1 = {root->v, Type::IntPtr};
+        Operand op2 = {std::to_string(root->i), Type::IntLiteral};
+        Operand des = {"t" + std::to_string(tmp_cnt++), root->t};
+        buffer.push_back(new Instruction(op1, op2, des, Operator::load));
+        root->v = des.name;
     }
 }
 
@@ -643,14 +701,14 @@ void frontend::Analyzer::analysisNumber(Number *root, vector<ir::Instruction *> 
     {
         root->is_computable = true;
         root->v = dynamic_cast<Term *>(root->children[0])->token.value;
-        root->t = Type::Int;
+        root->t = Type::IntLiteral;
     }
     // Number -> floatConst
     else
     {
         root->is_computable = true;
         root->v = dynamic_cast<Term *>(root->children[0])->token.value;
-        root->t = Type::Float;
+        root->t = Type::FloatLiteral;
     }
 }
 
@@ -660,11 +718,11 @@ void frontend::Analyzer::analysisNumber(Number *root, vector<ir::Instruction *> 
 // PrimaryExp.t
 void frontend::Analyzer::analysisPrimaryExp(PrimaryExp *root, vector<ir::Instruction *> &buffer)
 {
-    // PrimaryExp -> '(' Exp ')'
-    if (dynamic_cast<Exp *>(root->children[1]))
+    // PrimaryExp -> Number
+    if (dynamic_cast<Number *>(root->children[0]))
     {
-        ANALYSIS(exp, Exp, 1);
-        COPY_EXP_NODE(exp, root);
+        ANALYSIS(number, Number, 0);
+        COPY_EXP_NODE(number, root);
     }
     // PrimaryExp -> LVal
     else if (dynamic_cast<LVal *>(root->children[0]))
@@ -672,11 +730,11 @@ void frontend::Analyzer::analysisPrimaryExp(PrimaryExp *root, vector<ir::Instruc
         ANALYSIS(lval, LVal, 0);
         COPY_EXP_NODE(lval, root);
     }
-    // PrimaryExp -> Number
+    // PrimaryExp -> '(' Exp ')'
     else
     {
-        ANALYSIS(number, Number, 0);
-        COPY_EXP_NODE(number, root);
+        ANALYSIS(exp, Exp, 1);
+        COPY_EXP_NODE(exp, root);
     }
 }
 
@@ -741,7 +799,7 @@ void frontend::Analyzer::analysisUnaryOp(UnaryOp *root)
     }
     // UnaryOp -> '-'
     else if (dynamic_cast<Term *>(root->children[0])->token.type == TokenType::MINU)
-    {   
+    {
         root->op = TokenType::MINU;
     }
     // UnaryOp -> '!'
@@ -752,7 +810,7 @@ void frontend::Analyzer::analysisUnaryOp(UnaryOp *root)
 }
 
 // FuncRParams -> Exp { ',' Exp }
-void frontend::Analyzer::analysisFuncRParams(FuncRParams *root, vector<ir::Instruction *> &buffer, ir::CallInst& callinst)
+void frontend::Analyzer::analysisFuncRParams(FuncRParams *root, vector<ir::Instruction *> &buffer, ir::CallInst &callinst)
 {
     for (int i = 0; i < root->children.size(); i += 2)
     {
@@ -769,6 +827,7 @@ void frontend::Analyzer::analysisFuncRParams(FuncRParams *root, vector<ir::Instr
 void frontend::Analyzer::analysisMulExp(MulExp *root, vector<ir::Instruction *> &buffer)
 {
     ANALYSIS(unaryexp, UnaryExp, 0);
+    COPY_EXP_NODE(unaryexp, root);
     for (int i = 1; i < root->children.size(); i += 2)
     {
         auto tmp = vector<Instruction *>();
@@ -802,24 +861,30 @@ void frontend::Analyzer::analysisMulExp(MulExp *root, vector<ir::Instruction *> 
 void frontend::Analyzer::analysisAddExp(AddExp *root, vector<ir::Instruction *> &buffer)
 {
     ANALYSIS(mulexp, MulExp, 0);
+    COPY_EXP_NODE(mulexp, root);
+    Operand op1 = {mulexp->v, mulexp->t};
     for (int i = 1; i < root->children.size(); i += 2)
     {
         auto tmp = vector<Instruction *>();
         auto mulexp = dynamic_cast<MulExp *>(root->children[i + 1]);
         assert(mulexp);
         analysisMulExp(mulexp, tmp);
+        // tmp中的ir指令添加到buffer中
+        for (auto inst : tmp)
+            buffer.push_back(inst);
         root->v = "t" + std::to_string(tmp_cnt++);
         root->t = Type::Int;
-        Operand op1 = {mulexp->v, mulexp->t};
-        Operand op2 = {root->v, root->t};
+        Operand op2 = {mulexp->v, mulexp->t};
         Operand des = {root->v, root->t};
         if (dynamic_cast<Term *>(root->children[i])->token.type == TokenType::PLUS)
         {
             buffer.push_back(new Instruction({op1, op2, des, Operator::add}));
+            op1 = {root->v, root->t};
         }
         else
         {
             buffer.push_back(new Instruction({op1, op2, des, Operator::sub}));
+            op1 = {root->v, root->t};
         }
     }
 }

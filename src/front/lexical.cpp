@@ -213,7 +213,7 @@ bool frontend::DFA::next(char input, Token &buf)
 {
 #ifdef DEBUG_DFA
 #include <iostream>
-    std::cout << "in state [" << toString(cur_state) << "], input = \'" << input << "\', str = " << cur_str << "\t" << std::endl;
+    // std::cout << "in state [" << toString(cur_state) << "], input = \'" << input << "\', str = " << cur_str << "\t" << std::endl;
 #endif
     bool ret;
     switch (cur_state)
@@ -389,7 +389,7 @@ bool frontend::DFA::next(char input, Token &buf)
         break;
     }
 #ifdef DEBUG_DFA
-    std::cout << "next state is [" << toString(cur_state) << "], next str = " << cur_str << "\t, ret = " << ret << std::endl;
+    // std::cout << "next state is [" << toString(cur_state) << "], next str = " << cur_str << "\t, ret = " << ret << std::endl;
 #endif
     return ret;
 }
@@ -432,7 +432,7 @@ std::string preprocess(std::ifstream &fin) // 按行读取文件字符,忽略掉
             if ((pos = tmpline.find("*/")) != std::string::npos)     //解决 /*/*中包含*/
             {
                 line2 = tmpline.substr(pos + 2);
-                std::cout<<line2<<std::endl;
+                // std::cout<<line2<<std::endl;
             }
             else
             {
@@ -469,7 +469,7 @@ std::vector<frontend::Token> frontend::Scanner::run()
 // dfa.reset();
 #ifdef DEBUG_SCANNER
 #include <iostream>
-            std::cout << "token: " << toString(tk.type) << "\t" << tk.value << std::endl;
+            // std::cout << "token: " << toString(tk.type) << "\t" << tk.value << std::endl;
 #endif
         }
     }

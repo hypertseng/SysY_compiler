@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.10.2)
 project(compiler)
 
 # compile flags
@@ -48,3 +48,9 @@ add_executable(compiler main.cpp)
 # link
 # every lib should be linked with [compiler]
 target_link_libraries(compiler Tools Front IR jsoncpp)
+
+# debug
+# (CMAKE_BUILD_TYPE "Debug")
+SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb")
+SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall")
