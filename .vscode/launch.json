@@ -7,8 +7,8 @@
             "request": "launch",
             "program": "${workspaceFolder}/bin/compiler",
             "args": [
-                "${workspaceFolder}/test/testcase/basic/04_arr_defn3.sy",
-                "-s2",
+                "${workspaceFolder}/test/testcase/basic/11_add2.sy",
+                "-e",
                 "-o",
                 "./test.ir"
             ],
