@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/d/junior_2/Compilation_Principle/compiler/src/third_party/jsoncpp/jsoncpp.cpp" "CMakeFiles/jsoncpp.dir/src/third_party/jsoncpp/jsoncpp.cpp.o" "gcc" "CMakeFiles/jsoncpp.dir/src/third_party/jsoncpp/jsoncpp.cpp.o.d"
+  "D:/junior_2/Compilation_Principle/compiler/src/third_party/jsoncpp/jsoncpp.cpp" "CMakeFiles/jsoncpp.dir/src/third_party/jsoncpp/jsoncpp.cpp.obj" "gcc" "CMakeFiles/jsoncpp.dir/src/third_party/jsoncpp/jsoncpp.cpp.obj.d"
   )
 
 # Targets to which this target links.
