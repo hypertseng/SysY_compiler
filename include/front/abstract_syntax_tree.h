@@ -219,6 +219,8 @@ struct Block: AstNode{
     /**
      * @brief constructor
      */
+    std::set<ir::Instruction *> jump_eow; // jump to end of while
+    std::set<ir::Instruction *> jump_bow; // jump to begin of while
     Block(AstNode* p = nullptr);
 };
 
@@ -226,6 +228,8 @@ struct BlockItem: AstNode{
     /**
      * @brief constructor
      */
+    std::set<ir::Instruction *> jump_eow; // jump to end of while
+    std::set<ir::Instruction *> jump_bow; // jump to begin of while
     BlockItem(AstNode* p = nullptr);
 };
 

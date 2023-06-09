@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "D:/junior_2/Compilation_Principle/compiler/src/tools/ir_executor.cpp" "CMakeFiles/Tools.dir/src/tools/ir_executor.cpp.obj" "gcc" "CMakeFiles/Tools.dir/src/tools/ir_executor.cpp.obj.d"
+  "/mnt/d/junior_2/Compilation_Principle/compiler/src/tools/ir_executor.cpp" "CMakeFiles/Tools.dir/src/tools/ir_executor.cpp.o" "gcc" "CMakeFiles/Tools.dir/src/tools/ir_executor.cpp.o.d"
   )
 
 # Targets to which this target links.

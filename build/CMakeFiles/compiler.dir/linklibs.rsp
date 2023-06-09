@@ -1,1 +1,0 @@
-  -LD:/junior_2/Compilation_Principle/compiler/./lib  D:/junior_2/Compilation_Principle/compiler/bin/libTools.a D:/junior_2/Compilation_Principle/compiler/bin/libFront.a D:/junior_2/Compilation_Principle/compiler/bin/libIR.a D:/junior_2/Compilation_Principle/compiler/bin/libjsoncpp.a -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

@@ -43,7 +43,7 @@ void frontend::SymbolTable::add_scope(string name)
 {
     ScopeInfo scopeinfo;
     scopeinfo.cnt = block_cnt;
-    scopeinfo.name = name;
+    scopeinfo.name = name + "_" + std::to_string(block_cnt);
     block_cnt++;
     scope_stack.push_back(scopeinfo);
 }
@@ -57,7 +57,7 @@ void frontend::SymbolTable::exit_scope()
 // 输入一个变量名, 返回其在当前作用域下重命名后的名字 (相当于加后缀)
 string frontend::SymbolTable::get_scoped_name(string id) const
 {
-    return id + "_" + scope_stack.back().name + "_" + std::to_string(scope_stack.back().cnt);
+    return id + "_" + scope_stack.back().name;
 }
 
 // 输入一个变量名, 在符号表中寻找最近的同名变量, 返回对应的 Operand(注意，此 Operand 的 name 是重命名后的)
@@ -123,8 +123,8 @@ ir::Program frontend::Analyzer::get_ir_program(CompUnit *root)
         else
         {
             // 执行IR变量重命名, 并丢弃常量
-            // if (it->second.operand.type != Type::FloatLiteral && it->second.operand.type != Type::IntLiteral)
-            ir_program.globalVal.push_back({{it->second.operand.name, it->second.operand.type}});
+            if (it->second.operand.type != Type::FloatLiteral && it->second.operand.type != Type::IntLiteral)
+                ir_program.globalVal.push_back({{it->second.operand.name, it->second.operand.type}});
         }
     }
     // 为全局函数添加return
@@ -245,7 +245,7 @@ void frontend::Analyzer::analysisConstDef(ConstDef *root, vector<ir::Instruction
         if (dynamic_cast<ConstExp *>(root->children[i]))
         {
             ANALYSIS(constexp, ConstExp, i);
-            symbol_table.scope_stack.back().table[ident->token.value].dimension.push_back(stoi(constexp->v));
+            symbol_table.scope_stack.back().table[ident->token.value].dimension.push_back(std::stoi(constexp->v));
         }
         else
         {
@@ -343,7 +343,7 @@ void frontend::Analyzer::analysisVarDecl(VarDecl *root, vector<ir::Instruction *
     {
         ANALYSIS(vardef, VarDef, i);
         // 如果是数组，则ir不需要添加btype
-        if (vardef->children.size()==1||!dynamic_cast<ConstExp *>(vardef->children[2]))
+        if (vardef->children.size() == 1 || !dynamic_cast<ConstExp *>(vardef->children[2]))
         {
             buffer.back()->des.type = btype->t;
         }
@@ -368,7 +368,7 @@ void frontend::Analyzer::analysisVarDef(VarDef *root, vector<ir::Instruction *> 
         if (dynamic_cast<ConstExp *>(root->children[i]))
         {
             ANALYSIS(constexp, ConstExp, i);
-            symbol_table.scope_stack.back().table[ident->token.value].dimension.push_back(stoi(constexp->v));
+            symbol_table.scope_stack.back().table[ident->token.value].dimension.push_back(std::stoi(constexp->v));
         }
         else
         {
@@ -489,9 +489,10 @@ void frontend::Analyzer::analysisFuncDef(FuncDef *root, ir::Function &function)
     analysisFuncType(functype);
     GET_CHILD_PTR(ident, Term, 1);
     root->n = ident->token.value;
+    root->t = functype->t;
     function.name = root->n;
     function.returnType = root->t;
-    symbol_table.add_scope(root->n);
+    symbol_table.add_scope(root->n); // 添加block作用域，名称为函数名
     symbol_table.functions.insert({root->n, &function});
     auto params = dynamic_cast<FuncFParams *>(root->children[3]);
     if (params)
@@ -552,7 +553,7 @@ void frontend::Analyzer::analysisFuncFParam(FuncFParam *root, ir::Function &func
             {
                 GET_CHILD_PTR(exp, Exp, i);
                 analysisExp(exp, function.InstVec);
-                symbol_table.scope_stack.back().table[ident->token.value].dimension.push_back(stoi(exp->v));
+                symbol_table.scope_stack.back().table[ident->token.value].dimension.push_back(std::stoi(exp->v));
             }
             else
             {
@@ -578,6 +579,10 @@ void frontend::Analyzer::analysisBlock(Block *root, vector<ir::Instruction *> &b
     for (int i = 1; i < root->children.size() - 1; i++)
     {
         ANALYSIS(blockitem, BlockItem, i);
+        for (auto it = blockitem->jump_bow.begin(); it != blockitem->jump_bow.end(); it++)
+            root->jump_bow.emplace(*it);
+        for (auto it = blockitem->jump_eow.begin(); it != blockitem->jump_eow.end(); it++)
+            root->jump_eow.emplace(*it);
     }
 }
 
@@ -593,6 +598,8 @@ void frontend::Analyzer::analysisBlockItem(BlockItem *root, vector<ir::Instructi
     else
     {
         ANALYSIS(stmt, Stmt, 0);
+        root->jump_eow = stmt->jump_eow;
+        root->jump_bow = stmt->jump_bow;
     }
 }
 
@@ -613,43 +620,115 @@ void frontend::Analyzer::analysisStmt(Stmt *root, vector<ir::Instruction *> &buf
     // Stmt -> Block
     else if (dynamic_cast<Block *>(root->children[0]))
     {
-        symbol_table.add_scope("block");
+        auto signal = dynamic_cast<Term *>(root->parent->children[0]);
+        if (signal != nullptr)
+        {
+            if (signal->token.type == TokenType::WHILETK)
+                symbol_table.add_scope("while");
+            else if (signal->token.type == TokenType::IFTK)
+                symbol_table.add_scope("if");
+            else
+                symbol_table.add_scope("else");
+        }
+        else
+        {
+            symbol_table.add_scope("else");
+        }
         GET_CHILD_PTR(block, Block, 0);
         analysisBlock(block, buffer);
+        root->jump_bow = block->jump_bow;
+        root->jump_eow = block->jump_eow;
+        // 如果是while块且有需要回填的指令，则计算回填的地址
+        if (symbol_table.scope_stack.back().name.substr(0, 5) == "while")
+        {
+            if (!root->jump_eow.empty())
+            {
+                int jump_eow_addr = 0;
+                for (auto it = root->jump_eow.begin(); it != root->jump_eow.end(); it++)
+                {
+                    // 找到jump_eow中指令在buffer中的索引
+                    int index = 0;
+                    for (auto it2 = buffer.begin(); it2 != buffer.end(); it2++)
+                    {
+                        if (*it == *it2)
+                        {
+                            jump_eow_addr = index;
+                            break;
+                        }
+                        index++;
+                    }
+                    // buffer大小减去jump_eow_addr，得到回填地址
+                    (*it)->des.name = std::to_string(buffer.size() - jump_eow_addr + 1);
+                    (*it)->des.type = Type::IntLiteral;
+                }
+            }
+        }
+        symbol_table.exit_scope();
     }
     // Stmt -> 'if' '(' Cond ')' Stmt [ 'else' Stmt ]
-    else if (dynamic_cast<Term *>(root->children[0])->token.type == TokenType::IFTK)
+    else if (dynamic_cast<Term *>(root->children[0]) && dynamic_cast<Term *>(root->children[0])->token.type == TokenType::IFTK)
     {
+        // symbol_table.scope_stack.back().name = "if_" + std::to_string(symbol_table.block_cnt);
         GET_CHILD_PTR(cond, Cond, 2);
+        // cond中涉及的跳转已在LOrExp中分析
         analysisCond(cond, buffer);
         GET_CHILD_PTR(stmt1, Stmt, 4);
-        analysisStmt(stmt1, buffer);
+        vector<ir::Instruction *> buffer1; // 用于存储stmt1中的指令
+        analysisStmt(stmt1, buffer1);
+        root->jump_bow = stmt1->jump_bow;
+        root->jump_eow = stmt1->jump_eow;
+        buffer.push_back(new Instruction({cond->v, Type::Int}, {}, {"2", Type::IntLiteral}, Operator::_goto));
+        buffer.push_back(new Instruction({}, {}, {std::to_string(buffer1.size() + 1), Type::IntLiteral}, Operator::_goto)); // 条件为false跳过stmt1
+        buffer.insert(buffer.end(), buffer1.begin(), buffer1.end());
+        // Stmt -> 'if' '(' Cond ')' Stmt [ 'else' Stmt ]
         if (root->children.size() == 7)
         {
+            vector<ir::Instruction *> buffer2; // 用于存储stmt2中的指令
             GET_CHILD_PTR(stmt2, Stmt, 6);
-            analysisStmt(stmt2, buffer);
+            analysisStmt(stmt2, buffer2);
+            for (auto it = stmt2->jump_bow.begin(); it != stmt2->jump_bow.end(); it++)
+                root->jump_bow.emplace(*it);
+            for (auto it = stmt2->jump_eow.begin(); it != stmt2->jump_eow.end(); it++)
+                root->jump_eow.emplace(*it);
+            buffer.push_back(new Instruction({cond->v, Type::Int}, {}, {std::to_string(buffer2.size() + 1), Type::IntLiteral}, Operator::_goto));
+            buffer.insert(buffer.end(), buffer2.begin(), buffer2.end());
         }
     }
     // Stmt -> 'while' '(' Cond ')' Stmt
-    else if (dynamic_cast<Term *>(root->children[0])->token.type == TokenType::WHILETK)
+    else if (dynamic_cast<Term *>(root->children[0]) && dynamic_cast<Term *>(root->children[0])->token.type == TokenType::WHILETK)
     {
+        // symbol_table.scope_stack.back().name = "while_" + std::to_string(symbol_table.block_cnt);
+        vector<ir::Instruction *> buffer_cond;
+        vector<ir::Instruction *> buffer_while;
         GET_CHILD_PTR(cond, Cond, 2);
-        analysisCond(cond, buffer);
+        analysisCond(cond, buffer_cond);
         GET_CHILD_PTR(stmt, Stmt, 4);
-        analysisStmt(stmt, buffer);
+        analysisStmt(stmt, buffer_while);
+        root->jump_eow = stmt->jump_eow; // 把stmt中的跳转指令加入到root中
+        // 为了获得while块的条数，以便cond判断跳出，所以从头部插入
+        buffer_while.insert(buffer_while.begin(), new Instruction({}, {}, {std::to_string(int(buffer_while.size()) + 2), Type::IntLiteral}, Operator::_goto)); // 不满足跳出循环
+        buffer_while.insert(buffer_while.begin(), new Instruction({cond->v, Type::Int}, {}, {"2", Type::IntLiteral}, Operator::_goto));
+        buffer_while.insert(buffer_while.begin(), buffer_cond.begin(), buffer_cond.end());                                               // buffer.size()是无符号整数，需要转换一下
+        buffer_while.push_back(new Instruction({}, {}, {std::to_string(-int(buffer_while.size())), Type::IntLiteral}, Operator::_goto)); // 跳回while块的第一个语句
+        buffer.insert(buffer.end(), buffer_while.begin(), buffer_while.end());
     }
     // Stmt -> 'break' ';'
-    else if (dynamic_cast<Term *>(root->children[0])->token.type == TokenType::BREAKTK)
+    else if (dynamic_cast<Term *>(root->children[0]) && dynamic_cast<Term *>(root->children[0])->token.type == TokenType::BREAKTK)
     {
-        buffer.push_back(new Instruction({}, {}, {}, Operator::_goto));
+        // 记录一下当前buffer的大小
+        int buffer_size = buffer.size();
+        // 把待填跳转指令放入jump_eow
+        auto *breakir = new Instruction({}, {}, {}, Operator::_goto);
+        root->jump_eow.emplace(breakir);
+        buffer.push_back(breakir);
     }
     // Stmt -> 'continue' ';'
-    else if (dynamic_cast<Term *>(root->children[0])->token.type == TokenType::CONTINUETK)
+    else if (dynamic_cast<Term *>(root->children[0]) && dynamic_cast<Term *>(root->children[0])->token.type == TokenType::CONTINUETK)
     {
-        buffer.push_back(new Instruction({}, {}, {}, Operator::_goto));
+        // 跳回while块的第一个语句
     }
     // Stmt -> 'return' [Exp] ';'
-    else if (dynamic_cast<Term *>(root->children[0])->token.type == TokenType::RETURNTK)
+    else if (dynamic_cast<Term *>(root->children[0]) && dynamic_cast<Term *>(root->children[0])->token.type == TokenType::RETURNTK)
     {
         if (root->children.size() == 3)
         {
@@ -661,6 +740,15 @@ void frontend::Analyzer::analysisStmt(Stmt *root, vector<ir::Instruction *> &buf
         else
         {
             buffer.push_back(new Instruction({}, {}, {}, Operator::_return));
+        }
+    }
+    //  Stmt -> [Exp] ';'
+    else
+    {
+        if (root->children.size() == 2)
+        {
+            GET_CHILD_PTR(exp, Exp, 0);
+            analysisExp(exp, buffer);
         }
     }
 }
@@ -704,7 +792,7 @@ void frontend::Analyzer::analysisLVal(LVal *root, vector<ir::Instruction *> &buf
     {
         GET_CHILD_PTR(exp, Exp, i);
         analysisExp(exp, buffer);
-        index.push_back(stoi(exp->v));
+        index.push_back(std::stoi(exp->v));
     }
     for (int i = 0; i < index.size(); i++)
     {
@@ -785,7 +873,7 @@ void frontend::Analyzer::analysisUnaryExp(UnaryExp *root, vector<ir::Instruction
         ANALYSIS(primaryexp, PrimaryExp, 0);
         COPY_EXP_NODE(primaryexp, root);
     }
-    else if (dynamic_cast<Term *>(root->children[1])->token.type == TokenType::LPARENT)
+    else if (root->children.size() > 2)
     {
         // UnaryExp -> Ident '(' ')' 没有参数情况
         if (root->children.size() == 3)
@@ -808,10 +896,20 @@ void frontend::Analyzer::analysisUnaryExp(UnaryExp *root, vector<ir::Instruction
             root->t = func->returnType;
             Operand op1 = {func->name, Type::null};
             Operand returnval = {root->v, root->t};
-            GET_CHILD_PTR(funcrparams, FuncRParams, 2);
-            ir::CallInst *callinst = new ir::CallInst(op1, returnval);
-            buffer.push_back(callinst);
-            analysisFuncRParams(funcrparams, buffer, *dynamic_cast<ir::CallInst *>(buffer.back()));
+            // UnaryExp -> Ident '(' ')' 无参数情况
+            if (root->children.size() == 3)
+            {
+                ir::CallInst *callinst = new ir::CallInst(op1, returnval);
+                buffer.push_back(callinst);
+            }
+            // UnaryExp -> Ident '(' [FuncRParams] ')'
+            else
+            {
+                GET_CHILD_PTR(funcrparams, FuncRParams, 2);
+                ir::CallInst *callinst = new ir::CallInst(op1, returnval);
+                analysisFuncRParams(funcrparams, buffer, *callinst);
+                buffer.push_back(callinst);
+            }
         }
     }
     // UnaryExp -> UnaryOp UnaryExp
@@ -820,22 +918,34 @@ void frontend::Analyzer::analysisUnaryExp(UnaryExp *root, vector<ir::Instruction
         GET_CHILD_PTR(unaryop, UnaryOp, 0);
         analysisUnaryOp(unaryop);
         ANALYSIS(unaryexp, UnaryExp, 1);
-        root->v = "t" + std::to_string(tmp_cnt++);
-        root->t = unaryexp->t;
-        Operand op1 = {unaryexp->v, unaryexp->t};
-        Operand des = {root->v, root->t};
         if (unaryop->op == TokenType::PLUS)
         {
-            buffer.push_back(new Instruction({op1, {}, des, Operator::add}));
+            root->v = unaryexp->v;
         }
         else if (unaryop->op == TokenType::MINU)
         {
-            buffer.push_back(new Instruction({op1, {}, des, Operator::sub}));
+            if (unaryexp->t == Type::Int || unaryexp->t == Type::Float)
+            {
+                root->v = "t" + std::to_string(tmp_cnt++);
+                Operand op2 = {unaryexp->v, unaryexp->t};
+                Operand des = {root->v, root->t};
+                // 先定义一个临时变量赋值为0最为被减数
+                buffer.push_back(new Instruction({{"0", Type::IntLiteral}, {}, des, Operator::mov}));
+                // 0减去本身，求的相反数
+                buffer.push_back(new Instruction({des, {op2}, des, Operator::sub}));
+            }
+            else
+            {
+                root->v = "-" + unaryexp->v;
+            }
         }
         else
         {
+            Operand op1 = {unaryexp->v, unaryexp->t};
+            Operand des = {root->v, root->t};
             buffer.push_back(new Instruction({op1, {}, des, Operator::_not}));
         }
+        root->t = unaryexp->t;
     }
 }
 
@@ -885,6 +995,9 @@ void frontend::Analyzer::analysisMulExp(MulExp *root, vector<ir::Instruction *> 
         auto unaryexp = dynamic_cast<UnaryExp *>(root->children[i + 1]);
         assert(unaryexp);
         analysisUnaryExp(unaryexp, tmp);
+        // tmp中的ir指令添加到buffer中
+        for (auto inst : tmp)
+            buffer.push_back(inst);
         root->v = "t" + std::to_string(tmp_cnt++);
         root->t = Type::Int;
         Operand op2 = {unaryexp->v, unaryexp->t};
@@ -892,17 +1005,17 @@ void frontend::Analyzer::analysisMulExp(MulExp *root, vector<ir::Instruction *> 
         if (dynamic_cast<Term *>(root->children[i])->token.type == TokenType::MULT)
         {
             buffer.push_back(new Instruction({op1, op2, des, Operator::mul}));
-            op1 = {root->v, root->t};   // op1 = op1 * op2, 将op1做为上一次计算的结果
+            op1 = {root->v, root->t}; // op1 = op1 * op2, 将op1做为上一次计算的结果
         }
         else if (dynamic_cast<Term *>(root->children[i])->token.type == TokenType::DIV)
         {
             buffer.push_back(new Instruction({op1, op2, des, Operator::div}));
-            op1 = {root->v, root->t};   // op1 = op1 / op2, 将op1做为上一次计算的结果
+            op1 = {root->v, root->t}; // op1 = op1 / op2, 将op1做为上一次计算的结果
         }
         else
         {
             buffer.push_back(new Instruction({op1, op2, des, Operator::mod}));
-            op1 = {root->v, root->t};   // op1 = op1 % op2, 将op1做为上一次计算的结果
+            op1 = {root->v, root->t}; // op1 = op1 % op2, 将op1做为上一次计算的结果
         }
     }
 }
@@ -932,12 +1045,12 @@ void frontend::Analyzer::analysisAddExp(AddExp *root, vector<ir::Instruction *> 
         if (dynamic_cast<Term *>(root->children[i])->token.type == TokenType::PLUS)
         {
             buffer.push_back(new Instruction({op1, op2, des, Operator::add}));
-            op1 = {root->v, root->t};   // op1 = op1 + op2, 将op1做为上一次计算的结果
+            op1 = {root->v, root->t}; // op1 = op1 + op2, 将op1做为上一次计算的结果
         }
         else
         {
             buffer.push_back(new Instruction({op1, op2, des, Operator::sub}));
-            op1 = {root->v, root->t};   // op1 = op1 - op2,将op1做为上一次计算的结果
+            op1 = {root->v, root->t}; // op1 = op1 - op2,将op1做为上一次计算的结果
         }
     }
 }
@@ -949,6 +1062,8 @@ void frontend::Analyzer::analysisAddExp(AddExp *root, vector<ir::Instruction *> 
 void frontend::Analyzer::analysisRelExp(RelExp *root, vector<ir::Instruction *> &buffer)
 {
     ANALYSIS(addexp, AddExp, 0);
+    COPY_EXP_NODE(addexp, root);
+    Operand op1 = {addexp->v, addexp->t};
     for (int i = 1; i < root->children.size(); i += 2)
     {
         auto tmp = vector<Instruction *>();
@@ -957,24 +1072,27 @@ void frontend::Analyzer::analysisRelExp(RelExp *root, vector<ir::Instruction *> 
         analysisAddExp(addexp, tmp);
         root->v = "t" + std::to_string(tmp_cnt++);
         root->t = Type::Int;
-        Operand op1 = {addexp->v, addexp->t};
-        Operand op2 = {root->v, root->t};
+        Operand op2 = {addexp->v, addexp->t};
         Operand des = {root->v, root->t};
         if (dynamic_cast<Term *>(root->children[i])->token.type == TokenType::LSS)
         {
             buffer.push_back(new Instruction({op1, op2, des, Operator::lss}));
+            op1 = {root->v, root->t}; // op1 = op1 < op2, 将op1做为上一次计算的结果
         }
         else if (dynamic_cast<Term *>(root->children[i])->token.type == TokenType::LEQ)
         {
             buffer.push_back(new Instruction({op1, op2, des, Operator::leq}));
+            op1 = {root->v, root->t}; // op1 = op1 <= op2, 将op1做为上一次计算的结果
         }
         else if (dynamic_cast<Term *>(root->children[i])->token.type == TokenType::GTR)
         {
             buffer.push_back(new Instruction({op1, op2, des, Operator::gtr}));
+            op1 = {root->v, root->t}; // op1 = op1 > op2, 将op1做为上一次计算的结果
         }
         else
         {
             buffer.push_back(new Instruction({op1, op2, des, Operator::geq}));
+            op1 = {root->v, root->t}; // op1 = op1 >= op2, 将op1做为上一次计算的结果
         }
     }
 }
@@ -986,16 +1104,20 @@ void frontend::Analyzer::analysisRelExp(RelExp *root, vector<ir::Instruction *> 
 void frontend::Analyzer::analysisEqExp(EqExp *root, vector<ir::Instruction *> &buffer)
 {
     ANALYSIS(relexp, RelExp, 0);
+    COPY_EXP_NODE(relexp, root);
+    Operand op1 = {relexp->v, relexp->t};
     for (int i = 1; i < root->children.size(); i += 2)
     {
         auto tmp = vector<Instruction *>();
         auto relexp = dynamic_cast<RelExp *>(root->children[i + 1]);
         assert(relexp);
         analysisRelExp(relexp, tmp);
+        // tmp中的ir指令添加到buffer中
+        for (auto inst : tmp)
+            buffer.push_back(inst);
         root->v = "t" + std::to_string(tmp_cnt++);
         root->t = Type::Int;
-        Operand op1 = {relexp->v, relexp->t};
-        Operand op2 = {root->v, root->t};
+        Operand op2 = {relexp->v, relexp->t};
         Operand des = {root->v, root->t};
         if (dynamic_cast<Term *>(root->children[i])->token.type == TokenType::EQL)
         {
@@ -1033,9 +1155,16 @@ void frontend::Analyzer::analysisLAndExp(LAndExp *root, vector<ir::Instruction *
         Operand op1 = {eqexp->v, eqexp->t};
         Operand op2 = {landexp->v, landexp->t};
         Operand des = {root->v, root->t};
-        buffer.push_back(new Instruction({op1, {}, {std::to_string(tmp.size() + 3), Type::IntLiteral}, Operator::_goto}));
-        buffer.push_back(new Instruction({op2, {}, des, Operator::mov}));
-        buffer.push_back(new Instruction({}, {}, {"2", Type::IntLiteral}, Operator::_goto));
+        // 短路运算
+        buffer.push_back(new Instruction({op1, {}, {"3", Type::IntLiteral}, Operator::_goto}));
+        // 左边为假，直接跳到mov语句，将0赋值给des
+        buffer.push_back(new Instruction({"0", Type::IntLiteral}, {}, des, Operator::mov));
+        buffer.push_back(new Instruction({{}, {}, {std::to_string(tmp.size() + 5), Type::IntLiteral}, Operator::_goto}));
+        buffer.insert(buffer.end(), tmp.begin(), tmp.end());
+        // 继续判断LAndExp的值，决定是否跳转
+        buffer.push_back(new Instruction(op2, {}, {"3", Type::IntLiteral}, Operator::_goto));
+        buffer.push_back(new Instruction({"0", Type::IntLiteral}, {}, des, Operator::mov)); // 结果赋值0
+        buffer.push_back(new Instruction({{}, {}, {"2", Type::IntLiteral}, Operator::_goto}));
         buffer.push_back(new Instruction({"1", Type::IntLiteral}, {}, des, Operator::mov));
     }
 }
@@ -1049,6 +1178,7 @@ void frontend::Analyzer::analysisLOrExp(LOrExp *root, vector<ir::Instruction *> 
     // LOrExp -> LAndExp
     if (root->children.size() == 1)
     {
+        // 跳转在子结点中处理
         ANALYSIS(node, LAndExp, 0);
         COPY_EXP_NODE(node, root);
     }
@@ -1065,10 +1195,14 @@ void frontend::Analyzer::analysisLOrExp(LOrExp *root, vector<ir::Instruction *> 
         Operand op1 = {landexp->v, landexp->t};
         Operand op2 = {lorexp->v, lorexp->t};
         Operand des = {root->v, root->t};
-        buffer.push_back(new Instruction({op1, {}, {std::to_string(tmp.size() + 3), Type::IntLiteral}, Operator::_goto}));
-        buffer.push_back(new Instruction({op2, {}, des, Operator::mov}));
+        // 短路运算先判断左边的值
+        buffer.push_back(new Instruction({op1, {}, {std::to_string(tmp.size() + 2), Type::IntLiteral}, Operator::_goto}));
+        // 判断LOrExp的值，决定是否跳转
+        buffer.insert(buffer.end(), tmp.begin(), tmp.end());
+        buffer.push_back(new Instruction(op2, {}, {"3", Type::IntLiteral}, Operator::_goto));
+        buffer.push_back(new Instruction({"0", Type::IntLiteral}, {}, des, Operator::mov)); // 结果赋值1
         buffer.push_back(new Instruction({}, {}, {"2", Type::IntLiteral}, Operator::_goto));
-        buffer.push_back(new Instruction({"1", Type::IntLiteral}, {}, des, Operator::mov));
+        buffer.push_back(new Instruction({"1", Type::IntLiteral}, {}, des, Operator::mov)); // 结果赋值1
     }
 }
 // ConstExp -> AddExp

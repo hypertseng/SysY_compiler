@@ -58,8 +58,8 @@ struct SymbolTable{
     /**
      * @brief exit a scope, pop out infomations
      */
-    void exit_scope();
 
+    void exit_scope();
     /**
      * @brief Get the scoped name, to deal the same name in different scopes, we change origin id to a new one with scope infomation,
      * for example, we have these code:
