@@ -1,3 +1,3 @@
 file(REMOVE_RECURSE
-  "../bin/libIR.a"
+  "D:/junior_2/Compilation_Principle/compiler/bin/libIR.a"
 )
