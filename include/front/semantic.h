@@ -48,6 +48,7 @@ struct SymbolTable{
     vector<ScopeInfo> scope_stack;
     map<std::string,ir::Function*> functions;
     int block_cnt=0;
+    map<std::string,std::string> varval;    // 记录变量的值，用于常量传播
 
     /**
      * @brief enter a new scope, record the infomation in scope stacks
@@ -97,11 +98,12 @@ struct Analyzer {
     vector<ir::Instruction*> g_init_inst;
     SymbolTable symbol_table;
     ir::Program ir_program; // the final ir program
-
     /**
      * @brief constructor
      */
     Analyzer();
+
+    Type trans2ptr(Type type);
 
     // analysis functions
     ir::Program get_ir_program(CompUnit*);

@@ -7,7 +7,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/bin/compiler",
             "args": [
-                "${workspaceFolder}/test/testcase/function/34_arr_expr_len.sy",
+                "${workspaceFolder}/test/testcase/function/79_var_name.sy",
                 "-e",
                 "-o",
                 "./test.ir"
