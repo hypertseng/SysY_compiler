@@ -734,6 +734,30 @@ void frontend::Analyzer::analysisStmt(Stmt *root, vector<ir::Instruction *> &buf
                     (*it)->des.type = Type::IntLiteral;
                 }
             }
+            if (!root->jump_bow.empty())
+            {
+                int jump_bow_addr = 0;
+                for (auto it = root->jump_bow.begin(); it != root->jump_bow.end(); it++)
+                {
+                    // 找到jump_bow中指令在buffer中的索引
+                    int index = 0;
+                    for (auto it2 = buffer.begin(); it2 != buffer.end(); it2++)
+                    {
+                        if (*it == *it2)
+                        {
+                            jump_bow_addr = index;
+                            break;
+                        }
+                        index++;
+                    }
+                    // buffer大小减去jump_bow_addr，得到回填地址
+                    (*it)->des.name = std::to_string(-jump_bow_addr);
+                    (*it)->des.type = Type::IntLiteral;
+                }
+            }
+            {
+
+            }
         }
         symbol_table.exit_scope();
     }
@@ -788,7 +812,7 @@ void frontend::Analyzer::analysisStmt(Stmt *root, vector<ir::Instruction *> &buf
     // Stmt -> 'break' ';'
     else if (dynamic_cast<Term *>(root->children[0]) && dynamic_cast<Term *>(root->children[0])->token.type == TokenType::BREAKTK)
     {
-        // 记录一下当前buffer的大小
+        // 记录当前buffer的大小
         int buffer_size = buffer.size();
         // 把待填跳转指令放入jump_eow
         auto *breakir = new Instruction({}, {}, {}, Operator::_goto);
@@ -798,7 +822,12 @@ void frontend::Analyzer::analysisStmt(Stmt *root, vector<ir::Instruction *> &buf
     // Stmt -> 'continue' ';'
     else if (dynamic_cast<Term *>(root->children[0]) && dynamic_cast<Term *>(root->children[0])->token.type == TokenType::CONTINUETK)
     {
-        // 跳回while块的第一个语句
+        // 记录一下当前buffer的大小
+        int buffer_size = buffer.size();
+        // 把待填跳转指令放入jump_eow
+        auto *continueir = new Instruction({}, {}, {}, Operator::_goto);
+        root->jump_bow.emplace(continueir);
+        buffer.push_back(continueir);
     }
     // Stmt -> 'return' [Exp] ';'
     else if (dynamic_cast<Term *>(root->children[0]) && dynamic_cast<Term *>(root->children[0])->token.type == TokenType::RETURNTK)
