@@ -1,2 +1,2 @@
-/usr/bin/ar qc ../bin/libBackend.a  CMakeFiles/Backend.dir/src/backend/generator.cpp.o
-/usr/bin/ranlib ../bin/libBackend.a
+D:\mingw64\bin\ar.exe qc D:\junior_2\Compilation_Principle\compiler\bin\libBackend.a CMakeFiles/Backend.dir/src/backend/generator.cpp.obj
+D:\mingw64\bin\ranlib.exe D:\junior_2\Compilation_Principle\compiler\bin\libBackend.a

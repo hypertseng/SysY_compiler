@@ -1,32 +1,23 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "CXX"
-  )
-# The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_CXX
-  "/coursegrader/main.cpp" "/coursegrader/build/CMakeFiles/compiler.dir/main.cpp.o"
-  )
-set(CMAKE_CXX_COMPILER_ID "GNU")
-
-# Preprocessor definitions for this target.
-set(CMAKE_TARGET_DEFINITIONS_CXX
-  "DEBUG_DFA"
-  "DEBUG_PARSER"
-  "DEBUG_SCANNER"
   )
 
-# The include file search paths:
-set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  ".././include"
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "D:/junior_2/Compilation_Principle/compiler/main.cpp" "CMakeFiles/compiler.dir/main.cpp.obj" "gcc" "CMakeFiles/compiler.dir/main.cpp.obj.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/coursegrader/build/CMakeFiles/Backend.dir/DependInfo.cmake"
-  "/coursegrader/build/CMakeFiles/Tools.dir/DependInfo.cmake"
-  "/coursegrader/build/CMakeFiles/Front.dir/DependInfo.cmake"
-  "/coursegrader/build/CMakeFiles/IR.dir/DependInfo.cmake"
-  "/coursegrader/build/CMakeFiles/jsoncpp.dir/DependInfo.cmake"
+  "D:/junior_2/Compilation_Principle/compiler/build/CMakeFiles/Backend.dir/DependInfo.cmake"
+  "D:/junior_2/Compilation_Principle/compiler/build/CMakeFiles/Tools.dir/DependInfo.cmake"
+  "D:/junior_2/Compilation_Principle/compiler/build/CMakeFiles/Front.dir/DependInfo.cmake"
+  "D:/junior_2/Compilation_Principle/compiler/build/CMakeFiles/IR.dir/DependInfo.cmake"
+  "D:/junior_2/Compilation_Principle/compiler/build/CMakeFiles/jsoncpp.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

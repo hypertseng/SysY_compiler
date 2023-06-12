@@ -1,2 +1,2 @@
-/usr/bin/ar qc ../bin/libTools.a  CMakeFiles/Tools.dir/src/tools/ir_executor.cpp.o
-/usr/bin/ranlib ../bin/libTools.a
+D:\mingw64\bin\ar.exe qc D:\junior_2\Compilation_Principle\compiler\bin\libTools.a CMakeFiles/Tools.dir/src/tools/ir_executor.cpp.obj
+D:\mingw64\bin\ranlib.exe D:\junior_2\Compilation_Principle\compiler\bin\libTools.a
