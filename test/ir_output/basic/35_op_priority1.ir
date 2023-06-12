@@ -1,0 +1,21 @@
+int main()
+	0: call t0, global()
+	1: def a_main_1, 0
+	2: def b_main_1, 0
+	3: def c_main_1, 0
+	4: def d_main_1, 0
+	5: mov a_main_1, 10
+	6: mov b_main_1, 4
+	7: mov c_main_1, 2
+	8: mov d_main_1, 2
+	9: mul t0, a_main_1, b_main_1
+	10: add t1, c_main_1, t0
+	11: sub t2, t1, d_main_1
+	12: return t2
+end
+
+void global()
+	0: return null
+end
+
+GVT:

@@ -1,0 +1,22 @@
+int func(int p_func_1)
+	0: sub t0, p_func_1, 1
+	1: mov p_func_1, t0
+	2: return p_func_1
+end
+
+int main()
+	0: call t0, global()
+	1: def b_main_2, 0
+	2: mov a_global_0, 10
+	3: call t1, func(a_global_0)
+	4: mov b_main_2, t1
+	5: return b_main_2
+end
+
+void global()
+	0: def a_global_0, 0
+	1: return null
+end
+
+GVT:
+	a_global_0 int 0

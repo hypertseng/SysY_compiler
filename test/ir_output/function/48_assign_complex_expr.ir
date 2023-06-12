@@ -1,0 +1,45 @@
+int main()
+	0: call t0, global()
+	1: def a_main_1, 0
+	2: def b_main_1, 0
+	3: def c_main_1, 0
+	4: def d_main_1, 0
+	5: def result_main_1, 0
+	6: mov a_main_1, 5
+	7: mov b_main_1, 5
+	8: mov c_main_1, 1
+	9: mov d_main_1, -2
+	10: mul t0, d_main_1, 1
+	11: div t1, t0, 2
+	12: sub t2, a_main_1, b_main_1
+	13: add t3, t1, t2
+	14: add t4, c_main_1, 3
+	15: mov t5, 0
+	16: sub t5, t5, t4
+	17: mod t6, t5, 2
+	18: sub t7, t3, t6
+	19: mov result_main_1, t7
+	20: call t8, putint(result_main_1)
+	21: mod t9, d_main_1, 2
+	22: add t10, t9, 67
+	23: sub t11, a_main_1, b_main_1
+	24: mov t12, 0
+	25: sub t12, t12, t11
+	26: add t13, t10, t12
+	27: add t14, c_main_1, 2
+	28: mod t15, t14, 2
+	29: mov t16, 0
+	30: sub t16, t16, t15
+	31: sub t17, t13, t16
+	32: mov result_main_1, t17
+	33: add t18, result_main_1, 3
+	34: mov result_main_1, t18
+	35: call t19, putint(result_main_1)
+	36: return 0
+end
+
+void global()
+	0: return null
+end
+
+GVT:

@@ -1,19 +1,28 @@
-
-# Consider dependencies only in project.
-set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
-
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
+  )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_CXX
+  "/coursegrader/src/ir/ir_function.cpp" "/coursegrader/build/CMakeFiles/IR.dir/src/ir/ir_function.cpp.o"
+  "/coursegrader/src/ir/ir_instruction.cpp" "/coursegrader/build/CMakeFiles/IR.dir/src/ir/ir_instruction.cpp.o"
+  "/coursegrader/src/ir/ir_operand.cpp" "/coursegrader/build/CMakeFiles/IR.dir/src/ir/ir_operand.cpp.o"
+  "/coursegrader/src/ir/ir_operator.cpp" "/coursegrader/build/CMakeFiles/IR.dir/src/ir/ir_operator.cpp.o"
+  "/coursegrader/src/ir/ir_program.cpp" "/coursegrader/build/CMakeFiles/IR.dir/src/ir/ir_program.cpp.o"
+  "/coursegrader/src/ir/type.cpp" "/coursegrader/build/CMakeFiles/IR.dir/src/ir/type.cpp.o"
+  )
+set(CMAKE_CXX_COMPILER_ID "GNU")
+
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_CXX
+  "DEBUG_DFA"
+  "DEBUG_PARSER"
+  "DEBUG_SCANNER"
   )
 
-# The set of dependency files which are needed:
-set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "D:/junior_2/Compilation_Principle/compiler/src/ir/ir_function.cpp" "CMakeFiles/IR.dir/src/ir/ir_function.cpp.obj" "gcc" "CMakeFiles/IR.dir/src/ir/ir_function.cpp.obj.d"
-  "D:/junior_2/Compilation_Principle/compiler/src/ir/ir_instruction.cpp" "CMakeFiles/IR.dir/src/ir/ir_instruction.cpp.obj" "gcc" "CMakeFiles/IR.dir/src/ir/ir_instruction.cpp.obj.d"
-  "D:/junior_2/Compilation_Principle/compiler/src/ir/ir_operand.cpp" "CMakeFiles/IR.dir/src/ir/ir_operand.cpp.obj" "gcc" "CMakeFiles/IR.dir/src/ir/ir_operand.cpp.obj.d"
-  "D:/junior_2/Compilation_Principle/compiler/src/ir/ir_operator.cpp" "CMakeFiles/IR.dir/src/ir/ir_operator.cpp.obj" "gcc" "CMakeFiles/IR.dir/src/ir/ir_operator.cpp.obj.d"
-  "D:/junior_2/Compilation_Principle/compiler/src/ir/ir_program.cpp" "CMakeFiles/IR.dir/src/ir/ir_program.cpp.obj" "gcc" "CMakeFiles/IR.dir/src/ir/ir_program.cpp.obj.d"
-  "D:/junior_2/Compilation_Principle/compiler/src/ir/type.cpp" "CMakeFiles/IR.dir/src/ir/type.cpp.obj" "gcc" "CMakeFiles/IR.dir/src/ir/type.cpp.obj.d"
+# The include file search paths:
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  ".././include"
   )
 
 # Targets to which this target links.

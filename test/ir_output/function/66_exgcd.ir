@@ -1,0 +1,48 @@
+int exgcd(int a_exgcd_1,int b_exgcd_1,int* x_exgcd_1,int* y_exgcd_1)
+	0: eq t0, b_exgcd_1, 0
+	1: if t0 goto [pc, 2]
+	2: goto [pc, 4]
+	3: store 1, x_exgcd_1, 0
+	4: store 0, y_exgcd_1, 0
+	5: return a_exgcd_1
+	6: if t0 goto [pc, 14]
+	7: mod t2, a_exgcd_1, b_exgcd_1
+	8: call t1, exgcd(b_exgcd_1, t2, x_exgcd_1, y_exgcd_1)
+	9: def r_if_3, t1
+	10: load t3, x_exgcd_1, 0
+	11: def t_if_3, t3
+	12: load t4, y_exgcd_1, 0
+	13: store t4, x_exgcd_1, 0
+	14: div t5, a_exgcd_1, b_exgcd_1
+	15: load t6, y_exgcd_1, 0
+	16: mul t7, t5, t6
+	17: sub t8, t_if_3, t7
+	18: store t8, y_exgcd_1, 0
+	19: return r_if_3
+	20: __unuse__ null, null, null
+end
+
+int main()
+	0: call t0, global()
+	1: def a_main_4, 7
+	2: def b_main_4, 15
+	3: alloc x_main_4, 1
+	4: store 1, x_main_4, 0
+	5: alloc y_main_4, 1
+	6: store 1, y_main_4, 0
+	7: call t9, exgcd(a_main_4, b_main_4, x_main_4, y_main_4)
+	8: load t10, x_main_4, 0
+	9: mod t11, t10, b_main_4
+	10: add t12, t11, b_main_4
+	11: mod t13, t12, b_main_4
+	12: store t13, x_main_4, 0
+	13: load t15, x_main_4, 0
+	14: call t14, putint(t15)
+	15: return 0
+end
+
+void global()
+	0: return null
+end
+
+GVT:

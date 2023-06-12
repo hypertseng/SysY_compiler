@@ -1,0 +1,26 @@
+int main()
+	0: call t0, global()
+	1: def i_main_1, 0
+	2: mov i_main_1, 0
+	3: def sum_main_1, 0
+	4: mov sum_main_1, 0
+	5: lss t0, i_main_1, 100
+	6: if t0 goto [pc, 2]
+	7: goto [pc, 10]
+	8: eq t1, i_main_1, 50
+	9: if t1 goto [pc, 2]
+	10: goto [pc, 2]
+	11: goto [pc, 6]
+	12: add t2, sum_main_1, i_main_1
+	13: mov sum_main_1, t2
+	14: add t3, i_main_1, 1
+	15: mov i_main_1, t3
+	16: goto [pc, -11]
+	17: return sum_main_1
+end
+
+void global()
+	0: return null
+end
+
+GVT:

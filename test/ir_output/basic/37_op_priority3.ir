@@ -1,0 +1,17 @@
+int main()
+	0: call t0, global()
+	1: def a_main_1, 0
+	2: def b_main_1, 0
+	3: mov a_main_1, 10
+	4: mov b_main_1, 30
+	5: sub t0, a_main_1, -5
+	6: add t1, t0, b_main_1
+	7: add t2, t1, -5
+	8: return t2
+end
+
+void global()
+	0: return null
+end
+
+GVT:

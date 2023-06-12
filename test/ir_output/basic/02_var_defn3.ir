@@ -1,0 +1,17 @@
+int main()
+	0: call t0, global()
+	1: def a_main_1, 0
+	2: def b0_main_1, 0
+	3: def _c_main_1, 0
+	4: mov a_main_1, 1
+	5: mov b0_main_1, 2
+	6: mov _c_main_1, 3
+	7: add t0, b0_main_1, _c_main_1
+	8: return t0
+end
+
+void global()
+	0: return null
+end
+
+GVT:

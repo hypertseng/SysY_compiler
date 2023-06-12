@@ -1,0 +1,84 @@
+int inc_a()
+	0: def b_inc_a_1, a_global_0
+	1: add t0, b_inc_a_1, 1
+	2: mov b_inc_a_1, t0
+	3: mov a_global_0, b_inc_a_1
+	4: return a_global_0
+end
+
+int main()
+	0: call t0, global()
+	1: def k_main_2, 5
+	2: geq t1, k_main_2, 0
+	3: if t1 goto [pc, 2]
+	4: goto [pc, 55]
+	5: call t2, inc_a()
+	6: if t2 goto [pc, 3]
+	7: mov t6, 0
+	8: goto [pc, 14]
+	9: call t3, inc_a()
+	10: if t3 goto [pc, 3]
+	11: mov t5, 0
+	12: goto [pc, 6]
+	13: call t4, inc_a()
+	14: if t4 goto [pc, 3]
+	15: mov t5, 0
+	16: goto [pc, 2]
+	17: mov t5, 1
+	18: if t5 goto [pc, 3]
+	19: mov t6, 0
+	20: goto [pc, 2]
+	21: mov t6, 1
+	22: if t6 goto [pc, 2]
+	23: goto [pc, 5]
+	24: call t7, putint(a_global_0)
+	25: call t8, putch(32)
+	26: call t9, putint(b_global_0)
+	27: call t10, putch(10)
+	28: call t11, inc_a()
+	29: lss t12, t11, 14
+	30: if t12 goto [pc, 16]
+	31: call t13, inc_a()
+	32: if t13 goto [pc, 3]
+	33: mov t18, 0
+	34: goto [pc, 9]
+	35: call t14, inc_a()
+	36: call t15, inc_a()
+	37: sub t16, t14, t15
+	38: add t17, t16, 1
+	39: if t17 goto [pc, 3]
+	40: mov t18, 0
+	41: goto [pc, 2]
+	42: mov t18, 1
+	43: if t18 goto [pc, 3]
+	44: mov t19, 0
+	45: goto [pc, 2]
+	46: mov t19, 1
+	47: if t19 goto [pc, 2]
+	48: goto [pc, 5]
+	49: call t20, putint(a_global_0)
+	50: call t21, putch(10)
+	51: mul t22, b_global_0, 2
+	52: mov b_global_0, t22
+	53: if t19 goto [pc, 2]
+	54: call t23, inc_a()
+	55: __unuse__ null, null, null
+	56: sub t24, k_main_2, 1
+	57: mov k_main_2, t24
+	58: goto [pc, -56]
+	59: call t25, putint(a_global_0)
+	60: call t26, putch(32)
+	61: call t27, putint(b_global_0)
+	62: call t28, putch(10)
+	63: return a_global_0
+end
+
+void global()
+	0: def a_global_0, -1
+	1: def b_global_0, 1
+	2: return null
+end
+
+GVT:
+	a_global_0 int 0
+	b_global_0 int 0

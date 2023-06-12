@@ -1,0 +1,39 @@
+int main()
+	0: call t0, global()
+	1: def i_main_1, 0
+	2: def sum_main_1, 0
+	3: lss t4, i_main_1, 6
+	4: if t4 goto [pc, 2]
+	5: goto [pc, 11]
+	6: def t5, 0
+	7: def t6, 1
+	8: mul t7, i_main_1, t6
+	9: add t5, t5, t7
+	10: load t8, arr_global_0, t5
+	11: add t9, sum_main_1, t8
+	12: mov sum_main_1, t9
+	13: add t10, i_main_1, 1
+	14: mov i_main_1, t10
+	15: goto [pc, -12]
+	16: return sum_main_1
+end
+
+void global()
+	0: def N_global_0, -1
+	1: mul t0, 2, 4
+	2: add t1, N_global_0, t0
+	3: div t2, 99, 99
+	4: sub t3, t1, t2
+	5: alloc arr_global_0, 6
+	6: store 1, arr_global_0, 0
+	7: store 2, arr_global_0, 1
+	8: store 33, arr_global_0, 2
+	9: store 4, arr_global_0, 3
+	10: store 5, arr_global_0, 4
+	11: store 6, arr_global_0, 5
+	12: return null
+end
+
+GVT:
+	N_global_0 int 0
+	arr_global_0 int* 6

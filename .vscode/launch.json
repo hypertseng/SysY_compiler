@@ -2,15 +2,26 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "S"
+            ]
+        },
+        {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/bin/compiler",
             "args": [
-                "${workspaceFolder}/test/testcase/function/79_var_name.sy",
-                "-e",
+                "${workspaceFolder}/test/testcase/basic/01_var_defn2.sy",
+                "-S",
                 "-o",
-                "./test.ir"
+                "./test.s"
             ],
             "cwd": "${workspaceFolder}",
             "externalConsole": false,

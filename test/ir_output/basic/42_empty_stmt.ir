@@ -1,0 +1,13 @@
+int main()
+	0: call t0, global()
+	1: def a_main_1, 10
+	2: mul t0, a_main_1, 2
+	3: add t1, t0, 1
+	4: return t1
+end
+
+void global()
+	0: return null
+end
+
+GVT:

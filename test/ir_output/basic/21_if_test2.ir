@@ -1,0 +1,64 @@
+int ifElseIf()
+	0: def a_ifElseIf_1, 0
+	1: mov a_ifElseIf_1, 5
+	2: def b_ifElseIf_1, 0
+	3: mov b_ifElseIf_1, 10
+	4: eq t0, a_ifElseIf_1, 6
+	5: if t0 goto [pc, 5]
+	6: eq t1, b_ifElseIf_1, 0xb
+	7: if t1 goto [pc, 3]
+	8: mov t2, 0
+	9: goto [pc, 2]
+	10: mov t2, 1
+	11: if t2 goto [pc, 2]
+	12: goto [pc, 2]
+	13: return a_ifElseIf_1
+	14: if t2 goto [pc, 33]
+	15: eq t3, b_ifElseIf_1, 10
+	16: if t3 goto [pc, 3]
+	17: mov t5, 0
+	18: goto [pc, 6]
+	19: eq t4, a_ifElseIf_1, 1
+	20: if t4 goto [pc, 3]
+	21: mov t5, 0
+	22: goto [pc, 2]
+	23: mov t5, 1
+	24: if t5 goto [pc, 2]
+	25: goto [pc, 2]
+	26: mov a_ifElseIf_1, 25
+	27: if t5 goto [pc, 19]
+	28: eq t6, b_ifElseIf_1, 10
+	29: if t6 goto [pc, 3]
+	30: mov t8, 0
+	31: goto [pc, 6]
+	32: eq t7, a_ifElseIf_1, -5
+	33: if t7 goto [pc, 3]
+	34: mov t8, 0
+	35: goto [pc, 2]
+	36: mov t8, 1
+	37: if t8 goto [pc, 2]
+	38: goto [pc, 3]
+	39: add t9, a_ifElseIf_1, 15
+	40: mov a_ifElseIf_1, t9
+	41: if t8 goto [pc, 4]
+	42: mov t10, 0
+	43: sub t10, t10, a_ifElseIf_1
+	44: mov a_ifElseIf_1, t10
+	45: __unuse__ null, null, null
+	46: __unuse__ null, null, null
+	47: __unuse__ null, null, null
+	48: return a_ifElseIf_1
+end
+
+int main()
+	0: call t0, global()
+	1: call t12, ifElseIf()
+	2: call t11, putint(t12)
+	3: return 0
+end
+
+void global()
+	0: return null
+end
+
+GVT:

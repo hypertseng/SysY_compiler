@@ -1,0 +1,104 @@
+int bubblesort(int* arr_bubblesort_1)
+	0: def i_bubblesort_1, 0
+	1: def j_bubblesort_1, 0
+	2: mov i_bubblesort_1, 0
+	3: sub t0, n_global_0, 1
+	4: lss t1, i_bubblesort_1, t0
+	5: if t1 goto [pc, 2]
+	6: goto [pc, 51]
+	7: mov j_bubblesort_1, 0
+	8: sub t2, n_global_0, i_bubblesort_1
+	9: sub t3, t2, 1
+	10: lss t4, j_bubblesort_1, t3
+	11: if t4 goto [pc, 2]
+	12: goto [pc, 42]
+	13: def t5, 0
+	14: def t6, 1
+	15: mul t7, j_bubblesort_1, t6
+	16: add t5, t5, t7
+	17: load t8, arr_bubblesort_1, t5
+	18: add t9, j_bubblesort_1, 1
+	19: def t10, 0
+	20: def t11, 1
+	21: mul t12, t9, t11
+	22: add t10, t10, t12
+	23: load t13, arr_bubblesort_1, t10
+	24: gtr t14, t8, t13
+	25: if t14 goto [pc, 2]
+	26: goto [pc, 25]
+	27: def tmp_if_4, 0
+	28: add t15, j_bubblesort_1, 1
+	29: def t16, 0
+	30: def t17, 1
+	31: mul t18, t15, t17
+	32: add t16, t16, t18
+	33: load t19, arr_bubblesort_1, t16
+	34: mov tmp_if_4, t19
+	35: add t20, j_bubblesort_1, 1
+	36: def t21, 0
+	37: def t22, 1
+	38: mul t23, t20, t22
+	39: add t21, t21, t23
+	40: def t24, 0
+	41: def t25, 1
+	42: mul t26, j_bubblesort_1, t25
+	43: add t24, t24, t26
+	44: load t27, arr_bubblesort_1, t24
+	45: store t27, arr_bubblesort_1, t21
+	46: def t28, 0
+	47: def t29, 1
+	48: mul t30, j_bubblesort_1, t29
+	49: add t28, t28, t30
+	50: store tmp_if_4, arr_bubblesort_1, t28
+	51: add t31, j_bubblesort_1, 1
+	52: mov j_bubblesort_1, t31
+	53: goto [pc, -45]
+	54: add t32, i_bubblesort_1, 1
+	55: mov i_bubblesort_1, t32
+	56: goto [pc, -53]
+	57: return 0
+end
+
+int main()
+	0: call t0, global()
+	1: mov n_global_0, 10
+	2: alloc a_main_5, 10
+	3: store 4, a_main_5, 0
+	4: store 3, a_main_5, 1
+	5: store 9, a_main_5, 2
+	6: store 2, a_main_5, 3
+	7: store 0, a_main_5, 4
+	8: store 1, a_main_5, 5
+	9: store 6, a_main_5, 6
+	10: store 5, a_main_5, 7
+	11: store 7, a_main_5, 8
+	12: store 8, a_main_5, 9
+	13: def i_main_5, 0
+	14: call t33, bubblesort(a_main_5)
+	15: mov i_main_5, t33
+	16: lss t34, i_main_5, n_global_0
+	17: if t34 goto [pc, 2]
+	18: goto [pc, 14]
+	19: def tmp_while_6, 0
+	20: def t35, 0
+	21: def t36, 1
+	22: mul t37, i_main_5, t36
+	23: add t35, t35, t37
+	24: load t38, a_main_5, t35
+	25: mov tmp_while_6, t38
+	26: call t39, putint(tmp_while_6)
+	27: mov tmp_while_6, 10
+	28: call t40, putch(tmp_while_6)
+	29: add t41, i_main_5, 1
+	30: mov i_main_5, t41
+	31: goto [pc, -15]
+	32: return 0
+end
+
+void global()
+	0: def n_global_0, 0
+	1: return null
+end
+
+GVT:
+	n_global_0 int 0

@@ -1,0 +1,104 @@
+int EightWhile()
+	0: def a_EightWhile_1, 0
+	1: mov a_EightWhile_1, 5
+	2: def b_EightWhile_1, 0
+	3: def c_EightWhile_1, 0
+	4: mov b_EightWhile_1, 6
+	5: mov c_EightWhile_1, 7
+	6: def d_EightWhile_1, 0
+	7: mov d_EightWhile_1, 10
+	8: lss t0, a_EightWhile_1, 20
+	9: if t0 goto [pc, 2]
+	10: goto [pc, 60]
+	11: add t1, a_EightWhile_1, 3
+	12: mov a_EightWhile_1, t1
+	13: lss t2, b_EightWhile_1, 10
+	14: if t2 goto [pc, 2]
+	15: goto [pc, 52]
+	16: add t3, b_EightWhile_1, 1
+	17: mov b_EightWhile_1, t3
+	18: eq t4, c_EightWhile_1, 7
+	19: if t4 goto [pc, 2]
+	20: goto [pc, 44]
+	21: sub t5, c_EightWhile_1, 1
+	22: mov c_EightWhile_1, t5
+	23: lss t6, d_EightWhile_1, 20
+	24: if t6 goto [pc, 2]
+	25: goto [pc, 36]
+	26: add t7, d_EightWhile_1, 3
+	27: mov d_EightWhile_1, t7
+	28: gtr t8, e_global_0, 1
+	29: if t8 goto [pc, 2]
+	30: goto [pc, 28]
+	31: sub t9, e_global_0, 1
+	32: mov e_global_0, t9
+	33: gtr t10, f_global_0, 2
+	34: if t10 goto [pc, 2]
+	35: goto [pc, 20]
+	36: sub t11, f_global_0, 2
+	37: mov f_global_0, t11
+	38: lss t12, g_global_0, 3
+	39: if t12 goto [pc, 2]
+	40: goto [pc, 12]
+	41: add t13, g_global_0, 10
+	42: mov g_global_0, t13
+	43: lss t14, h_global_0, 10
+	44: if t14 goto [pc, 2]
+	45: goto [pc, 4]
+	46: add t15, h_global_0, 8
+	47: mov h_global_0, t15
+	48: goto [pc, -5]
+	49: sub t16, h_global_0, 1
+	50: mov h_global_0, t16
+	51: goto [pc, -13]
+	52: sub t17, g_global_0, 8
+	53: mov g_global_0, t17
+	54: goto [pc, -21]
+	55: add t18, f_global_0, 1
+	56: mov f_global_0, t18
+	57: goto [pc, -29]
+	58: add t19, e_global_0, 1
+	59: mov e_global_0, t19
+	60: goto [pc, -37]
+	61: sub t20, d_EightWhile_1, 1
+	62: mov d_EightWhile_1, t20
+	63: goto [pc, -45]
+	64: add t21, c_EightWhile_1, 1
+	65: mov c_EightWhile_1, t21
+	66: goto [pc, -53]
+	67: sub t22, b_EightWhile_1, 2
+	68: mov b_EightWhile_1, t22
+	69: goto [pc, -61]
+	70: add t23, b_EightWhile_1, d_EightWhile_1
+	71: add t24, a_EightWhile_1, t23
+	72: add t25, t24, c_EightWhile_1
+	73: add t26, e_global_0, d_EightWhile_1
+	74: sub t27, t26, g_global_0
+	75: add t28, t27, h_global_0
+	76: sub t29, t25, t28
+	77: return t29
+end
+
+int main()
+	0: call t0, global()
+	1: mov g_global_0, 1
+	2: mov h_global_0, 2
+	3: mov e_global_0, 4
+	4: mov f_global_0, 6
+	5: call t30, EightWhile()
+	6: return t30
+end
+
+void global()
+	0: def g_global_0, 0
+	1: def h_global_0, 0
+	2: def f_global_0, 0
+	3: def e_global_0, 0
+	4: return null
+end
+
+GVT:
+	e_global_0 int 0
+	f_global_0 int 0
+	g_global_0 int 0
+	h_global_0 int 0

@@ -1,0 +1,13 @@
+int main()
+	0: call t0, global()
+	1: div t0, a_global_0, 5
+	2: return t0
+end
+
+void global()
+	0: def a_global_0, 10
+	1: return null
+end
+
+GVT:
+	a_global_0 int 0

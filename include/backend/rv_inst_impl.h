@@ -12,7 +12,9 @@ struct rv_inst {
     uint32_t imm;               // optional, in immediate inst
     std::string label;          // optional, in beq/jarl inst
 
-    std::string draw() const;
+    // constructor
+    // rv_inst(rvREG rd, rvREG rs1, rvREG rs2, rvOPCODE op);
+    // std::string draw() const;
 };
 
 };

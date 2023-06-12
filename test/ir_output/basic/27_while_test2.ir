@@ -1,0 +1,56 @@
+int FourWhile()
+	0: def a_FourWhile_1, 0
+	1: mov a_FourWhile_1, 5
+	2: def b_FourWhile_1, 0
+	3: def c_FourWhile_1, 0
+	4: mov b_FourWhile_1, 6
+	5: mov c_FourWhile_1, 7
+	6: def d_FourWhile_1, 0
+	7: mov d_FourWhile_1, 10
+	8: lss t0, a_FourWhile_1, 20
+	9: if t0 goto [pc, 2]
+	10: goto [pc, 28]
+	11: add t1, a_FourWhile_1, 3
+	12: mov a_FourWhile_1, t1
+	13: lss t2, b_FourWhile_1, 10
+	14: if t2 goto [pc, 2]
+	15: goto [pc, 20]
+	16: add t3, b_FourWhile_1, 1
+	17: mov b_FourWhile_1, t3
+	18: eq t4, c_FourWhile_1, 7
+	19: if t4 goto [pc, 2]
+	20: goto [pc, 12]
+	21: sub t5, c_FourWhile_1, 1
+	22: mov c_FourWhile_1, t5
+	23: lss t6, d_FourWhile_1, 20
+	24: if t6 goto [pc, 2]
+	25: goto [pc, 4]
+	26: add t7, d_FourWhile_1, 3
+	27: mov d_FourWhile_1, t7
+	28: goto [pc, -5]
+	29: sub t8, d_FourWhile_1, 1
+	30: mov d_FourWhile_1, t8
+	31: goto [pc, -13]
+	32: add t9, c_FourWhile_1, 1
+	33: mov c_FourWhile_1, t9
+	34: goto [pc, -21]
+	35: sub t10, b_FourWhile_1, 2
+	36: mov b_FourWhile_1, t10
+	37: goto [pc, -29]
+	38: add t11, b_FourWhile_1, d_FourWhile_1
+	39: add t12, a_FourWhile_1, t11
+	40: add t13, t12, c_FourWhile_1
+	41: return t13
+end
+
+int main()
+	0: call t0, global()
+	1: call t14, FourWhile()
+	2: return t14
+end
+
+void global()
+	0: return null
+end
+
+GVT:

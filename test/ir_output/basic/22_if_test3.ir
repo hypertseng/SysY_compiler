@@ -1,0 +1,30 @@
+int ififElse()
+	0: def a_ififElse_1, 0
+	1: mov a_ififElse_1, 5
+	2: def b_ififElse_1, 0
+	3: mov b_ififElse_1, 10
+	4: eq t0, a_ififElse_1, 5
+	5: if t0 goto [pc, 2]
+	6: goto [pc, 9]
+	7: eq t1, b_ififElse_1, 10
+	8: if t1 goto [pc, 2]
+	9: goto [pc, 2]
+	10: mov a_ififElse_1, 25
+	11: if t1 goto [pc, 3]
+	12: add t2, a_ififElse_1, 15
+	13: mov a_ififElse_1, t2
+	14: __unuse__ null, null, null
+	15: return a_ififElse_1
+end
+
+int main()
+	0: call t0, global()
+	1: call t3, ififElse()
+	2: return t3
+end
+
+void global()
+	0: return null
+end
+
+GVT:

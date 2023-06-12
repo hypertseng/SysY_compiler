@@ -1,0 +1,40 @@
+int ifWhile()
+	0: def a_ifWhile_1, 0
+	1: mov a_ifWhile_1, 0
+	2: def b_ifWhile_1, 0
+	3: mov b_ifWhile_1, 3
+	4: eq t0, a_ifWhile_1, 5
+	5: if t0 goto [pc, 2]
+	6: goto [pc, 9]
+	7: eq t1, b_ifWhile_1, 2
+	8: if t1 goto [pc, 2]
+	9: goto [pc, 4]
+	10: add t2, b_ifWhile_1, 2
+	11: mov b_ifWhile_1, t2
+	12: goto [pc, -5]
+	13: add t3, b_ifWhile_1, 25
+	14: mov b_ifWhile_1, t3
+	15: if t0 goto [pc, 9]
+	16: lss t4, a_ifWhile_1, 5
+	17: if t4 goto [pc, 2]
+	18: goto [pc, 6]
+	19: mul t5, b_ifWhile_1, 2
+	20: mov b_ifWhile_1, t5
+	21: add t6, a_ifWhile_1, 1
+	22: mov a_ifWhile_1, t6
+	23: goto [pc, -7]
+	24: __unuse__ null, null, null
+	25: return b_ifWhile_1
+end
+
+int main()
+	0: call t0, global()
+	1: call t7, ifWhile()
+	2: return t7
+end
+
+void global()
+	0: return null
+end
+
+GVT:

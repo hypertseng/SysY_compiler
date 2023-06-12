@@ -1,0 +1,47 @@
+int func()
+	0: def b_func_1, a_global_0
+	1: def a_func_1, 1
+	2: eq t0, a_func_1, b_func_1
+	3: if t0 goto [pc, 2]
+	4: goto [pc, 4]
+	5: add t1, a_func_1, 1
+	6: mov a_func_1, t1
+	7: return 1
+	8: if t0 goto [pc, 2]
+	9: return 0
+	10: __unuse__ null, null, null
+end
+
+int main()
+	0: call t0, global()
+	1: def result_main_3, 0
+	2: def i_main_3, 0
+	3: lss t2, i_main_3, 100
+	4: if t2 goto [pc, 2]
+	5: goto [pc, 10]
+	6: call t3, func()
+	7: eq t4, t3, 1
+	8: if t4 goto [pc, 2]
+	9: goto [pc, 3]
+	10: add t5, result_main_3, 1
+	11: mov result_main_3, t5
+	12: add t6, i_main_3, 1
+	13: mov i_main_3, t6
+	14: goto [pc, -11]
+	15: lss t7, result_main_3, 100
+	16: if t7 goto [pc, 2]
+	17: goto [pc, 2]
+	18: call t8, putint(1)
+	19: if t7 goto [pc, 2]
+	20: call t9, putint(0)
+	21: __unuse__ null, null, null
+	22: return 0
+end
+
+void global()
+	0: def a_global_0, 7
+	1: return null
+end
+
+GVT:
+	a_global_0 int 0

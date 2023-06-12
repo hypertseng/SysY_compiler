@@ -1,0 +1,100 @@
+int func(int n_func_1)
+	0: add t0, g_global_0, n_func_1
+	1: mov g_global_0, t0
+	2: call t1, putint(g_global_0)
+	3: return g_global_0
+end
+
+int main()
+	0: call t0, global()
+	1: def i_main_2, 0
+	2: call t2, getint()
+	3: mov i_main_2, t2
+	4: gtr t3, i_main_2, 10
+	5: if t3 goto [pc, 3]
+	6: mov t5, 0
+	7: goto [pc, 6]
+	8: call t4, func(i_main_2)
+	9: if t4 goto [pc, 3]
+	10: mov t5, 0
+	11: goto [pc, 2]
+	12: mov t5, 1
+	13: if t5 goto [pc, 2]
+	14: goto [pc, 2]
+	15: mov i_main_2, 1
+	16: if t5 goto [pc, 2]
+	17: mov i_main_2, 0
+	18: __unuse__ null, null, null
+	19: call t6, getint()
+	20: mov i_main_2, t6
+	21: gtr t7, i_main_2, 11
+	22: if t7 goto [pc, 3]
+	23: mov t9, 0
+	24: goto [pc, 6]
+	25: call t8, func(i_main_2)
+	26: if t8 goto [pc, 3]
+	27: mov t9, 0
+	28: goto [pc, 2]
+	29: mov t9, 1
+	30: if t9 goto [pc, 2]
+	31: goto [pc, 2]
+	32: mov i_main_2, 1
+	33: if t9 goto [pc, 2]
+	34: mov i_main_2, 0
+	35: __unuse__ null, null, null
+	36: call t10, getint()
+	37: mov i_main_2, t10
+	38: leq t11, i_main_2, 99
+	39: if t11 goto [pc, 5]
+	40: call t12, func(i_main_2)
+	41: if t12 goto [pc, 3]
+	42: mov t13, 0
+	43: goto [pc, 2]
+	44: mov t13, 1
+	45: if t13 goto [pc, 2]
+	46: goto [pc, 2]
+	47: mov i_main_2, 1
+	48: if t13 goto [pc, 2]
+	49: mov i_main_2, 0
+	50: __unuse__ null, null, null
+	51: call t14, getint()
+	52: mov i_main_2, t14
+	53: leq t15, i_main_2, 100
+	54: if t15 goto [pc, 5]
+	55: call t16, func(i_main_2)
+	56: if t16 goto [pc, 3]
+	57: mov t17, 0
+	58: goto [pc, 2]
+	59: mov t17, 1
+	60: if t17 goto [pc, 2]
+	61: goto [pc, 2]
+	62: mov i_main_2, 1
+	63: if t17 goto [pc, 2]
+	64: mov i_main_2, 0
+	65: __unuse__ null, null, null
+	66: call t18, func(99)
+	67: not t19, t18
+	68: if t19 goto [pc, 3]
+	69: mov t21, 0
+	70: goto [pc, 6]
+	71: call t20, func(100)
+	72: if t20 goto [pc, 3]
+	73: mov t21, 0
+	74: goto [pc, 2]
+	75: mov t21, 1
+	76: if t21 goto [pc, 2]
+	77: goto [pc, 2]
+	78: mov i_main_2, 1
+	79: if t21 goto [pc, 2]
+	80: mov i_main_2, 0
+	81: __unuse__ null, null, null
+	82: return 0
+end
+
+void global()
+	0: def g_global_0, 0
+	1: return null
+end
+
+GVT:
+	g_global_0 int 0

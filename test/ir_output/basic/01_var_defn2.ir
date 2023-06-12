@@ -1,0 +1,16 @@
+int main()
+	0: call t0, global()
+	1: def a_main_1, 5
+	2: add t0, a_main_1, b_global_0
+	3: return t0
+end
+
+void global()
+	0: def a_global_0, 3
+	1: def b_global_0, 5
+	2: return null
+end
+
+GVT:
+	a_global_0 int 0
+	b_global_0 int 0

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10.2)
+cmake_minimum_required(VERSION 3.10)
 project(compiler)
 
 # compile flags
@@ -24,7 +24,7 @@ add_library(jsoncpp ./src/third_party/jsoncpp/jsoncpp.cpp)
 # --------------------- from lib ---------------------
 # link libxx.a
 # u should rename libxx-x86-win.a or libxx-x86-linux.a to libxx.a according to ur own platform
-link_directories(./lib)
+# link_directories(./lib)
 # --------------------- from lib ---------------------
 
 # build library
@@ -32,6 +32,8 @@ link_directories(./lib)
 
 aux_source_directory(./src/front FRONT_SRC)
 add_library(Front ${FRONT_SRC})
+aux_source_directory(./src/backend BACKEND_SRC)
+add_library(Backend ${BACKEND_SRC})
 
 # 为了 debug 方便，你可以选择通过源文件来构建 IR 测评机，但是请以链接静态库文件的方式去跑分（为了防止你们修改测评机，在OJ上我们会采取此方式）
 # --------------------- from src ---------------------
@@ -47,10 +49,13 @@ add_executable(compiler main.cpp)
 
 # link
 # every lib should be linked with [compiler]
-target_link_libraries(compiler Tools Front IR jsoncpp)
+target_link_libraries(compiler Backend Tools Front IR jsoncpp)
 
 # debug
 # (CMAKE_BUILD_TYPE "Debug")
 SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb")
 SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall")
+
+set(CMAKE_C_COMPILER    "/usr/bin/x86_64-linux-gnu-gcc-7")
+set(CMAKE_CXX_COMPILER  "/usr/bin/x86_64-linux-gnu-g++-7")

@@ -1,0 +1,30 @@
+int main()
+	0: call t0, global()
+	1: def a_main_1, 0
+	2: def b_main_1, 0
+	3: mov a_main_1, 070
+	4: mov b_main_1, 0x4
+	5: sub t0, a_main_1, -4
+	6: add t1, t0, b_main_1
+	7: mov a_main_1, t1
+	8: not t2, a_main_1
+	9: not t3, t2
+	10: not t4, t3
+	11: mov t5, 0
+	12: sub t5, t5, t4
+	13: if t5 goto [pc, 2]
+	14: goto [pc, 2]
+	15: mov a_main_1, ---1
+	16: if t5 goto [pc, 3]
+	17: add t6, 0, b_main_1
+	18: mov a_main_1, t6
+	19: __unuse__ null, null, null
+	20: call t7, putint(a_main_1)
+	21: return 0
+end
+
+void global()
+	0: return null
+end
+
+GVT:

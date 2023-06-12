@@ -54,6 +54,7 @@
         "iomanip": "cpp",
         "iosfwd": "cpp",
         "numbers": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "optional": "cpp"
     }
 }

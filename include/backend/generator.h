@@ -14,7 +14,7 @@ namespace backend {
 
 // it is a map bewteen variable and its mem addr, the mem addr of a local variable can be identified by ($sp + off)
 struct stackVarMap {
-    std::map<ir::Operand, int> _table;
+    std::map<std::string, int> _table;
 
     /**
      * @brief find the addr of a ir::Operand
@@ -27,31 +27,36 @@ struct stackVarMap {
      * @param[in] size: the space needed(in byte)
      * @return the offset
     */
-    int add_operand(ir::Operand, uint32_t size = 4);
+    int add_operand(ir::Operand, uint32_t size);
 };
 
 
 struct Generator {
     const ir::Program& program;         // the program to gen
     std::ofstream& fout;                 // output file
+    stackVarMap local_stack;            // map between local variable and its mem addr
+    std::vector<std::string> global_var;   // global variable
+    int cur_ofs;                        // current offset of stack pointer
 
     Generator(ir::Program&, std::ofstream&);
 
     // reg allocate api
     rv::rvREG getRd(ir::Operand);
-    rv::rvFREG fgetRd(ir::Operand);
     rv::rvREG getRs1(ir::Operand);
     rv::rvREG getRs2(ir::Operand);
-    rv::rvFREG fgetRs1(ir::Operand);
-    rv::rvFREG fgetRs2(ir::Operand);
 
     // generate wrapper function
     void gen();
     void gen_func(const ir::Function&);
     void gen_instr(const ir::Instruction&);
+    void gen_global(const ir::Function&);
+    void init_func(const ir::Function&);
+    int alloc_stack(const ir::Function&);
+    void clear_stack(const ir::Function&);
+    bool is_globalvar(std::string);
+    std::string get_realvar(std::string);
+    void gen_operate_instr(const ir::Instruction &);
 };
-
-
 
 } // namespace backend
 

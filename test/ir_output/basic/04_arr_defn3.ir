@@ -1,0 +1,35 @@
+int main()
+	0: call t0, global()
+	1: alloc a_main_1, 8
+	2: store 0, a_main_1, 0
+	3: store 0, a_main_1, 1
+	4: store 0, a_main_1, 2
+	5: store 0, a_main_1, 3
+	6: store 0, a_main_1, 4
+	7: store 0, a_main_1, 5
+	8: store 0, a_main_1, 6
+	9: store 0, a_main_1, 7
+	10: alloc b_main_1, 8
+	11: store 1, b_main_1, 0
+	12: store 2, b_main_1, 1
+	13: store 3, b_main_1, 2
+	14: store 4, b_main_1, 3
+	15: store 5, b_main_1, 4
+	16: store 6, b_main_1, 5
+	17: store 7, b_main_1, 6
+	18: store 8, b_main_1, 7
+	19: load t0, b_main_1, 7
+	20: load t1, b_main_1, 0
+	21: add t2, t0, t1
+	22: load t3, b_main_1, 1
+	23: add t4, t2, t3
+	24: load t5, b_main_1, 4
+	25: add t6, t4, t5
+	26: return t6
+end
+
+void global()
+	0: return null
+end
+
+GVT:

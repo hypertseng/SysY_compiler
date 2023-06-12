@@ -1,0 +1,42 @@
+int deepWhileBr(int a_deepWhileBr_1,int b_deepWhileBr_1)
+	0: def c_deepWhileBr_1, 0
+	1: add t0, a_deepWhileBr_1, b_deepWhileBr_1
+	2: mov c_deepWhileBr_1, t0
+	3: lss t1, c_deepWhileBr_1, 75
+	4: if t1 goto [pc, 2]
+	5: goto [pc, 20]
+	6: def d_while_2, 0
+	7: mov d_while_2, 42
+	8: lss t2, c_deepWhileBr_1, 100
+	9: if t2 goto [pc, 2]
+	10: goto [pc, 14]
+	11: add t3, c_deepWhileBr_1, d_while_2
+	12: mov c_deepWhileBr_1, t3
+	13: gtr t4, c_deepWhileBr_1, 99
+	14: if t4 goto [pc, 2]
+	15: goto [pc, 9]
+	16: def e_if_4, 0
+	17: mul t5, d_while_2, 2
+	18: mov e_if_4, t5
+	19: eq t6, 1, 1
+	20: if t6 goto [pc, 2]
+	21: goto [pc, 3]
+	22: mul t7, e_if_4, 2
+	23: mov c_deepWhileBr_1, t7
+	24: goto [pc, -21]
+	25: return c_deepWhileBr_1
+end
+
+int main()
+	0: call t0, global()
+	1: def p_main_6, 0
+	2: mov p_main_6, 2
+	3: call t8, deepWhileBr(p_main_6, p_main_6)
+	4: return t8
+end
+
+void global()
+	0: return null
+end
+
+GVT:

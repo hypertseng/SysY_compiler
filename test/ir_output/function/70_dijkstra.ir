@@ -1,0 +1,533 @@
+void Dijkstra()
+	0: def i_Dijkstra_1, 0
+	1: def j_Dijkstra_1, 0
+	2: mov i_Dijkstra_1, 1
+	3: leq t0, i_Dijkstra_1, n_global_0
+	4: if t0 goto [pc, 2]
+	5: goto [pc, 22]
+	6: def t1, 0
+	7: def t2, 1
+	8: mul t3, i_Dijkstra_1, t2
+	9: add t1, t1, t3
+	10: def t4, 0
+	11: def t5, 16
+	12: mul t6, 1, t5
+	13: add t4, t4, t6
+	14: def t7, 1
+	15: mul t8, i_Dijkstra_1, t7
+	16: add t4, t4, t8
+	17: load t9, e_global_0, t4
+	18: store t9, dis_global_0, t1
+	19: def t10, 0
+	20: def t11, 1
+	21: mul t12, i_Dijkstra_1, t11
+	22: add t10, t10, t12
+	23: store 0, book_global_0, t10
+	24: add t13, i_Dijkstra_1, 1
+	25: mov i_Dijkstra_1, t13
+	26: goto [pc, -23]
+	27: store 1, book_global_0, 1
+	28: mov i_Dijkstra_1, 1
+	29: sub t14, n_global_0, 1
+	30: leq t15, i_Dijkstra_1, t14
+	31: if t15 goto [pc, 2]
+	32: goto [pc, 105]
+	33: def min_num_while_3, INF_global_0
+	34: def min_index_while_3, 0
+	35: def k_while_3, 1
+	36: leq t16, k_while_3, n_global_0
+	37: if t16 goto [pc, 2]
+	38: goto [pc, 32]
+	39: def t17, 0
+	40: def t18, 1
+	41: mul t19, k_while_3, t18
+	42: add t17, t17, t19
+	43: load t20, dis_global_0, t17
+	44: gtr t21, min_num_while_3, t20
+	45: if t21 goto [pc, 3]
+	46: mov t27, 0
+	47: goto [pc, 11]
+	48: def t22, 0
+	49: def t23, 1
+	50: mul t24, k_while_3, t23
+	51: add t22, t22, t24
+	52: load t25, book_global_0, t22
+	53: eq t26, t25, 0
+	54: if t26 goto [pc, 3]
+	55: mov t27, 0
+	56: goto [pc, 2]
+	57: mov t27, 1
+	58: if t27 goto [pc, 2]
+	59: goto [pc, 8]
+	60: def t28, 0
+	61: def t29, 1
+	62: mul t30, k_while_3, t29
+	63: add t28, t28, t30
+	64: load t31, dis_global_0, t28
+	65: mov min_num_while_3, t31
+	66: mov min_index_while_3, k_while_3
+	67: add t32, k_while_3, 1
+	68: mov k_while_3, t32
+	69: goto [pc, -33]
+	70: def t33, 0
+	71: def t34, 1
+	72: mul t35, min_index_while_3, t34
+	73: add t33, t33, t35
+	74: store 1, book_global_0, t33
+	75: def j_while_3, 1
+	76: leq t36, j_while_3, n_global_0
+	77: if t36 goto [pc, 2]
+	78: goto [pc, 56]
+	79: def t37, 0
+	80: def t38, 16
+	81: mul t39, min_index_while_3, t38
+	82: add t37, t37, t39
+	83: def t40, 1
+	84: mul t41, j_while_3, t40
+	85: add t37, t37, t41
+	86: load t42, e_global_0, t37
+	87: lss t43, t42, INF_global_0
+	88: if t43 goto [pc, 2]
+	89: goto [pc, 42]
+	90: def t44, 0
+	91: def t45, 1
+	92: mul t46, j_while_3, t45
+	93: add t44, t44, t46
+	94: load t47, dis_global_0, t44
+	95: def t48, 0
+	96: def t49, 1
+	97: mul t50, min_index_while_3, t49
+	98: add t48, t48, t50
+	99: load t51, dis_global_0, t48
+	100: def t52, 0
+	101: def t53, 16
+	102: mul t54, min_index_while_3, t53
+	103: add t52, t52, t54
+	104: def t55, 1
+	105: mul t56, j_while_3, t55
+	106: add t52, t52, t56
+	107: load t57, e_global_0, t52
+	108: add t58, t51, t57
+	109: gtr t59, t47, t58
+	110: if t59 goto [pc, 2]
+	111: goto [pc, 20]
+	112: def t60, 0
+	113: def t61, 1
+	114: mul t62, j_while_3, t61
+	115: add t60, t60, t62
+	116: def t63, 0
+	117: def t64, 1
+	118: mul t65, min_index_while_3, t64
+	119: add t63, t63, t65
+	120: load t66, dis_global_0, t63
+	121: def t67, 0
+	122: def t68, 16
+	123: mul t69, min_index_while_3, t68
+	124: add t67, t67, t69
+	125: def t70, 1
+	126: mul t71, j_while_3, t70
+	127: add t67, t67, t71
+	128: load t72, e_global_0, t67
+	129: add t73, t66, t72
+	130: store t73, dis_global_0, t60
+	131: add t74, j_while_3, 1
+	132: mov j_while_3, t74
+	133: goto [pc, -57]
+	134: add t75, i_Dijkstra_1, 1
+	135: mov i_Dijkstra_1, t75
+	136: goto [pc, -107]
+	137: return null
+end
+
+int main()
+	0: call t0, global()
+	1: def i_main_9, 0
+	2: call t76, getint()
+	3: mov n_global_0, t76
+	4: call t77, getint()
+	5: mov m_global_0, t77
+	6: mov i_main_9, 1
+	7: leq t78, i_main_9, n_global_0
+	8: if t78 goto [pc, 2]
+	9: goto [pc, 32]
+	10: def j_while_10, 1
+	11: leq t79, j_while_10, n_global_0
+	12: if t79 goto [pc, 2]
+	13: goto [pc, 25]
+	14: eq t80, i_main_9, j_while_10
+	15: if t80 goto [pc, 2]
+	16: goto [pc, 9]
+	17: def t81, 0
+	18: def t82, 16
+	19: mul t83, i_main_9, t82
+	20: add t81, t81, t83
+	21: def t84, 1
+	22: mul t85, j_while_10, t84
+	23: add t81, t81, t85
+	24: store 0, e_global_0, t81
+	25: if t80 goto [pc, 9]
+	26: def t86, 0
+	27: def t87, 16
+	28: mul t88, i_main_9, t87
+	29: add t86, t86, t88
+	30: def t89, 1
+	31: mul t90, j_while_10, t89
+	32: add t86, t86, t90
+	33: store INF_global_0, e_global_0, t86
+	34: __unuse__ null, null, null
+	35: add t91, j_while_10, 1
+	36: mov j_while_10, t91
+	37: goto [pc, -26]
+	38: add t92, i_main_9, 1
+	39: mov i_main_9, t92
+	40: goto [pc, -33]
+	41: mov i_main_9, 1
+	42: leq t93, i_main_9, m_global_0
+	43: if t93 goto [pc, 2]
+	44: goto [pc, 17]
+	45: call t94, getint()
+	46: def u_while_12, t94
+	47: call t95, getint()
+	48: def v_while_12, t95
+	49: def t96, 0
+	50: def t97, 16
+	51: mul t98, u_while_12, t97
+	52: add t96, t96, t98
+	53: def t99, 1
+	54: mul t100, v_while_12, t99
+	55: add t96, t96, t100
+	56: call t101, getint()
+	57: store t101, e_global_0, t96
+	58: add t102, i_main_9, 1
+	59: mov i_main_9, t102
+	60: goto [pc, -18]
+	61: call t103, Dijkstra()
+	62: mov i_main_9, 1
+	63: leq t104, i_main_9, n_global_0
+	64: if t104 goto [pc, 2]
+	65: goto [pc, 11]
+	66: def t106, 0
+	67: def t107, 1
+	68: mul t108, i_main_9, t107
+	69: add t106, t106, t108
+	70: load t109, dis_global_0, t106
+	71: call t105, putint(t109)
+	72: call t110, putch(32)
+	73: add t111, i_main_9, 1
+	74: mov i_main_9, t111
+	75: goto [pc, -12]
+	76: call t112, putch(10)
+	77: return 0
+end
+
+void global()
+	0: def INF_global_0, 65535
+	1: alloc e_global_0, 256
+	2: store 0, e_global_0, 0
+	3: store 0, e_global_0, 1
+	4: store 0, e_global_0, 2
+	5: store 0, e_global_0, 3
+	6: store 0, e_global_0, 4
+	7: store 0, e_global_0, 5
+	8: store 0, e_global_0, 6
+	9: store 0, e_global_0, 7
+	10: store 0, e_global_0, 8
+	11: store 0, e_global_0, 9
+	12: store 0, e_global_0, 10
+	13: store 0, e_global_0, 11
+	14: store 0, e_global_0, 12
+	15: store 0, e_global_0, 13
+	16: store 0, e_global_0, 14
+	17: store 0, e_global_0, 15
+	18: store 0, e_global_0, 16
+	19: store 0, e_global_0, 17
+	20: store 0, e_global_0, 18
+	21: store 0, e_global_0, 19
+	22: store 0, e_global_0, 20
+	23: store 0, e_global_0, 21
+	24: store 0, e_global_0, 22
+	25: store 0, e_global_0, 23
+	26: store 0, e_global_0, 24
+	27: store 0, e_global_0, 25
+	28: store 0, e_global_0, 26
+	29: store 0, e_global_0, 27
+	30: store 0, e_global_0, 28
+	31: store 0, e_global_0, 29
+	32: store 0, e_global_0, 30
+	33: store 0, e_global_0, 31
+	34: store 0, e_global_0, 32
+	35: store 0, e_global_0, 33
+	36: store 0, e_global_0, 34
+	37: store 0, e_global_0, 35
+	38: store 0, e_global_0, 36
+	39: store 0, e_global_0, 37
+	40: store 0, e_global_0, 38
+	41: store 0, e_global_0, 39
+	42: store 0, e_global_0, 40
+	43: store 0, e_global_0, 41
+	44: store 0, e_global_0, 42
+	45: store 0, e_global_0, 43
+	46: store 0, e_global_0, 44
+	47: store 0, e_global_0, 45
+	48: store 0, e_global_0, 46
+	49: store 0, e_global_0, 47
+	50: store 0, e_global_0, 48
+	51: store 0, e_global_0, 49
+	52: store 0, e_global_0, 50
+	53: store 0, e_global_0, 51
+	54: store 0, e_global_0, 52
+	55: store 0, e_global_0, 53
+	56: store 0, e_global_0, 54
+	57: store 0, e_global_0, 55
+	58: store 0, e_global_0, 56
+	59: store 0, e_global_0, 57
+	60: store 0, e_global_0, 58
+	61: store 0, e_global_0, 59
+	62: store 0, e_global_0, 60
+	63: store 0, e_global_0, 61
+	64: store 0, e_global_0, 62
+	65: store 0, e_global_0, 63
+	66: store 0, e_global_0, 64
+	67: store 0, e_global_0, 65
+	68: store 0, e_global_0, 66
+	69: store 0, e_global_0, 67
+	70: store 0, e_global_0, 68
+	71: store 0, e_global_0, 69
+	72: store 0, e_global_0, 70
+	73: store 0, e_global_0, 71
+	74: store 0, e_global_0, 72
+	75: store 0, e_global_0, 73
+	76: store 0, e_global_0, 74
+	77: store 0, e_global_0, 75
+	78: store 0, e_global_0, 76
+	79: store 0, e_global_0, 77
+	80: store 0, e_global_0, 78
+	81: store 0, e_global_0, 79
+	82: store 0, e_global_0, 80
+	83: store 0, e_global_0, 81
+	84: store 0, e_global_0, 82
+	85: store 0, e_global_0, 83
+	86: store 0, e_global_0, 84
+	87: store 0, e_global_0, 85
+	88: store 0, e_global_0, 86
+	89: store 0, e_global_0, 87
+	90: store 0, e_global_0, 88
+	91: store 0, e_global_0, 89
+	92: store 0, e_global_0, 90
+	93: store 0, e_global_0, 91
+	94: store 0, e_global_0, 92
+	95: store 0, e_global_0, 93
+	96: store 0, e_global_0, 94
+	97: store 0, e_global_0, 95
+	98: store 0, e_global_0, 96
+	99: store 0, e_global_0, 97
+	100: store 0, e_global_0, 98
+	101: store 0, e_global_0, 99
+	102: store 0, e_global_0, 100
+	103: store 0, e_global_0, 101
+	104: store 0, e_global_0, 102
+	105: store 0, e_global_0, 103
+	106: store 0, e_global_0, 104
+	107: store 0, e_global_0, 105
+	108: store 0, e_global_0, 106
+	109: store 0, e_global_0, 107
+	110: store 0, e_global_0, 108
+	111: store 0, e_global_0, 109
+	112: store 0, e_global_0, 110
+	113: store 0, e_global_0, 111
+	114: store 0, e_global_0, 112
+	115: store 0, e_global_0, 113
+	116: store 0, e_global_0, 114
+	117: store 0, e_global_0, 115
+	118: store 0, e_global_0, 116
+	119: store 0, e_global_0, 117
+	120: store 0, e_global_0, 118
+	121: store 0, e_global_0, 119
+	122: store 0, e_global_0, 120
+	123: store 0, e_global_0, 121
+	124: store 0, e_global_0, 122
+	125: store 0, e_global_0, 123
+	126: store 0, e_global_0, 124
+	127: store 0, e_global_0, 125
+	128: store 0, e_global_0, 126
+	129: store 0, e_global_0, 127
+	130: store 0, e_global_0, 128
+	131: store 0, e_global_0, 129
+	132: store 0, e_global_0, 130
+	133: store 0, e_global_0, 131
+	134: store 0, e_global_0, 132
+	135: store 0, e_global_0, 133
+	136: store 0, e_global_0, 134
+	137: store 0, e_global_0, 135
+	138: store 0, e_global_0, 136
+	139: store 0, e_global_0, 137
+	140: store 0, e_global_0, 138
+	141: store 0, e_global_0, 139
+	142: store 0, e_global_0, 140
+	143: store 0, e_global_0, 141
+	144: store 0, e_global_0, 142
+	145: store 0, e_global_0, 143
+	146: store 0, e_global_0, 144
+	147: store 0, e_global_0, 145
+	148: store 0, e_global_0, 146
+	149: store 0, e_global_0, 147
+	150: store 0, e_global_0, 148
+	151: store 0, e_global_0, 149
+	152: store 0, e_global_0, 150
+	153: store 0, e_global_0, 151
+	154: store 0, e_global_0, 152
+	155: store 0, e_global_0, 153
+	156: store 0, e_global_0, 154
+	157: store 0, e_global_0, 155
+	158: store 0, e_global_0, 156
+	159: store 0, e_global_0, 157
+	160: store 0, e_global_0, 158
+	161: store 0, e_global_0, 159
+	162: store 0, e_global_0, 160
+	163: store 0, e_global_0, 161
+	164: store 0, e_global_0, 162
+	165: store 0, e_global_0, 163
+	166: store 0, e_global_0, 164
+	167: store 0, e_global_0, 165
+	168: store 0, e_global_0, 166
+	169: store 0, e_global_0, 167
+	170: store 0, e_global_0, 168
+	171: store 0, e_global_0, 169
+	172: store 0, e_global_0, 170
+	173: store 0, e_global_0, 171
+	174: store 0, e_global_0, 172
+	175: store 0, e_global_0, 173
+	176: store 0, e_global_0, 174
+	177: store 0, e_global_0, 175
+	178: store 0, e_global_0, 176
+	179: store 0, e_global_0, 177
+	180: store 0, e_global_0, 178
+	181: store 0, e_global_0, 179
+	182: store 0, e_global_0, 180
+	183: store 0, e_global_0, 181
+	184: store 0, e_global_0, 182
+	185: store 0, e_global_0, 183
+	186: store 0, e_global_0, 184
+	187: store 0, e_global_0, 185
+	188: store 0, e_global_0, 186
+	189: store 0, e_global_0, 187
+	190: store 0, e_global_0, 188
+	191: store 0, e_global_0, 189
+	192: store 0, e_global_0, 190
+	193: store 0, e_global_0, 191
+	194: store 0, e_global_0, 192
+	195: store 0, e_global_0, 193
+	196: store 0, e_global_0, 194
+	197: store 0, e_global_0, 195
+	198: store 0, e_global_0, 196
+	199: store 0, e_global_0, 197
+	200: store 0, e_global_0, 198
+	201: store 0, e_global_0, 199
+	202: store 0, e_global_0, 200
+	203: store 0, e_global_0, 201
+	204: store 0, e_global_0, 202
+	205: store 0, e_global_0, 203
+	206: store 0, e_global_0, 204
+	207: store 0, e_global_0, 205
+	208: store 0, e_global_0, 206
+	209: store 0, e_global_0, 207
+	210: store 0, e_global_0, 208
+	211: store 0, e_global_0, 209
+	212: store 0, e_global_0, 210
+	213: store 0, e_global_0, 211
+	214: store 0, e_global_0, 212
+	215: store 0, e_global_0, 213
+	216: store 0, e_global_0, 214
+	217: store 0, e_global_0, 215
+	218: store 0, e_global_0, 216
+	219: store 0, e_global_0, 217
+	220: store 0, e_global_0, 218
+	221: store 0, e_global_0, 219
+	222: store 0, e_global_0, 220
+	223: store 0, e_global_0, 221
+	224: store 0, e_global_0, 222
+	225: store 0, e_global_0, 223
+	226: store 0, e_global_0, 224
+	227: store 0, e_global_0, 225
+	228: store 0, e_global_0, 226
+	229: store 0, e_global_0, 227
+	230: store 0, e_global_0, 228
+	231: store 0, e_global_0, 229
+	232: store 0, e_global_0, 230
+	233: store 0, e_global_0, 231
+	234: store 0, e_global_0, 232
+	235: store 0, e_global_0, 233
+	236: store 0, e_global_0, 234
+	237: store 0, e_global_0, 235
+	238: store 0, e_global_0, 236
+	239: store 0, e_global_0, 237
+	240: store 0, e_global_0, 238
+	241: store 0, e_global_0, 239
+	242: store 0, e_global_0, 240
+	243: store 0, e_global_0, 241
+	244: store 0, e_global_0, 242
+	245: store 0, e_global_0, 243
+	246: store 0, e_global_0, 244
+	247: store 0, e_global_0, 245
+	248: store 0, e_global_0, 246
+	249: store 0, e_global_0, 247
+	250: store 0, e_global_0, 248
+	251: store 0, e_global_0, 249
+	252: store 0, e_global_0, 250
+	253: store 0, e_global_0, 251
+	254: store 0, e_global_0, 252
+	255: store 0, e_global_0, 253
+	256: store 0, e_global_0, 254
+	257: store 0, e_global_0, 255
+	258: alloc book_global_0, 16
+	259: store 0, book_global_0, 0
+	260: store 0, book_global_0, 1
+	261: store 0, book_global_0, 2
+	262: store 0, book_global_0, 3
+	263: store 0, book_global_0, 4
+	264: store 0, book_global_0, 5
+	265: store 0, book_global_0, 6
+	266: store 0, book_global_0, 7
+	267: store 0, book_global_0, 8
+	268: store 0, book_global_0, 9
+	269: store 0, book_global_0, 10
+	270: store 0, book_global_0, 11
+	271: store 0, book_global_0, 12
+	272: store 0, book_global_0, 13
+	273: store 0, book_global_0, 14
+	274: store 0, book_global_0, 15
+	275: alloc dis_global_0, 16
+	276: store 0, dis_global_0, 0
+	277: store 0, dis_global_0, 1
+	278: store 0, dis_global_0, 2
+	279: store 0, dis_global_0, 3
+	280: store 0, dis_global_0, 4
+	281: store 0, dis_global_0, 5
+	282: store 0, dis_global_0, 6
+	283: store 0, dis_global_0, 7
+	284: store 0, dis_global_0, 8
+	285: store 0, dis_global_0, 9
+	286: store 0, dis_global_0, 10
+	287: store 0, dis_global_0, 11
+	288: store 0, dis_global_0, 12
+	289: store 0, dis_global_0, 13
+	290: store 0, dis_global_0, 14
+	291: store 0, dis_global_0, 15
+	292: def n_global_0, 0
+	293: def m_global_0, 0
+	294: def v1_global_0, 0
+	295: def v2_global_0, 0
+	296: def w_global_0, 0
+	297: return null
+end
+
+GVT:
+	INF_global_0 int 0
+	book_global_0 int* 16
+	dis_global_0 int* 16
+	e_global_0 int* 256
+	m_global_0 int 0
+	n_global_0 int 0
+	v1_global_0 int 0
+	v2_global_0 int 0
+	w_global_0 int 0

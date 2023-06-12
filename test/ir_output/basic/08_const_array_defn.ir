@@ -1,0 +1,18 @@
+int main()
+	0: call t0, global()
+	1: load t0, a_global_0, 4
+	2: return t0
+end
+
+void global()
+	0: alloc a_global_0, 5
+	1: store 0, a_global_0, 0
+	2: store 1, a_global_0, 1
+	3: store 2, a_global_0, 2
+	4: store 3, a_global_0, 3
+	5: store 4, a_global_0, 4
+	6: return null
+end
+
+GVT:
+	a_global_0 int* 5

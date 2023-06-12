@@ -1,7 +1,8 @@
-D:/junior_2/Compilation_Principle/compiler/build/CMakeFiles/jsoncpp.dir
-D:/junior_2/Compilation_Principle/compiler/build/CMakeFiles/Front.dir
-D:/junior_2/Compilation_Principle/compiler/build/CMakeFiles/IR.dir
-D:/junior_2/Compilation_Principle/compiler/build/CMakeFiles/Tools.dir
-D:/junior_2/Compilation_Principle/compiler/build/CMakeFiles/compiler.dir
-D:/junior_2/Compilation_Principle/compiler/build/CMakeFiles/edit_cache.dir
-D:/junior_2/Compilation_Principle/compiler/build/CMakeFiles/rebuild_cache.dir
+/coursegrader/build/CMakeFiles/rebuild_cache.dir
+/coursegrader/build/CMakeFiles/edit_cache.dir
+/coursegrader/build/CMakeFiles/Front.dir
+/coursegrader/build/CMakeFiles/jsoncpp.dir
+/coursegrader/build/CMakeFiles/compiler.dir
+/coursegrader/build/CMakeFiles/Backend.dir
+/coursegrader/build/CMakeFiles/Tools.dir
+/coursegrader/build/CMakeFiles/IR.dir

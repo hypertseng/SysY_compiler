@@ -1,0 +1,15 @@
+int main()
+	0: call t0, global()
+	1: def a_main_1, 0
+	2: def b_main_1, 0
+	3: mov a_main_1, 10
+	4: mov b_main_1, 5
+	5: div t0, a_main_1, b_main_1
+	6: return t0
+end
+
+void global()
+	0: return null
+end
+
+GVT:

@@ -1,0 +1,204 @@
+int testParam8(int a0_testParam8_1,int a1_testParam8_1,int a2_testParam8_1,int a3_testParam8_1,int a4_testParam8_1,int a5_testParam8_1,int a6_testParam8_1,int a7_testParam8_1)
+	0: add t0, a0_testParam8_1, a1_testParam8_1
+	1: add t1, t0, a2_testParam8_1
+	2: add t2, t1, a3_testParam8_1
+	3: add t3, t2, a4_testParam8_1
+	4: add t4, t3, a5_testParam8_1
+	5: add t5, t4, a6_testParam8_1
+	6: add t6, t5, a7_testParam8_1
+	7: return t6
+end
+
+int testParam16(int a0_testParam16_2,int a1_testParam16_2,int a2_testParam16_2,int a3_testParam16_2,int a4_testParam16_2,int a5_testParam16_2,int a6_testParam16_2,int a7_testParam16_2,int a8_testParam16_2,int a9_testParam16_2,int a10_testParam16_2,int a11_testParam16_2,int a12_testParam16_2,int a13_testParam16_2,int a14_testParam16_2,int a15_testParam16_2)
+	0: add t7, a0_testParam16_2, a1_testParam16_2
+	1: add t8, t7, a2_testParam16_2
+	2: sub t9, t8, a3_testParam16_2
+	3: sub t10, t9, a4_testParam16_2
+	4: sub t11, t10, a5_testParam16_2
+	5: sub t12, t11, a6_testParam16_2
+	6: sub t13, t12, a7_testParam16_2
+	7: add t14, t13, a8_testParam16_2
+	8: add t15, t14, a9_testParam16_2
+	9: add t16, t15, a10_testParam16_2
+	10: add t17, t16, a11_testParam16_2
+	11: add t18, t17, a12_testParam16_2
+	12: add t19, t18, a13_testParam16_2
+	13: add t20, t19, a14_testParam16_2
+	14: add t21, t20, a15_testParam16_2
+	15: return t21
+end
+
+int testParam32(int a0_testParam32_3,int a1_testParam32_3,int a2_testParam32_3,int a3_testParam32_3,int a4_testParam32_3,int a5_testParam32_3,int a6_testParam32_3,int a7_testParam32_3,int a8_testParam32_3,int a9_testParam32_3,int a10_testParam32_3,int a11_testParam32_3,int a12_testParam32_3,int a13_testParam32_3,int a14_testParam32_3,int a15_testParam32_3,int a16_testParam32_3,int a17_testParam32_3,int a18_testParam32_3,int a19_testParam32_3,int a20_testParam32_3,int a21_testParam32_3,int a22_testParam32_3,int a23_testParam32_3,int a24_testParam32_3,int a25_testParam32_3,int a26_testParam32_3,int a27_testParam32_3,int a28_testParam32_3,int a29_testParam32_3,int a30_testParam32_3,int a31_testParam32_3)
+	0: add t22, a0_testParam32_3, a1_testParam32_3
+	1: add t23, t22, a2_testParam32_3
+	2: add t24, t23, a3_testParam32_3
+	3: add t25, t24, a4_testParam32_3
+	4: add t26, t25, a5_testParam32_3
+	5: add t27, t26, a6_testParam32_3
+	6: add t28, t27, a7_testParam32_3
+	7: add t29, t28, a8_testParam32_3
+	8: add t30, t29, a9_testParam32_3
+	9: add t31, t30, a10_testParam32_3
+	10: add t32, t31, a11_testParam32_3
+	11: add t33, t32, a12_testParam32_3
+	12: add t34, t33, a13_testParam32_3
+	13: add t35, t34, a14_testParam32_3
+	14: add t36, t35, a15_testParam32_3
+	15: add t37, t36, a16_testParam32_3
+	16: add t38, t37, a17_testParam32_3
+	17: sub t39, t38, a18_testParam32_3
+	18: sub t40, t39, a19_testParam32_3
+	19: sub t41, t40, a20_testParam32_3
+	20: sub t42, t41, a21_testParam32_3
+	21: sub t43, t42, a22_testParam32_3
+	22: add t44, t43, a23_testParam32_3
+	23: add t45, t44, a24_testParam32_3
+	24: add t46, t45, a25_testParam32_3
+	25: add t47, t46, a26_testParam32_3
+	26: add t48, t47, a27_testParam32_3
+	27: add t49, t48, a28_testParam32_3
+	28: add t50, t49, a29_testParam32_3
+	29: add t51, t50, a30_testParam32_3
+	30: add t52, t51, a31_testParam32_3
+	31: return t52
+end
+
+int main()
+	0: call t0, global()
+	1: mov a0_global_0, 0
+	2: mov a1_global_0, 1
+	3: mov a2_global_0, 2
+	4: mov a3_global_0, 3
+	5: mov a4_global_0, 4
+	6: mov a5_global_0, 5
+	7: mov a6_global_0, 6
+	8: mov a7_global_0, 7
+	9: mov a8_global_0, 8
+	10: mov a9_global_0, 9
+	11: mov a10_global_0, 0
+	12: mov a11_global_0, 1
+	13: mov a12_global_0, 2
+	14: mov a13_global_0, 3
+	15: mov a14_global_0, 4
+	16: mov a15_global_0, 5
+	17: mov a16_global_0, 6
+	18: mov a17_global_0, 7
+	19: mov a18_global_0, 8
+	20: mov a19_global_0, 9
+	21: mov a20_global_0, 0
+	22: mov a21_global_0, 1
+	23: mov a22_global_0, 2
+	24: mov a23_global_0, 3
+	25: mov a24_global_0, 4
+	26: mov a25_global_0, 5
+	27: mov a26_global_0, 6
+	28: mov a27_global_0, 7
+	29: mov a28_global_0, 8
+	30: mov a29_global_0, 9
+	31: mov a30_global_0, 0
+	32: mov a31_global_0, 1
+	33: mov a32_global_0, 4
+	34: mov a33_global_0, 5
+	35: mov a34_global_0, 6
+	36: mov a35_global_0, 7
+	37: mov a36_global_0, 8
+	38: mov a37_global_0, 9
+	39: mov a38_global_0, 0
+	40: mov a39_global_0, 1
+	41: call t53, testParam8(a0_global_0, a1_global_0, a2_global_0, a3_global_0, a4_global_0, a5_global_0, a6_global_0, a7_global_0)
+	42: mov a0_global_0, t53
+	43: call t54, putint(a0_global_0)
+	44: call t55, testParam16(a32_global_0, a33_global_0, a34_global_0, a35_global_0, a36_global_0, a37_global_0, a38_global_0, a39_global_0, a8_global_0, a9_global_0, a10_global_0, a11_global_0, a12_global_0, a13_global_0, a14_global_0, a15_global_0)
+	45: mov a0_global_0, t55
+	46: call t56, putint(a0_global_0)
+	47: call t57, testParam32(a0_global_0, a1_global_0, a2_global_0, a3_global_0, a4_global_0, a5_global_0, a6_global_0, a7_global_0, a8_global_0, a9_global_0, a10_global_0, a11_global_0, a12_global_0, a13_global_0, a14_global_0, a15_global_0, a16_global_0, a17_global_0, a18_global_0, a19_global_0, a20_global_0, a21_global_0, a22_global_0, a23_global_0, a24_global_0, a25_global_0, a26_global_0, a27_global_0, a28_global_0, a29_global_0, a30_global_0, a31_global_0)
+	48: mov a0_global_0, t57
+	49: call t58, putint(a0_global_0)
+	50: return 0
+end
+
+void global()
+	0: def a0_global_0, 0
+	1: def a1_global_0, 0
+	2: def a2_global_0, 0
+	3: def a3_global_0, 0
+	4: def a4_global_0, 0
+	5: def a5_global_0, 0
+	6: def a6_global_0, 0
+	7: def a7_global_0, 0
+	8: def a8_global_0, 0
+	9: def a9_global_0, 0
+	10: def a10_global_0, 0
+	11: def a11_global_0, 0
+	12: def a12_global_0, 0
+	13: def a13_global_0, 0
+	14: def a14_global_0, 0
+	15: def a15_global_0, 0
+	16: def a16_global_0, 0
+	17: def a17_global_0, 0
+	18: def a18_global_0, 0
+	19: def a19_global_0, 0
+	20: def a20_global_0, 0
+	21: def a21_global_0, 0
+	22: def a22_global_0, 0
+	23: def a23_global_0, 0
+	24: def a24_global_0, 0
+	25: def a25_global_0, 0
+	26: def a26_global_0, 0
+	27: def a27_global_0, 0
+	28: def a28_global_0, 0
+	29: def a29_global_0, 0
+	30: def a30_global_0, 0
+	31: def a31_global_0, 0
+	32: def a32_global_0, 0
+	33: def a33_global_0, 0
+	34: def a34_global_0, 0
+	35: def a35_global_0, 0
+	36: def a36_global_0, 0
+	37: def a37_global_0, 0
+	38: def a38_global_0, 0
+	39: def a39_global_0, 0
+	40: return null
+end
+
+GVT:
+	a0_global_0 int 0
+	a1_global_0 int 0
+	a10_global_0 int 0
+	a11_global_0 int 0
+	a12_global_0 int 0
+	a13_global_0 int 0
+	a14_global_0 int 0
+	a15_global_0 int 0
+	a16_global_0 int 0
+	a17_global_0 int 0
+	a18_global_0 int 0
+	a19_global_0 int 0
+	a2_global_0 int 0
+	a20_global_0 int 0
+	a21_global_0 int 0
+	a22_global_0 int 0
+	a23_global_0 int 0
+	a24_global_0 int 0
+	a25_global_0 int 0
+	a26_global_0 int 0
+	a27_global_0 int 0
+	a28_global_0 int 0
+	a29_global_0 int 0
+	a3_global_0 int 0
+	a30_global_0 int 0
+	a31_global_0 int 0
+	a32_global_0 int 0
+	a33_global_0 int 0
+	a34_global_0 int 0
+	a35_global_0 int 0
+	a36_global_0 int 0
+	a37_global_0 int 0
+	a38_global_0 int 0
+	a39_global_0 int 0
+	a4_global_0 int 0
+	a5_global_0 int 0
+	a6_global_0 int 0
+	a7_global_0 int 0
+	a8_global_0 int 0
+	a9_global_0 int 0

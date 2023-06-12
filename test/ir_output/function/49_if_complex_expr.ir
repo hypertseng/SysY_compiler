@@ -1,0 +1,67 @@
+int main()
+	0: call t0, global()
+	1: def a_main_1, 0
+	2: def b_main_1, 0
+	3: def c_main_1, 0
+	4: def d_main_1, 0
+	5: def result_main_1, 0
+	6: mov a_main_1, 5
+	7: mov b_main_1, 5
+	8: mov c_main_1, 1
+	9: mov d_main_1, -2
+	10: mov result_main_1, 2
+	11: mul t0, d_main_1, 1
+	12: div t1, t0, 2
+	13: lss t2, t1, 0
+	14: if t2 goto [pc, 16]
+	15: sub t3, a_main_1, b_main_1
+	16: neq t4, t3, 0
+	17: if t4 goto [pc, 3]
+	18: mov t8, 0
+	19: goto [pc, 8]
+	20: add t5, c_main_1, 3
+	21: mod t6, t5, 2
+	22: neq t7, t6, 0
+	23: if t7 goto [pc, 3]
+	24: mov t8, 0
+	25: goto [pc, 2]
+	26: mov t8, 1
+	27: if t8 goto [pc, 3]
+	28: mov t9, 0
+	29: goto [pc, 2]
+	30: mov t9, 1
+	31: if t9 goto [pc, 2]
+	32: goto [pc, 2]
+	33: call t10, putint(result_main_1)
+	34: mod t11, d_main_1, 2
+	35: add t12, t11, 67
+	36: lss t13, t12, 0
+	37: if t13 goto [pc, 16]
+	38: sub t14, a_main_1, b_main_1
+	39: neq t15, t14, 0
+	40: if t15 goto [pc, 3]
+	41: mov t19, 0
+	42: goto [pc, 8]
+	43: add t16, c_main_1, 2
+	44: mod t17, t16, 2
+	45: neq t18, t17, 0
+	46: if t18 goto [pc, 3]
+	47: mov t19, 0
+	48: goto [pc, 2]
+	49: mov t19, 1
+	50: if t19 goto [pc, 3]
+	51: mov t20, 0
+	52: goto [pc, 2]
+	53: mov t20, 1
+	54: if t20 goto [pc, 2]
+	55: goto [pc, 3]
+	56: mov result_main_1, 4
+	57: call t21, putint(result_main_1)
+	58: return 0
+end
+
+void global()
+	0: return null
+end
+
+GVT:

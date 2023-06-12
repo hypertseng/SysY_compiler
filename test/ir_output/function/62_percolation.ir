@@ -1,0 +1,356 @@
+void init(int n_init_1)
+	0: def i_init_1, 1
+	1: mul t0, n_init_1, n_init_1
+	2: add t1, t0, 1
+	3: leq t2, i_init_1, t1
+	4: if t2 goto [pc, 2]
+	5: goto [pc, 9]
+	6: def t3, 0
+	7: def t4, 1
+	8: mul t5, i_init_1, t4
+	9: add t3, t3, t5
+	10: store -1, array_global_0, t3
+	11: add t6, i_init_1, 1
+	12: mov i_init_1, t6
+	13: goto [pc, -12]
+	14: return null
+end
+
+int findfa(int a_findfa_3)
+	0: def t7, 0
+	1: def t8, 1
+	2: mul t9, a_findfa_3, t8
+	3: add t7, t7, t9
+	4: load t10, array_global_0, t7
+	5: eq t11, t10, a_findfa_3
+	6: if t11 goto [pc, 2]
+	7: goto [pc, 2]
+	8: return a_findfa_3
+	9: if t11 goto [pc, 18]
+	10: def t12, 0
+	11: def t13, 1
+	12: mul t14, a_findfa_3, t13
+	13: add t12, t12, t14
+	14: def t16, 0
+	15: def t17, 1
+	16: mul t18, a_findfa_3, t17
+	17: add t16, t16, t18
+	18: load t19, array_global_0, t16
+	19: call t15, findfa(t19)
+	20: store t15, array_global_0, t12
+	21: def t20, 0
+	22: def t21, 1
+	23: mul t22, a_findfa_3, t21
+	24: add t20, t20, t22
+	25: load t23, array_global_0, t20
+	26: return t23
+	27: __unuse__ null, null, null
+end
+
+void mmerge(int a_mmerge_5,int b_mmerge_5)
+	0: call t24, findfa(a_mmerge_5)
+	1: def m_mmerge_5, t24
+	2: call t25, findfa(b_mmerge_5)
+	3: def n_mmerge_5, t25
+	4: neq t26, m_mmerge_5, n_mmerge_5
+	5: if t26 goto [pc, 2]
+	6: goto [pc, 6]
+	7: def t27, 0
+	8: def t28, 1
+	9: mul t29, m_mmerge_5, t28
+	10: add t27, t27, t29
+	11: store n_mmerge_5, array_global_0, t27
+	12: return null
+end
+
+int main()
+	0: call t0, global()
+	1: def t_main_6, 0
+	2: def m_main_6, 0
+	3: def a_main_6, 0
+	4: def b_main_6, 0
+	5: mov t_main_6, 1
+	6: if t_main_6 goto [pc, 2]
+	7: goto [pc, 161]
+	8: sub t30, t_main_6, 1
+	9: mov t_main_6, t30
+	10: mov n_global_0, 4
+	11: mov m_main_6, 10
+	12: def i_while_7, 0
+	13: def flag_while_7, 0
+	14: call t31, init(n_global_0)
+	15: mul t32, n_global_0, n_global_0
+	16: add t33, t32, 1
+	17: def k_while_7, t33
+	18: lss t34, i_while_7, m_main_6
+	19: if t34 goto [pc, 2]
+	20: goto [pc, 142]
+	21: call t35, getint()
+	22: mov a_main_6, t35
+	23: call t36, getint()
+	24: mov b_main_6, t36
+	25: not t37, flag_while_7
+	26: if t37 goto [pc, 2]
+	27: goto [pc, 132]
+	28: sub t38, a_main_6, 1
+	29: mul t39, n_global_0, t38
+	30: add t40, t39, b_main_6
+	31: def loc_if_9, t40
+	32: def t41, 0
+	33: def t42, 1
+	34: mul t43, loc_if_9, t42
+	35: add t41, t41, t43
+	36: store loc_if_9, array_global_0, t41
+	37: eq t44, a_main_6, 1
+	38: if t44 goto [pc, 2]
+	39: goto [pc, 3]
+	40: store 0, array_global_0, 0
+	41: call t45, mmerge(loc_if_9, 0)
+	42: eq t46, a_main_6, n_global_0
+	43: if t46 goto [pc, 2]
+	44: goto [pc, 7]
+	45: def t47, 0
+	46: def t48, 1
+	47: mul t49, k_while_7, t48
+	48: add t47, t47, t49
+	49: store k_while_7, array_global_0, t47
+	50: call t50, mmerge(loc_if_9, k_while_7)
+	51: lss t51, b_main_6, n_global_0
+	52: if t51 goto [pc, 3]
+	53: mov t58, 0
+	54: goto [pc, 12]
+	55: add t52, loc_if_9, 1
+	56: def t53, 0
+	57: def t54, 1
+	58: mul t55, t52, t54
+	59: add t53, t53, t55
+	60: load t56, array_global_0, t53
+	61: neq t57, t56, -1
+	62: if t57 goto [pc, 3]
+	63: mov t58, 0
+	64: goto [pc, 2]
+	65: mov t58, 1
+	66: if t58 goto [pc, 2]
+	67: goto [pc, 3]
+	68: add t60, loc_if_9, 1
+	69: call t59, mmerge(loc_if_9, t60)
+	70: gtr t61, b_main_6, 1
+	71: if t61 goto [pc, 3]
+	72: mov t68, 0
+	73: goto [pc, 12]
+	74: sub t62, loc_if_9, 1
+	75: def t63, 0
+	76: def t64, 1
+	77: mul t65, t62, t64
+	78: add t63, t63, t65
+	79: load t66, array_global_0, t63
+	80: neq t67, t66, -1
+	81: if t67 goto [pc, 3]
+	82: mov t68, 0
+	83: goto [pc, 2]
+	84: mov t68, 1
+	85: if t68 goto [pc, 2]
+	86: goto [pc, 3]
+	87: sub t70, loc_if_9, 1
+	88: call t69, mmerge(loc_if_9, t70)
+	89: lss t71, a_main_6, n_global_0
+	90: if t71 goto [pc, 3]
+	91: mov t78, 0
+	92: goto [pc, 12]
+	93: add t72, loc_if_9, n_global_0
+	94: def t73, 0
+	95: def t74, 1
+	96: mul t75, t72, t74
+	97: add t73, t73, t75
+	98: load t76, array_global_0, t73
+	99: neq t77, t76, -1
+	100: if t77 goto [pc, 3]
+	101: mov t78, 0
+	102: goto [pc, 2]
+	103: mov t78, 1
+	104: if t78 goto [pc, 2]
+	105: goto [pc, 3]
+	106: add t80, loc_if_9, n_global_0
+	107: call t79, mmerge(loc_if_9, t80)
+	108: gtr t81, a_main_6, 1
+	109: if t81 goto [pc, 3]
+	110: mov t88, 0
+	111: goto [pc, 12]
+	112: sub t82, loc_if_9, n_global_0
+	113: def t83, 0
+	114: def t84, 1
+	115: mul t85, t82, t84
+	116: add t83, t83, t85
+	117: load t86, array_global_0, t83
+	118: neq t87, t86, -1
+	119: if t87 goto [pc, 3]
+	120: mov t88, 0
+	121: goto [pc, 2]
+	122: mov t88, 1
+	123: if t88 goto [pc, 2]
+	124: goto [pc, 3]
+	125: sub t90, loc_if_9, n_global_0
+	126: call t89, mmerge(loc_if_9, t90)
+	127: load t91, array_global_0, 0
+	128: neq t92, t91, -1
+	129: if t92 goto [pc, 3]
+	130: mov t102, 0
+	131: goto [pc, 21]
+	132: def t93, 0
+	133: def t94, 1
+	134: mul t95, k_while_7, t94
+	135: add t93, t93, t95
+	136: load t96, array_global_0, t93
+	137: neq t97, t96, -1
+	138: if t97 goto [pc, 3]
+	139: mov t101, 0
+	140: goto [pc, 8]
+	141: call t98, findfa(0)
+	142: call t99, findfa(k_while_7)
+	143: eq t100, t98, t99
+	144: if t100 goto [pc, 3]
+	145: mov t101, 0
+	146: goto [pc, 2]
+	147: mov t101, 1
+	148: if t101 goto [pc, 3]
+	149: mov t102, 0
+	150: goto [pc, 2]
+	151: mov t102, 1
+	152: if t102 goto [pc, 2]
+	153: goto [pc, 6]
+	154: mov flag_while_7, 1
+	155: add t103, i_while_7, 1
+	156: def tmp_if_16, t103
+	157: call t104, putint(tmp_if_16)
+	158: call t105, putch(10)
+	159: add t106, i_while_7, 1
+	160: mov i_while_7, t106
+	161: goto [pc, -143]
+	162: not t107, flag_while_7
+	163: if t107 goto [pc, 2]
+	164: goto [pc, 3]
+	165: call t108, putint(-1)
+	166: call t109, putch(10)
+	167: goto [pc, -161]
+	168: return 0
+end
+
+void global()
+	0: alloc array_global_0, 110
+	1: store 0, array_global_0, 0
+	2: store 0, array_global_0, 1
+	3: store 0, array_global_0, 2
+	4: store 0, array_global_0, 3
+	5: store 0, array_global_0, 4
+	6: store 0, array_global_0, 5
+	7: store 0, array_global_0, 6
+	8: store 0, array_global_0, 7
+	9: store 0, array_global_0, 8
+	10: store 0, array_global_0, 9
+	11: store 0, array_global_0, 10
+	12: store 0, array_global_0, 11
+	13: store 0, array_global_0, 12
+	14: store 0, array_global_0, 13
+	15: store 0, array_global_0, 14
+	16: store 0, array_global_0, 15
+	17: store 0, array_global_0, 16
+	18: store 0, array_global_0, 17
+	19: store 0, array_global_0, 18
+	20: store 0, array_global_0, 19
+	21: store 0, array_global_0, 20
+	22: store 0, array_global_0, 21
+	23: store 0, array_global_0, 22
+	24: store 0, array_global_0, 23
+	25: store 0, array_global_0, 24
+	26: store 0, array_global_0, 25
+	27: store 0, array_global_0, 26
+	28: store 0, array_global_0, 27
+	29: store 0, array_global_0, 28
+	30: store 0, array_global_0, 29
+	31: store 0, array_global_0, 30
+	32: store 0, array_global_0, 31
+	33: store 0, array_global_0, 32
+	34: store 0, array_global_0, 33
+	35: store 0, array_global_0, 34
+	36: store 0, array_global_0, 35
+	37: store 0, array_global_0, 36
+	38: store 0, array_global_0, 37
+	39: store 0, array_global_0, 38
+	40: store 0, array_global_0, 39
+	41: store 0, array_global_0, 40
+	42: store 0, array_global_0, 41
+	43: store 0, array_global_0, 42
+	44: store 0, array_global_0, 43
+	45: store 0, array_global_0, 44
+	46: store 0, array_global_0, 45
+	47: store 0, array_global_0, 46
+	48: store 0, array_global_0, 47
+	49: store 0, array_global_0, 48
+	50: store 0, array_global_0, 49
+	51: store 0, array_global_0, 50
+	52: store 0, array_global_0, 51
+	53: store 0, array_global_0, 52
+	54: store 0, array_global_0, 53
+	55: store 0, array_global_0, 54
+	56: store 0, array_global_0, 55
+	57: store 0, array_global_0, 56
+	58: store 0, array_global_0, 57
+	59: store 0, array_global_0, 58
+	60: store 0, array_global_0, 59
+	61: store 0, array_global_0, 60
+	62: store 0, array_global_0, 61
+	63: store 0, array_global_0, 62
+	64: store 0, array_global_0, 63
+	65: store 0, array_global_0, 64
+	66: store 0, array_global_0, 65
+	67: store 0, array_global_0, 66
+	68: store 0, array_global_0, 67
+	69: store 0, array_global_0, 68
+	70: store 0, array_global_0, 69
+	71: store 0, array_global_0, 70
+	72: store 0, array_global_0, 71
+	73: store 0, array_global_0, 72
+	74: store 0, array_global_0, 73
+	75: store 0, array_global_0, 74
+	76: store 0, array_global_0, 75
+	77: store 0, array_global_0, 76
+	78: store 0, array_global_0, 77
+	79: store 0, array_global_0, 78
+	80: store 0, array_global_0, 79
+	81: store 0, array_global_0, 80
+	82: store 0, array_global_0, 81
+	83: store 0, array_global_0, 82
+	84: store 0, array_global_0, 83
+	85: store 0, array_global_0, 84
+	86: store 0, array_global_0, 85
+	87: store 0, array_global_0, 86
+	88: store 0, array_global_0, 87
+	89: store 0, array_global_0, 88
+	90: store 0, array_global_0, 89
+	91: store 0, array_global_0, 90
+	92: store 0, array_global_0, 91
+	93: store 0, array_global_0, 92
+	94: store 0, array_global_0, 93
+	95: store 0, array_global_0, 94
+	96: store 0, array_global_0, 95
+	97: store 0, array_global_0, 96
+	98: store 0, array_global_0, 97
+	99: store 0, array_global_0, 98
+	100: store 0, array_global_0, 99
+	101: store 0, array_global_0, 100
+	102: store 0, array_global_0, 101
+	103: store 0, array_global_0, 102
+	104: store 0, array_global_0, 103
+	105: store 0, array_global_0, 104
+	106: store 0, array_global_0, 105
+	107: store 0, array_global_0, 106
+	108: store 0, array_global_0, 107
+	109: store 0, array_global_0, 108
+	110: store 0, array_global_0, 109
+	111: def n_global_0, 0
+	112: return null
+end
+
+GVT:
+	array_global_0 int* 110
+	n_global_0 int 0

@@ -1,0 +1,106 @@
+int my_getint()
+	0: def sum_my_getint_1, 0
+	1: def c_my_getint_1, 0
+	2: if 1 goto [pc, 2]
+	3: goto [pc, 18]
+	4: call t0, getch()
+	5: sub t1, t0, ascii_0_global_0
+	6: mov c_my_getint_1, t1
+	7: lss t2, c_my_getint_1, 0
+	8: if t2 goto [pc, 5]
+	9: gtr t3, c_my_getint_1, 9
+	10: if t3 goto [pc, 3]
+	11: mov t4, 0
+	12: goto [pc, 2]
+	13: mov t4, 1
+	14: if t4 goto [pc, 2]
+	15: goto [pc, 2]
+	16: goto [pc, -12]
+	17: if t4 goto [pc, 2]
+	18: goto [pc, 3]
+	19: __unuse__ null, null, null
+	20: goto [pc, -18]
+	21: mov sum_my_getint_1, c_my_getint_1
+	22: if 1 goto [pc, 2]
+	23: goto [pc, 22]
+	24: call t5, getch()
+	25: sub t6, t5, ascii_0_global_0
+	26: mov c_my_getint_1, t6
+	27: geq t7, c_my_getint_1, 0
+	28: if t7 goto [pc, 3]
+	29: mov t9, 0
+	30: goto [pc, 6]
+	31: leq t8, c_my_getint_1, 9
+	32: if t8 goto [pc, 3]
+	33: mov t9, 0
+	34: goto [pc, 2]
+	35: mov t9, 1
+	36: if t9 goto [pc, 2]
+	37: goto [pc, 4]
+	38: mul t10, sum_my_getint_1, 10
+	39: add t11, t10, c_my_getint_1
+	40: mov sum_my_getint_1, t11
+	41: if t9 goto [pc, 2]
+	42: goto [pc, 3]
+	43: __unuse__ null, null, null
+	44: goto [pc, -22]
+	45: return sum_my_getint_1
+end
+
+void my_putint(int a_my_putint_8)
+	0: alloc b_my_putint_8, 16
+	1: def i_my_putint_8, 0
+	2: gtr t12, a_my_putint_8, 0
+	3: if t12 goto [pc, 2]
+	4: goto [pc, 13]
+	5: def t13, 0
+	6: def t14, 1
+	7: mul t15, i_my_putint_8, t14
+	8: add t13, t13, t15
+	9: mod t16, a_my_putint_8, 10
+	10: add t17, t16, ascii_0_global_0
+	11: store t17, b_my_putint_8, t13
+	12: div t18, a_my_putint_8, 10
+	13: mov a_my_putint_8, t18
+	14: add t19, i_my_putint_8, 1
+	15: mov i_my_putint_8, t19
+	16: goto [pc, -14]
+	17: gtr t20, i_my_putint_8, 0
+	18: if t20 goto [pc, 2]
+	19: goto [pc, 10]
+	20: sub t21, i_my_putint_8, 1
+	21: mov i_my_putint_8, t21
+	22: def t23, 0
+	23: def t24, 1
+	24: mul t25, i_my_putint_8, t24
+	25: add t23, t23, t25
+	26: load t26, b_my_putint_8, t23
+	27: call t22, putch(t26)
+	28: goto [pc, -11]
+	29: return null
+end
+
+int main()
+	0: call t0, global()
+	1: call t27, my_getint()
+	2: def n_main_11, t27
+	3: gtr t28, n_main_11, 0
+	4: if t28 goto [pc, 2]
+	5: goto [pc, 8]
+	6: call t29, my_getint()
+	7: def m_while_12, t29
+	8: call t30, my_putint(m_while_12)
+	9: call t31, putch(10)
+	10: sub t32, n_main_11, 1
+	11: mov n_main_11, t32
+	12: goto [pc, -9]
+	13: return 0
+end
+
+void global()
+	0: def ascii_0_global_0, 48
+	1: return null
+end
+
+GVT:
+	ascii_0_global_0 int 0
