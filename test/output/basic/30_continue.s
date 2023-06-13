@@ -16,25 +16,89 @@ main:
 	sw s9, 40(sp)
 	sw s10, 44(sp)
 	sw s11, 48(sp)
+# call t0, global()
+main_label_0:
+# def i_main_1, 0
+main_label_1:
 	li t2, 0
 	sw t2, 52(sp)
+# mov i_main_1, 0
+main_label_2:
+	li t2, 0
+	sw t2, 52(sp)
+# def sum_main_1, 0
+main_label_3:
 	li t2, 0
 	sw t2, 56(sp)
-	lw t2, -1(sp)
+# mov sum_main_1, 0
+main_label_4:
+	li t2, 0
+	sw t2, 56(sp)
+# lss t0, i_main_1, 100
+main_label_5:
 	lw t0, 52(sp)
-	lw t1, -1(sp)
-	add t2, t0, t1
+	li t1, 100
+	slt t2, t0, t1
 	sw t2, 60(sp)
-	lw t2, -1(sp)
+# if t0 goto [pc, 2]
+main_label_6:
+	lw t0, 60(sp)
+	bnez t0, main_label_8
+# goto [pc, 12]
+main_label_7:
+	j main_label_19
+# eq t1, i_main_1, 50
+main_label_8:
+	lw t0, 52(sp)
+	li t1, 50
+	sub t2, t0, t1
+	seqz t2, t2
+	sw t2, 64(sp)
+# if t1 goto [pc, 2]
+main_label_9:
+	lw t0, 64(sp)
+	bnez t0, main_label_11
+# goto [pc, 4]
+main_label_10:
+	j main_label_14
+# add t2, i_main_1, 1
+main_label_11:
+	lw t0, 52(sp)
+	li t1, 1
+	add t2, t0, t1
+	sw t2, 68(sp)
+# mov i_main_1, t2
+main_label_12:
+	lw t2, 68(sp)
+	sw t2, 52(sp)
+# goto [pc, -5]
+main_label_13:
+	j main_label_8
+# add t3, sum_main_1, i_main_1
+main_label_14:
 	lw t0, 56(sp)
 	lw t1, 52(sp)
 	add t2, t0, t1
-	sw t2, 64(sp)
-	lw t2, -1(sp)
+	sw t2, 72(sp)
+# mov sum_main_1, t3
+main_label_15:
+	lw t2, 72(sp)
+	sw t2, 56(sp)
+# add t4, i_main_1, 1
+main_label_16:
 	lw t0, 52(sp)
-	lw t1, -1(sp)
+	li t1, 1
 	add t2, t0, t1
-	sw t2, 68(sp)
+	sw t2, 76(sp)
+# mov i_main_1, t4
+main_label_17:
+	lw t2, 76(sp)
+	sw t2, 52(sp)
+# goto [pc, -13]
+main_label_18:
+	j main_label_5
+# return sum_main_1
+main_label_19:
 	lw a0, 56(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)

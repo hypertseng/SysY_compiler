@@ -16,6 +16,10 @@ main:
 	sw s9, 40(sp)
 	sw s10, 44(sp)
 	sw s11, 48(sp)
+# call t0, global()
+main_label_0:
+# return 3
+main_label_1:
 	li a0, 3
 	lw s0, 4(sp)
 	lw s1, 8(sp)

@@ -16,15 +16,72 @@ if_ifElse_:
 	sw s9, 40(sp)
 	sw s10, 44(sp)
 	sw s11, 48(sp)
+# def a_if_ifElse__1, 0
+if_ifElse__label_0:
 	li t2, 0
 	sw t2, 52(sp)
+# mov a_if_ifElse__1, 5
+if_ifElse__label_1:
+	li t2, 5
+	sw t2, 52(sp)
+# def b_if_ifElse__1, 0
+if_ifElse__label_2:
 	li t2, 0
 	sw t2, 56(sp)
-	lw t2, -1(sp)
+# mov b_if_ifElse__1, 10
+if_ifElse__label_3:
+	li t2, 10
+	sw t2, 56(sp)
+# eq t0, a_if_ifElse__1, 5
+if_ifElse__label_4:
 	lw t0, 52(sp)
-	lw t1, -1(sp)
-	add t2, t0, t1
+	li t1, 5
+	sub t2, t0, t1
+	seqz t2, t2
 	sw t2, 60(sp)
+# if t0 goto [pc, 2]
+if_ifElse__label_5:
+	lw t0, 60(sp)
+	bnez t0, if_ifElse__label_7
+# goto [pc, 9]
+if_ifElse__label_6:
+	j if_ifElse__label_15
+# eq t1, b_if_ifElse__1, 10
+if_ifElse__label_7:
+	lw t0, 56(sp)
+	li t1, 10
+	sub t2, t0, t1
+	seqz t2, t2
+	sw t2, 64(sp)
+# if t1 goto [pc, 2]
+if_ifElse__label_8:
+	lw t0, 64(sp)
+	bnez t0, if_ifElse__label_10
+# goto [pc, 2]
+if_ifElse__label_9:
+	j if_ifElse__label_11
+# mov a_if_ifElse__1, 25
+if_ifElse__label_10:
+	li t2, 25
+	sw t2, 52(sp)
+# if t1 goto [pc, 3]
+if_ifElse__label_11:
+	lw t0, 64(sp)
+	bnez t0, if_ifElse__label_14
+# add t2, a_if_ifElse__1, 15
+if_ifElse__label_12:
+	lw t0, 52(sp)
+	li t1, 15
+	add t2, t0, t1
+	sw t2, 68(sp)
+# mov a_if_ifElse__1, t2
+if_ifElse__label_13:
+	lw t2, 68(sp)
+	sw t2, 52(sp)
+if_ifElse__label_14:
+	nop
+# return a_if_ifElse__1
+if_ifElse__label_15:
 	lw a0, 52(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)
@@ -56,7 +113,15 @@ main:
 	sw s9, 40(sp)
 	sw s10, 44(sp)
 	sw s11, 48(sp)
-	lw a0, -1(sp)
+# call t0, global()
+main_label_0:
+# call t3, if_ifElse_()
+main_label_1:
+	call if_ifElse_
+	sw a0, 52(sp)
+# return t3
+main_label_2:
+	lw a0, 52(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)
 	lw s2, 12(sp)

@@ -16,20 +16,38 @@ main:
 	sw s9, 40(sp)
 	sw s10, 44(sp)
 	sw s11, 48(sp)
+# call t0, global()
+main_label_0:
+# def a_main_1, 0
+main_label_1:
 	li t2, 0
 	sw t2, 52(sp)
+# def b_main_1, 0
+main_label_2:
 	li t2, 0
 	sw t2, 56(sp)
-	lw t2, -1(sp)
+# mov a_main_1, 0xf
+main_label_3:
+	li t2, 0xf
+	sw t2, 52(sp)
+# mov b_main_1, 0xc
+main_label_4:
+	li t2, 0xc
+	sw t2, 56(sp)
+# add t0, a_main_1, b_main_1
+main_label_5:
 	lw t0, 52(sp)
 	lw t1, 56(sp)
 	add t2, t0, t1
 	sw t2, 60(sp)
-	lw t2, -1(sp)
+# add t1, t0, 075
+main_label_6:
 	lw t0, 60(sp)
-	lw t1, -1(sp)
+	li t1, 075
 	add t2, t0, t1
 	sw t2, 64(sp)
+# return t1
+main_label_7:
 	lw a0, 64(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)

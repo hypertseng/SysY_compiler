@@ -16,18 +16,26 @@ main:
 	sw s9, 40(sp)
 	sw s10, 44(sp)
 	sw s11, 48(sp)
+# call t0, global()
+main_label_0:
+# def a_main_1, 10
+main_label_1:
 	li t2, 10
 	sw t2, 52(sp)
-	lw t2, -1(sp)
+# mul t0, a_main_1, 2
+main_label_2:
 	lw t0, 52(sp)
-	lw t1, -1(sp)
+	li t1, 2
 	mul t2, t0, t1
 	sw t2, 56(sp)
-	lw t2, -1(sp)
+# add t1, t0, 1
+main_label_3:
 	lw t0, 56(sp)
-	lw t1, -1(sp)
+	li t1, 1
 	add t2, t0, t1
 	sw t2, 60(sp)
+# return t1
+main_label_4:
 	lw a0, 60(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)

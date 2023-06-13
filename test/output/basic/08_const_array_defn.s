@@ -1,5 +1,5 @@
 	.data
-	a_global_0: .word 0 1 2 3 4 
+	a_global_0: .word 0, 1, 2, 3, 4
 	.text
 	.globl main
 	.align 2
@@ -18,8 +18,17 @@ main:
 	sw s9, 40(sp)
 	sw s10, 44(sp)
 	sw s11, 48(sp)
-	lw -1(sp), a_global_0, -1(sp)
-	lw a0, -1(sp)
+# call t0, global()
+main_label_0:
+# load t0, a_global_0, 4
+main_label_1:
+	la t2, a_global_0
+	add t2, t2, 16
+	lw t2, 0(t2)
+	sw t2, 52(sp)
+# return t0
+main_label_2:
+	lw a0, 52(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)
 	lw s2, 12(sp)

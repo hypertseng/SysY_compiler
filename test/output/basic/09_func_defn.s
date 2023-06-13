@@ -19,11 +19,18 @@ func:
 	sw s10, 44(sp)
 	sw s11, 48(sp)
 	sw a0, 52(sp)
-	lw t2, -1(sp)
+# sub t0, p_func_1, 1
+func_label_0:
 	lw t0, 52(sp)
-	lw t1, -1(sp)
+	li t1, 1
 	sub t2, t0, t1
 	sw t2, 56(sp)
+# mov p_func_1, t0
+func_label_1:
+	lw t2, 56(sp)
+	sw t2, 52(sp)
+# return p_func_1
+func_label_2:
 	lw a0, 52(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)
@@ -55,8 +62,28 @@ main:
 	sw s9, 40(sp)
 	sw s10, 44(sp)
 	sw s11, 48(sp)
+# call t0, global()
+main_label_0:
+# def b_main_2, 0
+main_label_1:
 	li t2, 0
 	sw t2, 52(sp)
+# mov a_global_0, 10
+main_label_2:
+	li t2, 10
+	la t3, a_global_0
+	sw t2, 0(t3)
+# call t1, func(a_global_0)
+main_label_3:
+	lw a0, a_global_0
+	call func
+	sw a0, 56(sp)
+# mov b_main_2, t1
+main_label_4:
+	lw t2, 56(sp)
+	sw t2, 52(sp)
+# return b_main_2
+main_label_5:
 	lw a0, 52(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)

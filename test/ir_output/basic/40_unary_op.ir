@@ -9,7 +9,7 @@ int main()
 	7: sub t3, t3, t2
 	8: if t3 goto [pc, 2]
 	9: goto [pc, 2]
-	10: mov a_main_1, ---1
+	10: mov a_main_1, -1
 	11: if t3 goto [pc, 2]
 	12: mov a_main_1, 0
 	13: __unuse__ null, null, null

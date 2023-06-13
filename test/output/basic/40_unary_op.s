@@ -16,13 +16,64 @@ main:
 	sw s9, 40(sp)
 	sw s10, 44(sp)
 	sw s11, 48(sp)
+# call t0, global()
+main_label_0:
+# def a_main_1, 0
+main_label_1:
 	li t2, 0
 	sw t2, 52(sp)
-	lw t2, -1(sp)
-	lw t0, -1(sp)
-	lw t1, -1(sp)
-	sub t2, t0, t1
+# mov a_main_1, 10
+main_label_2:
+	li t2, 10
+	sw t2, 52(sp)
+# not t0, a_main_1
+main_label_3:
+	lw t0, 52(sp)
+	seqz t2, t0
 	sw t2, 56(sp)
+# not t1, t0
+main_label_4:
+	lw t0, 56(sp)
+	seqz t2, t0
+	sw t2, 60(sp)
+# not t2, t1
+main_label_5:
+	lw t0, 60(sp)
+	seqz t2, t0
+	sw t2, 64(sp)
+# mov t3, 0
+main_label_6:
+	li t2, 0
+	sw t2, 68(sp)
+# sub t3, t3, t2
+main_label_7:
+	lw t0, 68(sp)
+	lw t1, 64(sp)
+	sub t2, t0, t1
+	sw t2, 68(sp)
+# if t3 goto [pc, 2]
+main_label_8:
+	lw t0, 68(sp)
+	bnez t0, main_label_10
+# goto [pc, 2]
+main_label_9:
+	j main_label_11
+# mov a_main_1, -1
+main_label_10:
+	li t2, -1
+	sw t2, 52(sp)
+# if t3 goto [pc, 2]
+main_label_11:
+	lw t0, 68(sp)
+	bnez t0, main_label_13
+# mov a_main_1, 0
+main_label_12:
+	li t2, 0
+	sw t2, 52(sp)
+main_label_13:
+	nop
+# return a_main_1
+main_label_14:
 	lw a0, 52(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)

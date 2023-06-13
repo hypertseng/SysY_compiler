@@ -16,40 +16,82 @@ main:
 	sw s9, 40(sp)
 	sw s10, 44(sp)
 	sw s11, 48(sp)
+# call t0, global()
+main_label_0:
+# def a_main_1, 0
+main_label_1:
 	li t2, 0
 	sw t2, 52(sp)
+# def b_main_1, 0
+main_label_2:
 	li t2, 0
 	sw t2, 56(sp)
-	lw t2, -1(sp)
+# mov a_main_1, 0
+main_label_3:
+	li t2, 0
+	sw t2, 52(sp)
+# add t0, a_main_1, 1
+main_label_4:
 	lw t0, 52(sp)
-	lw t1, -1(sp)
+	li t1, 1
 	add t2, t0, t1
 	sw t2, 60(sp)
-	lw t2, -1(sp)
+# mov a_main_1, t0
+main_label_5:
+	lw t2, 60(sp)
+	sw t2, 52(sp)
+# add t1, a_main_1, 2
+main_label_6:
 	lw t0, 52(sp)
-	lw t1, -1(sp)
+	li t1, 2
 	add t2, t0, t1
 	sw t2, 64(sp)
-	lw t2, -1(sp)
+# mov a_main_1, t1
+main_label_7:
+	lw t2, 64(sp)
+	sw t2, 52(sp)
+# add t2, a_main_1, 1
+main_label_8:
 	lw t0, 52(sp)
-	lw t1, -1(sp)
+	li t1, 1
 	add t2, t0, t1
 	sw t2, 68(sp)
-	lw t2, -1(sp)
+# mov a_main_1, t2
+main_label_9:
+	lw t2, 68(sp)
+	sw t2, 52(sp)
+# sub t3, a_main_1, 3
+main_label_10:
 	lw t0, 52(sp)
-	lw t1, -1(sp)
+	li t1, 3
 	sub t2, t0, t1
 	sw t2, 72(sp)
-	lw t2, -1(sp)
+# mov a_main_1, t3
+main_label_11:
+	lw t2, 72(sp)
+	sw t2, 52(sp)
+# add t4, a_main_1, 2
+main_label_12:
 	lw t0, 52(sp)
-	lw t1, -1(sp)
+	li t1, 2
 	add t2, t0, t1
 	sw t2, 76(sp)
-	lw t2, -1(sp)
+# mov a_main_1, t4
+main_label_13:
+	lw t2, 76(sp)
+	sw t2, 52(sp)
+# mov b_main_1, 2
+main_label_14:
+	li t2, 2
+	sw t2, 56(sp)
+# div t5, a_main_1, b_main_1
+main_label_15:
 	lw t0, 52(sp)
 	lw t1, 56(sp)
 	div t2, t0, t1
 	sw t2, 80(sp)
+# return t5
+main_label_16:
 	lw a0, 80(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)

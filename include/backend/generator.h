@@ -37,6 +37,8 @@ struct Generator {
     stackVarMap local_stack;            // map between local variable and its mem addr
     std::vector<std::string> global_var;   // global variable
     int cur_ofs;                        // current offset of stack pointer
+    std::map<int,std::string> j_label;  // map between label and ir in function
+    int ir_idx;                         // current ir index
 
     Generator(ir::Program&, std::ofstream&);
 
@@ -56,6 +58,8 @@ struct Generator {
     bool is_globalvar(std::string);
     std::string get_realvar(std::string);
     void gen_operate_instr(const ir::Instruction &);
+    void gen_call_instr(const ir::CallInst &);
+    void gen_logic_instr(const ir::Instruction &);
 };
 
 } // namespace backend

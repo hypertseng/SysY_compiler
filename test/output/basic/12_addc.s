@@ -18,11 +18,16 @@ main:
 	sw s9, 40(sp)
 	sw s10, 44(sp)
 	sw s11, 48(sp)
-	lw t2, -1(sp)
+# call t0, global()
+main_label_0:
+# add t0, a_global_0, 5
+main_label_1:
 	lw t0, a_global_0
-	lw t1, -1(sp)
+	li t1, 5
 	add t2, t0, t1
 	sw t2, 52(sp)
+# return t0
+main_label_2:
 	lw a0, 52(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)

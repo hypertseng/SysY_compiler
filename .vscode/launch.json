@@ -18,7 +18,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/bin/compiler",
             "args": [
-                "${workspaceFolder}/test/testcase/basic/01_var_defn2.sy",
+                "${workspaceFolder}/test/testcase/basic/25_while_if.sy",
                 "-S",
                 "-o",
                 "./test.s"

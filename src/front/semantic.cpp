@@ -1102,7 +1102,7 @@ void frontend::Analyzer::analysisUnaryExp(UnaryExp *root, vector<ir::Instruction
             }
             else
             {
-                root->v = "-" + unaryexp->v;
+                root->v = std::to_string(-std::stoi(unaryexp->v));
                 root->t = Type::IntLiteral;
             }
         }

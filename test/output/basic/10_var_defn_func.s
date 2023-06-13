@@ -16,6 +16,8 @@ defn:
 	sw s9, 40(sp)
 	sw s10, 44(sp)
 	sw s11, 48(sp)
+# return 4
+defn_label_0:
 	li a0, 4
 	lw s0, 4(sp)
 	lw s1, 8(sp)
@@ -47,9 +49,19 @@ main:
 	sw s9, 40(sp)
 	sw s10, 44(sp)
 	sw s11, 48(sp)
-	lw t2, -1(sp)
-	sw t2, 52(sp)
-	lw a0, 52(sp)
+# call t0, global()
+main_label_0:
+# call t0, defn()
+main_label_1:
+	call defn
+	sw a0, 52(sp)
+# def a_main_2, t0
+main_label_2:
+	lw t2, 52(sp)
+	sw t2, 56(sp)
+# return a_main_2
+main_label_3:
+	lw a0, 56(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)
 	lw s2, 12(sp)
