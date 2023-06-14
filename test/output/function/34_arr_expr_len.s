@@ -65,10 +65,10 @@ main_label_9:
 # load t8, arr_global_0, t5
 main_label_10:
 	la t2, arr_global_0
-	lw t0, 64(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 64(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 76(sp)
 # add t9, sum_main_1, t8
 main_label_11:

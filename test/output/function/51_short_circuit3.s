@@ -123,7 +123,7 @@ set_d_label_1:
 	addi sp, sp, 64
 	ret
 main:
-	addi sp, sp, -688
+	addi sp, sp, -1200
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -291,7 +291,7 @@ main_label_37:
 	lw t0, 76(sp)
 	li t1, 1
 	slt t2, t0, t1
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 80(sp)
 # if t14 goto [pc, 3]
 main_label_38:
@@ -344,7 +344,7 @@ main_label_50:
 	lw t0, 76(sp)
 	li t1, 1
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 92(sp)
 # if t19 goto [pc, 5]
 main_label_51:
@@ -402,7 +402,7 @@ main_label_63:
 	li t0, 16
 	lw t1, 108(sp)
 	slt t2, t0, t1
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 112(sp)
 # if t26 goto [pc, 2]
 main_label_64:
@@ -437,7 +437,7 @@ main_label_69:
 main_label_70:
 	lw t0, 116(sp)
 	lw t1, 124(sp)
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 128(sp)
 # if t31 goto [pc, 2]
@@ -467,7 +467,7 @@ main_label_75:
 main_label_76:
 	lw t0, 132(sp)
 	lw t1, 136(sp)
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 140(sp)
 # if t35 goto [pc, 2]
@@ -485,14 +485,13 @@ main_label_79:
 main_label_80:
 	li t0, 3
 	li t1, 4
-	slt t2, t0, t1
-	seqz t2, t2
+	slt t2, t1, t0
 	sw t2, 144(sp)
 # eq t38, t37, 0
 main_label_81:
 	lw t0, 144(sp)
 	li t1, 0
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 148(sp)
 # if t38 goto [pc, 2]
@@ -511,13 +510,13 @@ main_label_85:
 	li t0, 0x66
 	li t1, 077
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 152(sp)
 # eq t41, 1, t40
 main_label_86:
 	li t0, 1
 	lw t1, 152(sp)
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 156(sp)
 # if t41 goto [pc, 2]
@@ -556,7 +555,7 @@ main_label_93:
 main_label_94:
 	lw t0, 160(sp)
 	lw t1, 168(sp)
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 172(sp)
 # if t46 goto [pc, 2]
@@ -669,7 +668,7 @@ main_label_123:
 	lw t0, 176(sp)
 	lw t1, 180(sp)
 	slt t2, t0, t1
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 204(sp)
 # if t53 goto [pc, 5]
 main_label_124:
@@ -680,7 +679,7 @@ main_label_125:
 	lw t0, 180(sp)
 	lw t1, 176(sp)
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 208(sp)
 # if t54 goto [pc, 3]
 main_label_126:
@@ -713,7 +712,7 @@ main_label_133:
 	lw t0, 184(sp)
 	lw t1, 180(sp)
 	slt t2, t0, t1
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 216(sp)
 # if t57 goto [pc, 3]
 main_label_134:
@@ -730,7 +729,7 @@ main_label_136:
 main_label_137:
 	lw t0, 192(sp)
 	lw t1, 188(sp)
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 224(sp)
 # if t58 goto [pc, 3]
@@ -768,7 +767,7 @@ main_label_145:
 main_label_146:
 	lw t0, 176(sp)
 	lw t1, 228(sp)
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 232(sp)
 # if t62 goto [pc, 3]
@@ -812,7 +811,7 @@ main_label_156:
 	lw t0, 192(sp)
 	lw t1, 192(sp)
 	slt t2, t0, t1
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 244(sp)
 # if t65 goto [pc, 3]
 main_label_157:
@@ -849,7 +848,7 @@ main_label_164:
 main_label_165:
 	lw t0, 176(sp)
 	lw t1, 252(sp)
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 256(sp)
 # if t69 goto [pc, 13]
@@ -878,7 +877,7 @@ main_label_171:
 	lw t0, 192(sp)
 	lw t1, 192(sp)
 	slt t2, t0, t1
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 268(sp)
 # if t71 goto [pc, 3]
 main_label_172:
@@ -941,5 +940,5 @@ main_label_184:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 688
+	addi sp, sp, 1200
 	ret

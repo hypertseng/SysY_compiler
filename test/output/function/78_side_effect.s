@@ -21,7 +21,7 @@ inc_a:
 	sw s11, 48(sp)
 # def b_inc_a_1, a_global_0
 inc_a_label_0:
-	la t2, a_global_0
+	lw t2, a_global_0
 	sw t2, 52(sp)
 # add t0, b_inc_a_1, 1
 inc_a_label_1:
@@ -57,7 +57,7 @@ inc_a_label_4:
 	addi sp, sp, 76
 	ret
 main:
-	addi sp, sp, -240
+	addi sp, sp, -400
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -82,7 +82,7 @@ main_label_2:
 	lw t0, 52(sp)
 	li t1, 0
 	slt t2, t0, t1
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 56(sp)
 # if t1 goto [pc, 2]
 main_label_3:
@@ -338,5 +338,5 @@ main_label_63:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 240
+	addi sp, sp, 400
 	ret

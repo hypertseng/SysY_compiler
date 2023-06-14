@@ -101,10 +101,11 @@ bubblesort_label_16:
 	sw t2, 84(sp)
 # load t8, arr_bubblesort_1, t5
 bubblesort_label_17:
-	lw t0, 84(sp)
-	slli t0, t0, 2
-	add t0, t0, 52
-	lw t2, 0( t0)
+	lw t2, 0(a0)
+	lw t1, 84(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 96(sp)
 # add t9, j_bubblesort_1, 1
 bubblesort_label_18:
@@ -134,17 +135,17 @@ bubblesort_label_22:
 	sw t2, 104(sp)
 # load t13, arr_bubblesort_1, t10
 bubblesort_label_23:
-	lw t0, 104(sp)
-	slli t0, t0, 2
-	add t0, t0, 52
-	lw t2, 0( t0)
+	lw t2, 0(a0)
+	lw t1, 104(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 116(sp)
 # gtr t14, t8, t13
 bubblesort_label_24:
 	lw t0, 96(sp)
 	lw t1, 116(sp)
-	slt t2, t0, t1
-	seqz t2, t2
+	slt t2, t1, t0
 	sw t2, 120(sp)
 # if t14 goto [pc, 2]
 bubblesort_label_25:
@@ -185,10 +186,11 @@ bubblesort_label_32:
 	sw t2, 132(sp)
 # load t19, arr_bubblesort_1, t16
 bubblesort_label_33:
-	lw t0, 132(sp)
-	slli t0, t0, 2
-	add t0, t0, 52
-	lw t2, 0( t0)
+	lw t2, 0(a0)
+	lw t1, 132(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 144(sp)
 # mov tmp_if_4, t19
 bubblesort_label_34:
@@ -242,18 +244,20 @@ bubblesort_label_43:
 	sw t2, 164(sp)
 # load t27, arr_bubblesort_1, t24
 bubblesort_label_44:
-	lw t0, 164(sp)
-	slli t0, t0, 2
-	add t0, t0, 52
-	lw t2, 0( t0)
+	lw t2, 0(a0)
+	lw t1, 164(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 176(sp)
 # store t27, arr_bubblesort_1, t21
 bubblesort_label_45:
-	lw t0, 152(sp)
-	slli t0, t0, 2
-	add t0, t0, 52
-	lw t2, 176(sp)
-	sw t2, 0(t0)
+	lw t2, 0(a0)
+	lw t1, 152(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, 176(sp)
+	sw t1, 0(t2)
 # def t28, 0
 bubblesort_label_46:
 	li t2, 0
@@ -276,11 +280,12 @@ bubblesort_label_49:
 	sw t2, 180(sp)
 # store tmp_if_4, arr_bubblesort_1, t28
 bubblesort_label_50:
-	lw t0, 180(sp)
-	slli t0, t0, 2
-	add t0, t0, 52
-	lw t2, 124(sp)
-	sw t2, 0(t0)
+	lw t2, 0(a0)
+	lw t1, 180(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, 124(sp)
+	sw t1, 0(t2)
 # add t31, j_bubblesort_1, 1
 bubblesort_label_51:
 	lw t0, 60(sp)
@@ -326,7 +331,7 @@ bubblesort_label_57:
 	addi sp, sp, 700
 	ret
 main:
-	addi sp, sp, -244
+	addi sp, sp, -292
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -351,51 +356,91 @@ main_label_1:
 main_label_2:
 # store 4, a_main_5, 0
 main_label_3:
-	li t2, 4
-	sw t2, 52(sp)
+	addi t2, sp, 52
+	li t1, 0
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 4
+	sw t1, 0(t2)
 # store 3, a_main_5, 1
 main_label_4:
-	li t2, 3
-	sw t2, 56(sp)
+	addi t2, sp, 52
+	li t1, 1
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 3
+	sw t1, 0(t2)
 # store 9, a_main_5, 2
 main_label_5:
-	li t2, 9
-	sw t2, 60(sp)
+	addi t2, sp, 52
+	li t1, 2
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 9
+	sw t1, 0(t2)
 # store 2, a_main_5, 3
 main_label_6:
-	li t2, 2
-	sw t2, 64(sp)
+	addi t2, sp, 52
+	li t1, 3
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 2
+	sw t1, 0(t2)
 # store 0, a_main_5, 4
 main_label_7:
-	li t2, 0
-	sw t2, 68(sp)
+	addi t2, sp, 52
+	li t1, 4
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 0
+	sw t1, 0(t2)
 # store 1, a_main_5, 5
 main_label_8:
-	li t2, 1
-	sw t2, 72(sp)
+	addi t2, sp, 52
+	li t1, 5
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 1
+	sw t1, 0(t2)
 # store 6, a_main_5, 6
 main_label_9:
-	li t2, 6
-	sw t2, 76(sp)
+	addi t2, sp, 52
+	li t1, 6
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 6
+	sw t1, 0(t2)
 # store 5, a_main_5, 7
 main_label_10:
-	li t2, 5
-	sw t2, 80(sp)
+	addi t2, sp, 52
+	li t1, 7
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 5
+	sw t1, 0(t2)
 # store 7, a_main_5, 8
 main_label_11:
-	li t2, 7
-	sw t2, 84(sp)
+	addi t2, sp, 52
+	li t1, 8
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 7
+	sw t1, 0(t2)
 # store 8, a_main_5, 9
 main_label_12:
-	li t2, 8
-	sw t2, 88(sp)
+	addi t2, sp, 52
+	li t1, 9
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 8
+	sw t1, 0(t2)
 # def i_main_5, 0
 main_label_13:
 	li t2, 0
 	sw t2, 92(sp)
 # call t33, bubblesort(a_main_5)
 main_label_14:
-	lw a0, 52(sp)
+	addi a0, sp, 52
 	call bubblesort
 	sw a0, 96(sp)
 # mov i_main_5, t33
@@ -441,10 +486,11 @@ main_label_23:
 	sw t2, 108(sp)
 # load t38, a_main_5, t35
 main_label_24:
-	lw t0, 108(sp)
-	slli t0, t0, 2
-	add t0, t0, 52
-	lw t2, 0( t0)
+	addi t2, sp, 52
+	lw t1, 108(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 120(sp)
 # mov tmp_while_6, t38
 main_label_25:
@@ -491,5 +537,5 @@ main_label_32:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 244
+	addi sp, sp, 292
 	ret

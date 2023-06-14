@@ -23,7 +23,9 @@ main_label_0:
 # load t0, a_global_0, 4
 main_label_1:
 	la t2, a_global_0
-	add t2, t2, 16
+	li t1, 4
+	slli t1, t1, 2
+	add t2, t2, t1
 	lw t2, 0(t2)
 	sw t2, 52(sp)
 # return t0

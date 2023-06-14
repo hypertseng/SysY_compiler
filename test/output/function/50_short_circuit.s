@@ -4,7 +4,7 @@
 	.globl main
 	.align 2
 func:
-	addi sp, sp, -80
+	addi sp, sp, -96
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -50,10 +50,10 @@ func_label_3:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 80
+	addi sp, sp, 96
 	ret
 main:
-	addi sp, sp, -364
+	addi sp, sp, -460
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -85,8 +85,7 @@ main_label_3:
 main_label_4:
 	lw t0, 52(sp)
 	li t1, 10
-	slt t2, t0, t1
-	seqz t2, t2
+	slt t2, t1, t0
 	sw t2, 60(sp)
 # if t3 goto [pc, 3]
 main_label_5:
@@ -152,8 +151,7 @@ main_label_20:
 main_label_21:
 	lw t0, 52(sp)
 	li t1, 11
-	slt t2, t0, t1
-	seqz t2, t2
+	slt t2, t1, t0
 	sw t2, 76(sp)
 # if t7 goto [pc, 3]
 main_label_22:
@@ -220,7 +218,7 @@ main_label_38:
 	lw t0, 52(sp)
 	li t1, 99
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 92(sp)
 # if t11 goto [pc, 5]
 main_label_39:
@@ -280,7 +278,7 @@ main_label_53:
 	lw t0, 52(sp)
 	li t1, 100
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 108(sp)
 # if t15 goto [pc, 5]
 main_label_54:
@@ -405,5 +403,5 @@ main_label_82:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 364
+	addi sp, sp, 460
 	ret

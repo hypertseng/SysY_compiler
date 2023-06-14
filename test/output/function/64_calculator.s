@@ -33,7 +33,7 @@ isdigit_label_0:
 	lw t0, 52(sp)
 	li t1, 48
 	slt t2, t0, t1
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 56(sp)
 # if t0 goto [pc, 3]
 isdigit_label_1:
@@ -51,7 +51,7 @@ isdigit_label_4:
 	lw t0, 52(sp)
 	li t1, 57
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 64(sp)
 # if t1 goto [pc, 3]
 isdigit_label_5:
@@ -121,7 +121,7 @@ power_label_0:
 power_label_1:
 	lw t0, 56(sp)
 	li t1, 0
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 64(sp)
 # if t3 goto [pc, 2]
@@ -204,7 +204,7 @@ getstr_label_2:
 getstr_label_3:
 	lw t0, 60(sp)
 	li t1, 13
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 68(sp)
 # if t7 goto [pc, 3]
@@ -222,7 +222,7 @@ getstr_label_6:
 getstr_label_7:
 	lw t0, 60(sp)
 	li t1, 10
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 76(sp)
 # if t8 goto [pc, 3]
@@ -269,11 +269,12 @@ getstr_label_17:
 	sw t2, 80(sp)
 # store x_getstr_4, get_getstr_4, t10
 getstr_label_18:
-	lw t0, 80(sp)
-	slli t0, t0, 2
-	add t0, t0, 52
-	lw t2, 60(sp)
-	sw t2, 0(t0)
+	lw t2, 0(a0)
+	lw t1, 80(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, 60(sp)
+	sw t1, 0(t2)
 # add t13, length_getstr_4, 1
 getstr_label_19:
 	lw t0, 64(sp)
@@ -363,11 +364,11 @@ intpush_label_5:
 # store x_intpush_6, ints_global_0, t16
 intpush_label_6:
 	la t2, ints_global_0
-	lw t0, 60(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 52(sp)
-	sw t2, 0(t0)
+	lw t1, 60(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, 52(sp)
+	sw t1, 0(t2)
 # return null
 intpush_label_7:
 	lw a0, -1(sp)
@@ -436,11 +437,11 @@ chapush_label_5:
 # store x_chapush_7, chas_global_0, t20
 chapush_label_6:
 	la t2, chas_global_0
-	lw t0, 60(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 52(sp)
-	sw t2, 0(t0)
+	lw t1, 60(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, 52(sp)
+	sw t1, 0(t2)
 # return null
 chapush_label_7:
 	lw a0, -1(sp)
@@ -514,10 +515,10 @@ intpop_label_6:
 # load t28, ints_global_0, t25
 intpop_label_7:
 	la t2, ints_global_0
-	lw t0, 60(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 60(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 72(sp)
 # return t28
 intpop_label_8:
@@ -592,10 +593,10 @@ chapop_label_6:
 # load t34, chas_global_0, t31
 chapop_label_7:
 	la t2, chas_global_0
-	lw t0, 60(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 60(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 72(sp)
 # return t34
 chapop_label_8:
@@ -674,10 +675,10 @@ intadd_label_7:
 # load t41, ints_global_0, t38
 intadd_label_8:
 	la t2, ints_global_0
-	lw t0, 68(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 68(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 80(sp)
 # mul t42, t41, 10
 intadd_label_9:
@@ -688,11 +689,11 @@ intadd_label_9:
 # store t42, ints_global_0, t35
 intadd_label_10:
 	la t2, ints_global_0
-	lw t0, 56(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 84(sp)
-	sw t2, 0(t0)
+	lw t1, 56(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, 84(sp)
+	sw t1, 0(t2)
 # def t43, 0
 intadd_label_11:
 	li t2, 0
@@ -736,10 +737,10 @@ intadd_label_18:
 # load t49, ints_global_0, t46
 intadd_label_19:
 	la t2, ints_global_0
-	lw t0, 100(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 100(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 112(sp)
 # add t50, t49, x_intadd_10
 intadd_label_20:
@@ -750,11 +751,11 @@ intadd_label_20:
 # store t50, ints_global_0, t43
 intadd_label_21:
 	la t2, ints_global_0
-	lw t0, 88(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 116(sp)
-	sw t2, 0(t0)
+	lw t1, 88(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, 116(sp)
+	sw t1, 0(t2)
 # return null
 intadd_label_22:
 	lw a0, -1(sp)
@@ -820,11 +821,11 @@ find_label_5:
 # store 32, get2_global_0, t52
 find_label_6:
 	la t2, get2_global_0
-	lw t0, 56(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	li t2, 32
-	sw t2, 0(t0)
+	lw t1, 56(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 32
+	sw t1, 0(t2)
 # add t55, ii_global_0, 1
 find_label_7:
 	lw t0, ii_global_0
@@ -854,11 +855,10 @@ find_label_11:
 # store c_global_0, get2_global_0, t56
 find_label_12:
 	la t2, get2_global_0
-	lw t0, 72(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t1, 0(t0)
-	la t2, c_global_0
+	lw t1, 72(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, c_global_0
 	sw t1, 0(t2)
 # add t59, ii_global_0, 2
 find_label_13:
@@ -875,7 +875,7 @@ find_label_14:
 find_label_15:
 	lw t0, chat_global_0
 	li t1, 0
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 88(sp)
 # if t60 goto [pc, 2]
@@ -907,7 +907,7 @@ find_label_19:
 	addi sp, sp, 148
 	ret
 main:
-	addi sp, sp, -3420
+	addi sp, sp, -3660
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -935,7 +935,7 @@ main_label_2:
 	sw t2, 0(t3)
 # call t61, getstr(get_global_0)
 main_label_3:
-	lw a0, get_global_0
+	la a0, get_global_0
 	call getstr
 	sw a0, 52(sp)
 # def lengets_main_12, t61
@@ -978,10 +978,10 @@ main_label_11:
 # load t67, get_global_0, t64
 main_label_12:
 	la t2, get_global_0
-	lw t0, 64(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 64(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 76(sp)
 # call t63, isdigit(t67)
 main_label_13:
@@ -992,7 +992,7 @@ main_label_13:
 main_label_14:
 	lw t0, 80(sp)
 	li t1, 1
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 84(sp)
 # if t68 goto [pc, 2]
@@ -1045,19 +1045,19 @@ main_label_24:
 # load t75, get_global_0, t72
 main_label_25:
 	la t2, get_global_0
-	lw t0, 100(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 100(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 112(sp)
 # store t75, get2_global_0, t69
 main_label_26:
 	la t2, get2_global_0
-	lw t0, 88(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 112(sp)
-	sw t2, 0(t0)
+	lw t1, 88(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, 112(sp)
+	sw t1, 0(t2)
 # add t76, ii_global_0, 1
 main_label_27:
 	lw t0, ii_global_0
@@ -1096,16 +1096,16 @@ main_label_33:
 # load t80, get_global_0, t77
 main_label_34:
 	la t2, get_global_0
-	lw t0, 120(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 120(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 132(sp)
 # eq t81, t80, 40
 main_label_35:
 	lw t0, 132(sp)
 	li t1, 40
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 136(sp)
 # if t81 goto [pc, 2]
@@ -1142,16 +1142,16 @@ main_label_42:
 # load t86, get_global_0, t83
 main_label_43:
 	la t2, get_global_0
-	lw t0, 140(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 140(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 152(sp)
 # eq t87, t86, 94
 main_label_44:
 	lw t0, 152(sp)
 	li t1, 94
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 156(sp)
 # if t87 goto [pc, 2]
@@ -1188,16 +1188,16 @@ main_label_51:
 # load t92, get_global_0, t89
 main_label_52:
 	la t2, get_global_0
-	lw t0, 160(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 160(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 172(sp)
 # eq t93, t92, 41
 main_label_53:
 	lw t0, 172(sp)
 	li t1, 41
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 176(sp)
 # if t93 goto [pc, 2]
@@ -1220,7 +1220,7 @@ main_label_57:
 main_label_58:
 	lw t0, c_global_0
 	li t1, 40
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 184(sp)
 # if t95 goto [pc, 2]
@@ -1253,11 +1253,11 @@ main_label_64:
 # store 32, get2_global_0, t96
 main_label_65:
 	la t2, get2_global_0
-	lw t0, 188(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	li t2, 32
-	sw t2, 0(t0)
+	lw t1, 188(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 32
+	sw t1, 0(t2)
 # add t99, ii_global_0, 1
 main_label_66:
 	lw t0, ii_global_0
@@ -1287,11 +1287,10 @@ main_label_70:
 # store c_global_0, get2_global_0, t100
 main_label_71:
 	la t2, get2_global_0
-	lw t0, 204(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t1, 0(t0)
-	la t2, c_global_0
+	lw t1, 204(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, c_global_0
 	sw t1, 0(t2)
 # add t103, ii_global_0, 2
 main_label_72:
@@ -1339,16 +1338,16 @@ main_label_80:
 # load t108, get_global_0, t105
 main_label_81:
 	la t2, get_global_0
-	lw t0, 224(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 224(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 236(sp)
 # eq t109, t108, 43
 main_label_82:
 	lw t0, 236(sp)
 	li t1, 43
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 240(sp)
 # if t109 goto [pc, 2]
@@ -1381,16 +1380,16 @@ main_label_88:
 # load t113, chas_global_0, t110
 main_label_89:
 	la t2, chas_global_0
-	lw t0, 244(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 244(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 256(sp)
 # eq t114, t113, 43
 main_label_90:
 	lw t0, 256(sp)
 	li t1, 43
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 260(sp)
 # if t114 goto [pc, 54]
@@ -1420,16 +1419,16 @@ main_label_95:
 # load t118, chas_global_0, t115
 main_label_96:
 	la t2, chas_global_0
-	lw t0, 264(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 264(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 276(sp)
 # eq t119, t118, 45
 main_label_97:
 	lw t0, 276(sp)
 	li t1, 45
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 280(sp)
 # if t119 goto [pc, 43]
@@ -1459,16 +1458,16 @@ main_label_102:
 # load t123, chas_global_0, t120
 main_label_103:
 	la t2, chas_global_0
-	lw t0, 284(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 284(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 296(sp)
 # eq t124, t123, 42
 main_label_104:
 	lw t0, 296(sp)
 	li t1, 42
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 300(sp)
 # if t124 goto [pc, 32]
@@ -1498,16 +1497,16 @@ main_label_109:
 # load t128, chas_global_0, t125
 main_label_110:
 	la t2, chas_global_0
-	lw t0, 304(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 304(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 316(sp)
 # eq t129, t128, 47
 main_label_111:
 	lw t0, 316(sp)
 	li t1, 47
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 320(sp)
 # if t129 goto [pc, 21]
@@ -1537,16 +1536,16 @@ main_label_116:
 # load t133, chas_global_0, t130
 main_label_117:
 	la t2, chas_global_0
-	lw t0, 324(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 324(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 336(sp)
 # eq t134, t133, 37
 main_label_118:
 	lw t0, 336(sp)
 	li t1, 37
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 340(sp)
 # if t134 goto [pc, 10]
@@ -1576,16 +1575,16 @@ main_label_123:
 # load t138, chas_global_0, t135
 main_label_124:
 	la t2, chas_global_0
-	lw t0, 344(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 344(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 356(sp)
 # eq t139, t138, 94
 main_label_125:
 	lw t0, 356(sp)
 	li t1, 94
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 360(sp)
 # if t139 goto [pc, 3]
@@ -1678,7 +1677,7 @@ main_label_148:
 main_label_149:
 	lw t0, 384(sp)
 	li t1, 0
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 388(sp)
 # if t146 goto [pc, 2]
@@ -1721,16 +1720,16 @@ main_label_158:
 # load t151, get_global_0, t148
 main_label_159:
 	la t2, get_global_0
-	lw t0, 392(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 392(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 404(sp)
 # eq t152, t151, 45
 main_label_160:
 	lw t0, 404(sp)
 	li t1, 45
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 408(sp)
 # if t152 goto [pc, 2]
@@ -1763,16 +1762,16 @@ main_label_166:
 # load t156, chas_global_0, t153
 main_label_167:
 	la t2, chas_global_0
-	lw t0, 412(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 412(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 424(sp)
 # eq t157, t156, 43
 main_label_168:
 	lw t0, 424(sp)
 	li t1, 43
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 428(sp)
 # if t157 goto [pc, 54]
@@ -1802,16 +1801,16 @@ main_label_173:
 # load t161, chas_global_0, t158
 main_label_174:
 	la t2, chas_global_0
-	lw t0, 432(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 432(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 444(sp)
 # eq t162, t161, 45
 main_label_175:
 	lw t0, 444(sp)
 	li t1, 45
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 448(sp)
 # if t162 goto [pc, 43]
@@ -1841,16 +1840,16 @@ main_label_180:
 # load t166, chas_global_0, t163
 main_label_181:
 	la t2, chas_global_0
-	lw t0, 452(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 452(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 464(sp)
 # eq t167, t166, 42
 main_label_182:
 	lw t0, 464(sp)
 	li t1, 42
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 468(sp)
 # if t167 goto [pc, 32]
@@ -1880,16 +1879,16 @@ main_label_187:
 # load t171, chas_global_0, t168
 main_label_188:
 	la t2, chas_global_0
-	lw t0, 472(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 472(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 484(sp)
 # eq t172, t171, 47
 main_label_189:
 	lw t0, 484(sp)
 	li t1, 47
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 488(sp)
 # if t172 goto [pc, 21]
@@ -1919,16 +1918,16 @@ main_label_194:
 # load t176, chas_global_0, t173
 main_label_195:
 	la t2, chas_global_0
-	lw t0, 492(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 492(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 504(sp)
 # eq t177, t176, 37
 main_label_196:
 	lw t0, 504(sp)
 	li t1, 37
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 508(sp)
 # if t177 goto [pc, 10]
@@ -1958,16 +1957,16 @@ main_label_201:
 # load t181, chas_global_0, t178
 main_label_202:
 	la t2, chas_global_0
-	lw t0, 512(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 512(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 524(sp)
 # eq t182, t181, 94
 main_label_203:
 	lw t0, 524(sp)
 	li t1, 94
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 528(sp)
 # if t182 goto [pc, 3]
@@ -2060,7 +2059,7 @@ main_label_226:
 main_label_227:
 	lw t0, 552(sp)
 	li t1, 0
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 556(sp)
 # if t189 goto [pc, 2]
@@ -2103,16 +2102,16 @@ main_label_236:
 # load t194, get_global_0, t191
 main_label_237:
 	la t2, get_global_0
-	lw t0, 560(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 560(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 572(sp)
 # eq t195, t194, 42
 main_label_238:
 	lw t0, 572(sp)
 	li t1, 42
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 576(sp)
 # if t195 goto [pc, 2]
@@ -2145,16 +2144,16 @@ main_label_244:
 # load t199, chas_global_0, t196
 main_label_245:
 	la t2, chas_global_0
-	lw t0, 580(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 580(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 592(sp)
 # eq t200, t199, 42
 main_label_246:
 	lw t0, 592(sp)
 	li t1, 42
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 596(sp)
 # if t200 goto [pc, 32]
@@ -2184,16 +2183,16 @@ main_label_251:
 # load t204, chas_global_0, t201
 main_label_252:
 	la t2, chas_global_0
-	lw t0, 600(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 600(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 612(sp)
 # eq t205, t204, 47
 main_label_253:
 	lw t0, 612(sp)
 	li t1, 47
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 616(sp)
 # if t205 goto [pc, 21]
@@ -2223,16 +2222,16 @@ main_label_258:
 # load t209, chas_global_0, t206
 main_label_259:
 	la t2, chas_global_0
-	lw t0, 620(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 620(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 632(sp)
 # eq t210, t209, 37
 main_label_260:
 	lw t0, 632(sp)
 	li t1, 37
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 636(sp)
 # if t210 goto [pc, 10]
@@ -2262,16 +2261,16 @@ main_label_265:
 # load t214, chas_global_0, t211
 main_label_266:
 	la t2, chas_global_0
-	lw t0, 640(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 640(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 652(sp)
 # eq t215, t214, 94
 main_label_267:
 	lw t0, 652(sp)
 	li t1, 94
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 656(sp)
 # if t215 goto [pc, 3]
@@ -2334,7 +2333,7 @@ main_label_282:
 main_label_283:
 	lw t0, 672(sp)
 	li t1, 0
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 676(sp)
 # if t220 goto [pc, 2]
@@ -2377,16 +2376,16 @@ main_label_292:
 # load t225, get_global_0, t222
 main_label_293:
 	la t2, get_global_0
-	lw t0, 680(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 680(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 692(sp)
 # eq t226, t225, 47
 main_label_294:
 	lw t0, 692(sp)
 	li t1, 47
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 696(sp)
 # if t226 goto [pc, 2]
@@ -2419,16 +2418,16 @@ main_label_300:
 # load t230, chas_global_0, t227
 main_label_301:
 	la t2, chas_global_0
-	lw t0, 700(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 700(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 712(sp)
 # eq t231, t230, 42
 main_label_302:
 	lw t0, 712(sp)
 	li t1, 42
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 716(sp)
 # if t231 goto [pc, 32]
@@ -2458,16 +2457,16 @@ main_label_307:
 # load t235, chas_global_0, t232
 main_label_308:
 	la t2, chas_global_0
-	lw t0, 720(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 720(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 732(sp)
 # eq t236, t235, 47
 main_label_309:
 	lw t0, 732(sp)
 	li t1, 47
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 736(sp)
 # if t236 goto [pc, 21]
@@ -2497,16 +2496,16 @@ main_label_314:
 # load t240, chas_global_0, t237
 main_label_315:
 	la t2, chas_global_0
-	lw t0, 740(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 740(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 752(sp)
 # eq t241, t240, 37
 main_label_316:
 	lw t0, 752(sp)
 	li t1, 37
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 756(sp)
 # if t241 goto [pc, 10]
@@ -2536,16 +2535,16 @@ main_label_321:
 # load t245, chas_global_0, t242
 main_label_322:
 	la t2, chas_global_0
-	lw t0, 760(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 760(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 772(sp)
 # eq t246, t245, 94
 main_label_323:
 	lw t0, 772(sp)
 	li t1, 94
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 776(sp)
 # if t246 goto [pc, 3]
@@ -2608,7 +2607,7 @@ main_label_338:
 main_label_339:
 	lw t0, 792(sp)
 	li t1, 0
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 796(sp)
 # if t251 goto [pc, 2]
@@ -2651,16 +2650,16 @@ main_label_348:
 # load t256, get_global_0, t253
 main_label_349:
 	la t2, get_global_0
-	lw t0, 800(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 800(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 812(sp)
 # eq t257, t256, 37
 main_label_350:
 	lw t0, 812(sp)
 	li t1, 37
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 816(sp)
 # if t257 goto [pc, 2]
@@ -2693,16 +2692,16 @@ main_label_356:
 # load t261, chas_global_0, t258
 main_label_357:
 	la t2, chas_global_0
-	lw t0, 820(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 820(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 832(sp)
 # eq t262, t261, 42
 main_label_358:
 	lw t0, 832(sp)
 	li t1, 42
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 836(sp)
 # if t262 goto [pc, 32]
@@ -2732,16 +2731,16 @@ main_label_363:
 # load t266, chas_global_0, t263
 main_label_364:
 	la t2, chas_global_0
-	lw t0, 840(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 840(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 852(sp)
 # eq t267, t266, 47
 main_label_365:
 	lw t0, 852(sp)
 	li t1, 47
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 856(sp)
 # if t267 goto [pc, 21]
@@ -2771,16 +2770,16 @@ main_label_370:
 # load t271, chas_global_0, t268
 main_label_371:
 	la t2, chas_global_0
-	lw t0, 860(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 860(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 872(sp)
 # eq t272, t271, 37
 main_label_372:
 	lw t0, 872(sp)
 	li t1, 37
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 876(sp)
 # if t272 goto [pc, 10]
@@ -2810,16 +2809,16 @@ main_label_377:
 # load t276, chas_global_0, t273
 main_label_378:
 	la t2, chas_global_0
-	lw t0, 880(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 880(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 892(sp)
 # eq t277, t276, 94
 main_label_379:
 	lw t0, 892(sp)
 	li t1, 94
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 896(sp)
 # if t277 goto [pc, 3]
@@ -2882,7 +2881,7 @@ main_label_394:
 main_label_395:
 	lw t0, 912(sp)
 	li t1, 0
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 916(sp)
 # if t282 goto [pc, 2]
@@ -2925,11 +2924,11 @@ main_label_404:
 # store 32, get2_global_0, t284
 main_label_405:
 	la t2, get2_global_0
-	lw t0, 920(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	li t2, 32
-	sw t2, 0(t0)
+	lw t1, 920(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 32
+	sw t1, 0(t2)
 # add t287, ii_global_0, 1
 main_label_406:
 	lw t0, ii_global_0
@@ -2961,8 +2960,7 @@ main_label_411:
 main_label_412:
 	lw t0, chat_global_0
 	li t1, 0
-	slt t2, t0, t1
-	seqz t2, t2
+	slt t2, t1, t0
 	sw t2, 940(sp)
 # if t289 goto [pc, 2]
 main_label_413:
@@ -3002,11 +3000,11 @@ main_label_420:
 # store 32, get2_global_0, t291
 main_label_421:
 	la t2, get2_global_0
-	lw t0, 952(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	li t2, 32
-	sw t2, 0(t0)
+	lw t1, 952(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 32
+	sw t1, 0(t2)
 # add t294, ii_global_0, 1
 main_label_422:
 	lw t0, ii_global_0
@@ -3036,11 +3034,11 @@ main_label_426:
 # store c_while_28, get2_global_0, t295
 main_label_427:
 	la t2, get2_global_0
-	lw t0, 968(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 948(sp)
-	sw t2, 0(t0)
+	lw t1, 968(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, 948(sp)
+	sw t1, 0(t2)
 # add t298, ii_global_0, 2
 main_label_428:
 	lw t0, ii_global_0
@@ -3078,11 +3076,11 @@ main_label_434:
 # store 64, get2_global_0, t299
 main_label_435:
 	la t2, get2_global_0
-	lw t0, 984(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	li t2, 64
-	sw t2, 0(t0)
+	lw t1, 984(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 64
+	sw t1, 0(t2)
 # mov i_global_0, 1
 main_label_436:
 	li t2, 1
@@ -3111,16 +3109,16 @@ main_label_440:
 # load t305, get2_global_0, t302
 main_label_441:
 	la t2, get2_global_0
-	lw t0, 996(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 996(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1008(sp)
 # neq t306, t305, 64
 main_label_442:
 	lw t0, 1008(sp)
 	li t1, 64
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 1012(sp)
 # if t306 goto [pc, 2]
@@ -3153,16 +3151,16 @@ main_label_448:
 # load t310, get2_global_0, t307
 main_label_449:
 	la t2, get2_global_0
-	lw t0, 1016(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1016(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1028(sp)
 # eq t311, t310, 43
 main_label_450:
 	lw t0, 1028(sp)
 	li t1, 43
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 1032(sp)
 # if t311 goto [pc, 54]
@@ -3192,16 +3190,16 @@ main_label_455:
 # load t315, get2_global_0, t312
 main_label_456:
 	la t2, get2_global_0
-	lw t0, 1036(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1036(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1048(sp)
 # eq t316, t315, 45
 main_label_457:
 	lw t0, 1048(sp)
 	li t1, 45
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 1052(sp)
 # if t316 goto [pc, 43]
@@ -3231,16 +3229,16 @@ main_label_462:
 # load t320, get2_global_0, t317
 main_label_463:
 	la t2, get2_global_0
-	lw t0, 1056(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1056(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1068(sp)
 # eq t321, t320, 42
 main_label_464:
 	lw t0, 1068(sp)
 	li t1, 42
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 1072(sp)
 # if t321 goto [pc, 32]
@@ -3270,16 +3268,16 @@ main_label_469:
 # load t325, get2_global_0, t322
 main_label_470:
 	la t2, get2_global_0
-	lw t0, 1076(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1076(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1088(sp)
 # eq t326, t325, 47
 main_label_471:
 	lw t0, 1088(sp)
 	li t1, 47
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 1092(sp)
 # if t326 goto [pc, 21]
@@ -3309,16 +3307,16 @@ main_label_476:
 # load t330, get2_global_0, t327
 main_label_477:
 	la t2, get2_global_0
-	lw t0, 1096(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1096(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1108(sp)
 # eq t331, t330, 37
 main_label_478:
 	lw t0, 1108(sp)
 	li t1, 37
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 1112(sp)
 # if t331 goto [pc, 10]
@@ -3348,16 +3346,16 @@ main_label_483:
 # load t335, get2_global_0, t332
 main_label_484:
 	la t2, get2_global_0
-	lw t0, 1116(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1116(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1128(sp)
 # eq t336, t335, 94
 main_label_485:
 	lw t0, 1128(sp)
 	li t1, 94
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 1132(sp)
 # if t336 goto [pc, 3]
@@ -3485,16 +3483,16 @@ main_label_516:
 # load t347, get2_global_0, t344
 main_label_517:
 	la t2, get2_global_0
-	lw t0, 1176(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1176(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1188(sp)
 # eq t348, t347, 43
 main_label_518:
 	lw t0, 1188(sp)
 	li t1, 43
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 1192(sp)
 # if t348 goto [pc, 2]
@@ -3537,16 +3535,16 @@ main_label_526:
 # load t353, get2_global_0, t350
 main_label_527:
 	la t2, get2_global_0
-	lw t0, 1200(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1200(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1212(sp)
 # eq t354, t353, 45
 main_label_528:
 	lw t0, 1212(sp)
 	li t1, 45
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 1216(sp)
 # if t354 goto [pc, 2]
@@ -3589,16 +3587,16 @@ main_label_536:
 # load t359, get2_global_0, t356
 main_label_537:
 	la t2, get2_global_0
-	lw t0, 1224(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1224(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1236(sp)
 # eq t360, t359, 42
 main_label_538:
 	lw t0, 1236(sp)
 	li t1, 42
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 1240(sp)
 # if t360 goto [pc, 2]
@@ -3641,16 +3639,16 @@ main_label_546:
 # load t365, get2_global_0, t362
 main_label_547:
 	la t2, get2_global_0
-	lw t0, 1248(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1248(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1260(sp)
 # eq t366, t365, 47
 main_label_548:
 	lw t0, 1260(sp)
 	li t1, 47
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 1264(sp)
 # if t366 goto [pc, 2]
@@ -3693,16 +3691,16 @@ main_label_556:
 # load t371, get2_global_0, t368
 main_label_557:
 	la t2, get2_global_0
-	lw t0, 1272(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1272(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1284(sp)
 # eq t372, t371, 37
 main_label_558:
 	lw t0, 1284(sp)
 	li t1, 37
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 1288(sp)
 # if t372 goto [pc, 2]
@@ -3745,16 +3743,16 @@ main_label_566:
 # load t377, get2_global_0, t374
 main_label_567:
 	la t2, get2_global_0
-	lw t0, 1296(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1296(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1308(sp)
 # eq t378, t377, 94
 main_label_568:
 	lw t0, 1308(sp)
 	li t1, 94
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 1312(sp)
 # if t378 goto [pc, 2]
@@ -3805,16 +3803,16 @@ main_label_578:
 # load t384, get2_global_0, t381
 main_label_579:
 	la t2, get2_global_0
-	lw t0, 1320(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1320(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1332(sp)
 # neq t385, t384, 32
 main_label_580:
 	lw t0, 1332(sp)
 	li t1, 32
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 1336(sp)
 # if t385 goto [pc, 2]
@@ -3847,10 +3845,10 @@ main_label_586:
 # load t390, get2_global_0, t387
 main_label_587:
 	la t2, get2_global_0
-	lw t0, 1340(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1340(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1352(sp)
 # sub t391, t390, 48
 main_label_588:
@@ -3896,16 +3894,16 @@ main_label_595:
 # load t396, get2_global_0, t393
 main_label_596:
 	la t2, get2_global_0
-	lw t0, 1364(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1364(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1376(sp)
 # neq t397, t396, 32
 main_label_597:
 	lw t0, 1376(sp)
 	li t1, 32
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 1380(sp)
 # if t397 goto [pc, 2]
@@ -3944,10 +3942,10 @@ main_label_604:
 # load t403, get2_global_0, t400
 main_label_605:
 	la t2, get2_global_0
-	lw t0, 1388(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 1388(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 1400(sp)
 # sub t404, t403, 48
 main_label_606:
@@ -4009,7 +4007,9 @@ main_label_617:
 # load t410, ints_global_0, 1
 main_label_618:
 	la t2, ints_global_0
-	add t2, t2, 4
+	li t1, 1
+	slli t1, t1, 2
+	add t2, t2, t1
 	lw t2, 0(t2)
 	sw t2, 1424(sp)
 # call t409, putint(t410)
@@ -4032,5 +4032,5 @@ main_label_620:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 3420
+	addi sp, sp, 3660
 	ret

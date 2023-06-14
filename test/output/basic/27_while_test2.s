@@ -98,7 +98,7 @@ FourWhile_label_17:
 FourWhile_label_18:
 	lw t0, 60(sp)
 	li t1, 7
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 84(sp)
 # if t4 goto [pc, 2]

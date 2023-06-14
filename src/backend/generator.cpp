@@ -82,6 +82,7 @@ std::string rv::toString(rvREG r)
 int backend::stackVarMap::add_operand(ir::Operand op, uint32_t size = 4)
 {
     _table.emplace(op.name, size);
+    return 0;
 }
 
 int backend::stackVarMap::find_operand(ir::Operand op)
@@ -241,6 +242,8 @@ int backend::Generator::alloc_stack(const ir::Function &func)
         // alloc
         if (inst->op == ir::Operator::alloc)
             size += std::stoi(inst->op1.name);
+        if (inst->op == ir::Operator::call) // 参数通过结构传递，要先把所有参数存入栈中，把首地址放入a0进行传递
+            size += ((ir::CallInst *)inst)->argumentList.size() * 4;
     }
     return size;
 }
@@ -250,6 +253,7 @@ void backend::Generator::init_func(const ir::Function &func)
 {
     local_stack._table.clear();
     j_label.clear();
+    params.params_list.clear();
     // 生成函数名
     fout << func.name << ":" << std::endl;
     cur_ofs = 0;
@@ -270,7 +274,17 @@ void backend::Generator::init_func(const ir::Function &func)
         local_stack.add_operand(func.ParameterList[i], cur_ofs);
         cur_ofs += 4;
         fout << "\tsw a" << i << ", " << local_stack.find_operand(func.ParameterList[i]) << "(sp)" << std::endl;
+        params.params_list.emplace(func.ParameterList[i].name, func.ParameterList[i].type);
     }
+
+    // for (int i = 0; i < func.ParameterList.size(); i++)
+    // {
+    //     int tmp_offset = 0 * 4;
+    //     local_stack.add_operand(func.ParameterList[i], cur_ofs);
+    //     cur_ofs += 4;
+    //     fout << "\tlw t2, " << tmp_offset << "(a0)" << std::endl;
+    //     fout << "\tsw t2, " << local_stack.find_operand(func.ParameterList[i]) << "(sp)" << std::endl;
+    // }
 
     // 给每条ir指令对应的第一条汇编指令打上标签,标签内容就为指令本身
     for (int i = 0; i < func.InstVec.size(); i++)
@@ -334,6 +348,11 @@ std::string backend::Generator::get_realvar(std::string name)
         return name; // 返回全局变量名
     else if (local_stack.find_operand(ir::Operand(name, ir::Type::null)) == -1)
         return std::to_string(local_stack.find_operand(ir::Operand(name, ir::Type::null))) + "(sp)"; // 返回局部变量在内存中的位置
+    else
+    {
+        assert(0);
+        return "";
+    }
 }
 
 void backend::Generator::gen_operate_instr(const ir::Instruction &inst)
@@ -415,33 +434,35 @@ void backend::Generator::gen_logic_instr(const ir::Instruction &inst)
         fout << "\tlw t1"
              << ", " << inst.op2.name << std::endl;
     // 进行运算
-    switch (inst.op)    // 不能用not 
+    switch (inst.op) // 不能用not
     {
     case ir::Operator::lss:
         fout << "\tslt " << rd << ", " << rs1 << ", " << rs2 << std::endl;
         break;
     case ir::Operator::gtr:
-        fout << "\tslt " << rd << ", " << rs1 << ", " << rs2 << std::endl;
-        fout << "\tseqz " << rd << ", " << rd << std::endl;
+        fout << "\tslt " << rd << ", " << rs2 << ", " << rs1 << std::endl;
         break;
     case ir::Operator::leq:
-        fout << "\tslt " << rd << ", " << rs2 << ", " << rs1 << std::endl; // 判断反命题
-        fout << "\tseqz " << rd << ", " << rd << std::endl;                // 取反
+        fout << "\tslt " << rd << ", " << rs2 << ", " << rs1 << std::endl;
+        fout << "\txori " << rd << ", " << rd << ", 1" << std::endl;
         break;
     case ir::Operator::geq:
-        fout << "\tslt " << rd << ", " << rs1 << ", " << rs2 << std::endl; // 判断反命题
-        fout << "\tseqz " << rd << ", " << rd << std::endl;                // 取反
+        fout << "\tslt " << rd << ", " << rs1 << ", " << rs2 << std::endl;
+        fout << "\txori " << rd << ", " << rd << ", 1" << std::endl;
         break;
     case ir::Operator::eq:
-        fout << "\tsub " << rd << ", " << rs1 << ", " << rs2 << std::endl;
+        fout << "\txor " << rd << ", " << rs1 << ", " << rs2 << std::endl;
         fout << "\tseqz " << rd << ", " << rd << std::endl;
         break;
     case ir::Operator::neq:
-        fout << "\tsub " << rd << ", " << rs1 << ", " << rs2 << std::endl;
+        fout << "\txor " << rd << ", " << rs1 << ", " << rs2 << std::endl;
         fout << "\tsnez " << rd << ", " << rd << std::endl;
         break;
     case ir::Operator::_not:
         fout << "\tseqz " << rd << ", " << rs1 << std::endl;
+        break;
+    default:
+        assert(0 && "illegal logic operator");
         break;
     }
     // 将结果存回内存
@@ -465,6 +486,13 @@ void backend::Generator::gen_call_instr(const ir::CallInst &inst)
     {
         if (inst.argumentList[i].type == ir::Type::IntLiteral)
             fout << "\tli a" << i << ", " << inst.argumentList[i].name << std::endl;
+        else if (inst.argumentList[i].type == ir::Type::IntPtr)
+        {
+            if (is_globalvar(inst.argumentList[i].name))
+                fout << "\tla a" << i << ", " << inst.argumentList[i].name << std::endl;
+            else
+                fout << "\taddi a" << i << ", sp, " << local_stack.find_operand(inst.argumentList[i]) << std::endl;
+        }
         else
         {
             if (is_globalvar(inst.argumentList[i].name))
@@ -473,6 +501,27 @@ void backend::Generator::gen_call_instr(const ir::CallInst &inst)
                 fout << "\tlw a" << i << ", " << local_stack.find_operand(inst.argumentList[i]) << "(sp)" << std::endl;
         }
     }
+    // int param_addr = cur_ofs;
+    // // 将参数放到params里面
+    // for (int i = 0; i < inst.argumentList.size(); i++)
+    // {
+    //     int tmp_addr = param_addr + i * 4;
+    //     if (inst.argumentList[i].type == ir::Type::IntLiteral)
+    //     {
+    //         fout << "\tli " << rv::toString(getRd(inst.des)) << ", " << inst.argumentList[i].name << std::endl;
+    //     }
+    //     else
+    //     {
+    //         if (is_globalvar(inst.argumentList[i].name))
+    //             fout << "\tlw " << rv::toString(getRd(inst.des)) << ", " << inst.argumentList[i].name << std::endl;
+    //         else
+    //             fout << "\tlw " << rv::toString(getRd(inst.des)) << ", " << local_stack.find_operand(inst.argumentList[i]) << "(sp)" << std::endl;
+    //     }
+    //     fout << "\tsw " << rv::toString(getRd(inst.des)) << ", " << tmp_addr << "(sp)" << std::endl;
+    // }
+    // cur_ofs += inst.argumentList.size() * 4; // 更新当前偏移量
+    // // 把参数数组地址传入a0
+    // fout << "\taddi a0, sp, " << param_addr << std::endl;
     // 调用函数
     fout << "\tcall " << inst.op1.name << std::endl;
     // 将返回值存入局部变量
@@ -486,6 +535,11 @@ void backend::Generator::gen_call_instr(const ir::CallInst &inst)
 
 void backend::Generator::gen_instr(const ir::Instruction &inst)
 {
+    // 遇到任何与浮点数相关的直接退出
+    if (inst.op1.type == ir::Type::FloatLiteral || inst.op2.type == ir::Type::FloatLiteral || inst.des.type == ir::Type::FloatLiteral || inst.op1.type == ir::Type::FloatPtr || inst.op2.type == ir::Type::FloatPtr || inst.des.type == ir::Type::FloatPtr)
+    {
+        assert(0 && "float is not supported");
+    }
     switch (inst.op)
     {
     case ir::Operator::_return:
@@ -528,8 +582,8 @@ void backend::Generator::gen_instr(const ir::Instruction &inst)
             // 赋的初始值是否是全局变量
             if (is_globalvar(inst.op1.name))
             {
-                // la rd, global_var
-                fout << "\tla " << rv::toString(getRd(inst.des)) << ", " << inst.op1.name << std::endl;
+                // lw rd, global_var
+                fout << "\tlw " << rv::toString(getRd(inst.des)) << ", " << inst.op1.name << std::endl;
                 fout << "\tsw " << rv::toString(getRd(inst.des)) << ", " << cur_ofs << "(sp)" << std::endl;
                 cur_ofs += 4;
             }
@@ -595,114 +649,127 @@ void backend::Generator::gen_instr(const ir::Instruction &inst)
     case ir::Operator::load:
     {
         // lw rd, rs1, rs2
-        std::string base_addr;
+        // 解析op1，计算op1为全局变量以及局部变量下的地址
         if (is_globalvar(inst.op1.name)) // 判断数组是否为全局变量
-        {
             // load 全局数组变量的地址
             fout << "\tla " + rv::toString(getRd(inst.des)) + ", " << inst.op1.name << std::endl;
-            base_addr = rv::toString(getRd(inst.op1));
-        }
         else
         {
-            base_addr = std::to_string(local_stack.find_operand(inst.op1));
-        }
-        std::string target_addr = base_addr;
-        if (inst.op2.type == ir::Type::IntLiteral)
-            if (is_globalvar(inst.op1.name))
-                // 计算基址加偏移量
-                fout << "\tadd " << rv::toString(getRd(inst.des)) << ", " << base_addr << ", " << std::stoi(inst.op2.name) * 4 << std::endl;
+            // 如果数据为参数，则从a0中取出地址
+            if (params.params_list[inst.op1.name] == ir::Type::IntPtr)
+            {
+                fout << "\tlw " << rv::toString(getRd(inst.des)) << ", 0(a0)" << std::endl;
+            }
             else
-                target_addr = std::to_string(std::stoi(inst.op2.name) * 4 + std::stoi(target_addr));
-        else
+                fout << "\taddi " << rv ::toString(getRd(inst.des)) << ", sp, " << local_stack.find_operand(inst.op1) << std::endl;
+        }
+        std::string target_addr = rv::toString(getRd(inst.des)); // 地址放在t2中
+
+        // 解析op2，计算考虑偏移量后的地址
+        if (is_globalvar(inst.op2.name)) // op2是全局变量
         {
-            if (is_globalvar(inst.op2.name))
-                fout << "\tlw t0, " << inst.op2.name << std::endl;
-            else
-                fout << "\tlw t0, " << local_stack.find_operand(inst.op2) << "(sp)" << std::endl;
-            fout << "\tslli t0, t0, 2" << std::endl;
-            fout << "\tadd t0, t0, " << base_addr << std::endl;
-            target_addr = "t0";
+            fout << "\taddi " << rv::toString(getRd(inst.des)) << ", " << rv::toString(getRd(inst.des)) << ", " << std::stoi(inst.op2.name) * 4 << std::endl;
         }
-        // 取出内存中的值
-        if (is_globalvar(inst.op1.name)) // 从全局变量中取
+        else // op2是局部变量
         {
-            fout << "\tlw " << rv::toString(getRd(inst.des)) << ", "
-                 << "0(" << target_addr << ")" << std::endl;
+            if (local_stack.find_operand(inst.op2) != -1)
+            {
+                fout << "\tlw t1, " << local_stack.find_operand(inst.op2) << "(sp)" << std::endl;
+                fout << "\tslli t1, t1, 2" << std::endl;
+                fout << "\tadd " << rv::toString(getRd(inst.des)) << ", " << rv::toString(getRd(inst.des)) << ", t1" << std::endl;
+            }
+            else // op2是常数
+            {
+                fout << "\tli t1, " << inst.op2.name << std::endl;
+                fout << "\tslli t1, t1, 2" << std::endl;
+                fout << "\tadd " << rv::toString(getRd(inst.des)) << ", " << rv::toString(getRd(inst.des)) << ", t1" << std::endl;
+            }
         }
-        else
-        { // 如果target_addr是立即数，那么就不需要再load了
-            if (target_addr[0] == 't')
-                fout << "\tlw " << rv::toString(getRd(inst.des)) << ", "
-                     << "0( " << target_addr << ")" << std::endl;
-            else
-                fout << "\tlw " << rv::toString(getRd(inst.des)) << ", " << target_addr << "(sp)" << std::endl;
-        }
-        // 将结果存回内存
+
+        // load相应的值到寄存器t2中
+        fout << "\tlw " << rv::toString(getRd(inst.des)) << ", 0(" << target_addr << ")" << std::endl;
+
+        // 解析des，获得相应的地址,并写入
         if (is_globalvar(inst.des.name))
-            fout << "\tsw " << rv::toString(getRd(inst.des)) << ", " << inst.des.name << std::endl;
-        else if (local_stack.find_operand(inst.des) != -1)
-            fout << "\tsw " << rv::toString(getRd(inst.des)) << ", " << local_stack.find_operand(inst.des) << "(sp)" << std::endl;
-        else if (inst.des.type != ir::Type::null && inst.des.type != ir::Type::IntLiteral)
         {
-            local_stack.add_operand(inst.des, cur_ofs);
-            fout << "\tsw " << rv::toString(getRd(inst.des)) << ", " << cur_ofs << "(sp)" << std::endl;
-            cur_ofs += 4;
+            fout << "\tla t1, " << inst.des.name << std::endl;
+            fout << "\tsw " << target_addr << ", 0(t1)" << std::endl;
         }
+        else
+        {
+            // 局部变量是否出现过，未出现过则先添加到局部变量表中
+            if (local_stack.find_operand(inst.des) == -1 && inst.des.type != ir::Type::null && inst.des.type != ir::Type::IntLiteral)
+            {
+                local_stack.add_operand(inst.des, cur_ofs);
+                cur_ofs += 4;
+            }
+            fout << "\tsw " << target_addr << ", " << local_stack.find_operand(inst.des) << "(sp)" << std::endl;
+        }
+        // 要载入的值在寄存器t2中，要写入的变量地址在t1中
         break;
     }
     case ir::Operator::store:
     {
         // sw rd, rs1, rs2
-        std::string base_addr;
-        if (is_globalvar(inst.op1.name))
-        {
+        // 解析op1，计算op1为全局变量以及局部变量下的地址
+        if (is_globalvar(inst.op1.name)) // 判断数组是否为全局变量
             // load 全局数组变量的地址
-            fout << "\tla " + rv::toString(getRd(inst.des)) + ", " << inst.op1.name << std::endl;
-            base_addr = rv::toString(getRd(inst.op1));
-        }
+            fout << "\tla " + rv::toString(getRd(inst.op1)) + ", " << inst.op1.name << std::endl;
         else
         {
-            base_addr = std::to_string(local_stack.find_operand(inst.op1));
-        }
-        std::string target_addr = base_addr;
-        if (inst.op2.type == ir::Type::IntLiteral)
-        {
-            if (is_globalvar(inst.op1.name))
-                // 计算基址加偏移量
-                fout << "\tadd " << rv::toString(getRd(inst.des)) << ", " << base_addr << ", " << std::stoi(inst.op2.name) * 4 << std::endl;
+            // 如果数据为参数，则从a0中取出地址
+            if (params.params_list[inst.op1.name] == ir::Type::IntPtr)
+            {
+                fout << "\tlw " << rv::toString(getRd(inst.op1)) << ", 0(a0)" << std::endl;
+            }
             else
-                target_addr = std::to_string(std::stoi(inst.op2.name) * 4 + std::stoi(target_addr));
+                fout << "\taddi " << rv ::toString(getRd(inst.op1)) << ", sp, " << local_stack.find_operand(inst.op1) << std::endl;
         }
-        else
+        std::string target_addr = rv::toString(getRd(inst.op1)); // 地址放在t2中
+
+        // 解析op2，计算考虑偏移量后的地址
+        if (is_globalvar(inst.op2.name)) // op2是全局变量
         {
-            if (is_globalvar(inst.op2.name))
-                fout << "\tlw t0, " << inst.op2.name << std::endl;
-            else
-                fout << "\tlw t0, " << local_stack.find_operand(inst.op2) << "(sp)" << std::endl;
-            fout << "\tslli t0, t0, 2" << std::endl;
-            fout << "\tadd t0, t0, " << base_addr << std::endl;
-            target_addr = "t0";
+            fout << "\taddi " << rv::toString(getRd(inst.op1)) << ", " << rv::toString(getRd(inst.op1)) << ", " << std::stoi(inst.op2.name) * 4 << std::endl;
         }
+        else // op2是局部变量
+        {
+            if (local_stack.find_operand(inst.op2) != -1)
+            {
+                fout << "\tlw t1, " << local_stack.find_operand(inst.op2) << "(sp)" << std::endl;
+                fout << "\tslli t1, t1, 2" << std::endl;
+                fout << "\tadd " << rv::toString(getRd(inst.op1)) << ", " << rv::toString(getRd(inst.op1)) << ", t1" << std::endl;
+            }
+            else // op2是常数
+            {
+                fout << "\tli t1, " << inst.op2.name << std::endl;
+                fout << "\tslli t1, t1, 2" << std::endl;
+                fout << "\tadd " << rv::toString(getRd(inst.op1)) << ", " << rv::toString(getRd(inst.op1)) << ", t1" << std::endl;
+            }
+        }
+
+        // 解析des，load相应的值到寄存器t1中
         if (is_globalvar(inst.des.name))
         {
-
-            fout << "\tlw "
-                 << "t1, 0(" << target_addr << ")" << std::endl;
-            fout << "\tla " << rv::toString(getRd(inst.des)) << ", " << inst.des.name << std::endl;
-            fout << "\tsw t1, 0(" << rv::toString(getRd(inst.des)) << ")" << std::endl;
+            if (inst.des.type == ir::Type::IntLiteral)
+                fout << "\tli t1, " << inst.des.name << std::endl;
+            else
+                fout << "\tlw t1, " << inst.des.name << std::endl;
         }
         else
-        { // 将des表示的局部变量加载到寄存器中，再将其存回内存
-            if (inst.des.type == ir::Type::IntLiteral)
-                fout << "\tli " + rv::toString(getRd(inst.des)) + ", " << inst.des.name << std::endl;
-            else
-                fout << "\tlw " + rv::toString(getRd(inst.des)) + ", " << local_stack.find_operand(inst.des) << "(sp)" << std::endl;
-            if (target_addr[0] == 't')
-                fout << "\tsw " + rv::toString(getRd(inst.des)) + ", "
-                     << "0(" << target_addr << ")" << std::endl;
-            else
-                fout << "\tsw " + rv::toString(getRd(inst.des)) + ", " << target_addr << "(sp)" << std::endl;
+        {
+            if (local_stack.find_operand(inst.des) != -1)
+            {
+                fout << "\tlw t1, " << local_stack.find_operand(inst.des) << "(sp)" << std::endl;
+            }
+            else // des是常数
+            {
+                fout << "\tli t1, " << inst.des.name << std::endl;
+            }
         }
+
+        // 将t1中的值存入内存
+        fout << "\tsw t1, 0(" << target_addr << ")" << std::endl;
         break;
     }
     case ir::Operator::eq:

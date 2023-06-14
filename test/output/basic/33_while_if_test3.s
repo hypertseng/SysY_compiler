@@ -80,8 +80,7 @@ deepWhileBr_label_12:
 deepWhileBr_label_13:
 	lw t0, 60(sp)
 	li t1, 99
-	slt t2, t0, t1
-	seqz t2, t2
+	slt t2, t1, t0
 	sw t2, 84(sp)
 # if t4 goto [pc, 2]
 deepWhileBr_label_14:
@@ -108,7 +107,7 @@ deepWhileBr_label_18:
 deepWhileBr_label_19:
 	li t0, 1
 	li t1, 1
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 96(sp)
 # if t6 goto [pc, 2]
@@ -150,7 +149,7 @@ deepWhileBr_label_25:
 	addi sp, sp, 396
 	ret
 main:
-	addi sp, sp, -72
+	addi sp, sp, -104
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -196,5 +195,5 @@ main_label_4:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 72
+	addi sp, sp, 104
 	ret

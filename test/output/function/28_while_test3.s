@@ -103,7 +103,7 @@ EightWhile_label_17:
 EightWhile_label_18:
 	lw t0, 60(sp)
 	li t1, 7
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 84(sp)
 # if t4 goto [pc, 2]
@@ -150,8 +150,7 @@ EightWhile_label_27:
 EightWhile_label_28:
 	lw t0, e_global_0
 	li t1, 1
-	slt t2, t0, t1
-	seqz t2, t2
+	slt t2, t1, t0
 	sw t2, 100(sp)
 # if t8 goto [pc, 2]
 EightWhile_label_29:
@@ -175,8 +174,7 @@ EightWhile_label_32:
 EightWhile_label_33:
 	lw t0, f_global_0
 	li t1, 2
-	slt t2, t0, t1
-	seqz t2, t2
+	slt t2, t1, t0
 	sw t2, 108(sp)
 # if t10 goto [pc, 2]
 EightWhile_label_34:

@@ -49,7 +49,7 @@ whileIf_label_6:
 whileIf_label_7:
 	lw t0, 52(sp)
 	li t1, 5
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 64(sp)
 # if t1 goto [pc, 2]
@@ -71,7 +71,7 @@ whileIf_label_11:
 whileIf_label_12:
 	lw t0, 52(sp)
 	li t1, 10
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 68(sp)
 # if t2 goto [pc, 2]

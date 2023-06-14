@@ -36,7 +36,7 @@ ififElse_label_3:
 ififElse_label_4:
 	lw t0, 52(sp)
 	li t1, 5
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 60(sp)
 # if t0 goto [pc, 2]
@@ -50,7 +50,7 @@ ififElse_label_6:
 ififElse_label_7:
 	lw t0, 56(sp)
 	li t1, 10
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 64(sp)
 # if t1 goto [pc, 2]

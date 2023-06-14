@@ -22,77 +22,149 @@ main_label_0:
 main_label_1:
 # store 0, a_main_1, 0
 main_label_2:
-	li t2, 0
-	sw t2, 52(sp)
+	addi t2, sp, 52
+	li t1, 0
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 0
+	sw t1, 0(t2)
 # store 0, a_main_1, 1
 main_label_3:
-	li t2, 0
-	sw t2, 56(sp)
+	addi t2, sp, 52
+	li t1, 1
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 0
+	sw t1, 0(t2)
 # store 0, a_main_1, 2
 main_label_4:
-	li t2, 0
-	sw t2, 60(sp)
+	addi t2, sp, 52
+	li t1, 2
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 0
+	sw t1, 0(t2)
 # store 0, a_main_1, 3
 main_label_5:
-	li t2, 0
-	sw t2, 64(sp)
+	addi t2, sp, 52
+	li t1, 3
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 0
+	sw t1, 0(t2)
 # store 0, a_main_1, 4
 main_label_6:
-	li t2, 0
-	sw t2, 68(sp)
+	addi t2, sp, 52
+	li t1, 4
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 0
+	sw t1, 0(t2)
 # store 0, a_main_1, 5
 main_label_7:
-	li t2, 0
-	sw t2, 72(sp)
+	addi t2, sp, 52
+	li t1, 5
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 0
+	sw t1, 0(t2)
 # store 0, a_main_1, 6
 main_label_8:
-	li t2, 0
-	sw t2, 76(sp)
+	addi t2, sp, 52
+	li t1, 6
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 0
+	sw t1, 0(t2)
 # store 0, a_main_1, 7
 main_label_9:
-	li t2, 0
-	sw t2, 80(sp)
+	addi t2, sp, 52
+	li t1, 7
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 0
+	sw t1, 0(t2)
 # alloc b_main_1, 8
 main_label_10:
 # store 1, b_main_1, 0
 main_label_11:
-	li t2, 1
-	sw t2, 84(sp)
+	addi t2, sp, 84
+	li t1, 0
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 1
+	sw t1, 0(t2)
 # store 2, b_main_1, 1
 main_label_12:
-	li t2, 2
-	sw t2, 88(sp)
+	addi t2, sp, 84
+	li t1, 1
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 2
+	sw t1, 0(t2)
 # store 3, b_main_1, 2
 main_label_13:
-	li t2, 3
-	sw t2, 92(sp)
+	addi t2, sp, 84
+	li t1, 2
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 3
+	sw t1, 0(t2)
 # store 4, b_main_1, 3
 main_label_14:
-	li t2, 4
-	sw t2, 96(sp)
+	addi t2, sp, 84
+	li t1, 3
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 4
+	sw t1, 0(t2)
 # store 5, b_main_1, 4
 main_label_15:
-	li t2, 5
-	sw t2, 100(sp)
+	addi t2, sp, 84
+	li t1, 4
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 5
+	sw t1, 0(t2)
 # store 6, b_main_1, 5
 main_label_16:
-	li t2, 6
-	sw t2, 104(sp)
+	addi t2, sp, 84
+	li t1, 5
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 6
+	sw t1, 0(t2)
 # store 7, b_main_1, 6
 main_label_17:
-	li t2, 7
-	sw t2, 108(sp)
+	addi t2, sp, 84
+	li t1, 6
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 7
+	sw t1, 0(t2)
 # store 8, b_main_1, 7
 main_label_18:
-	li t2, 8
-	sw t2, 112(sp)
+	addi t2, sp, 84
+	li t1, 7
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 8
+	sw t1, 0(t2)
 # load t0, b_main_1, 7
 main_label_19:
-	lw t2, 112(sp)
+	addi t2, sp, 84
+	li t1, 7
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 116(sp)
 # load t1, b_main_1, 0
 main_label_20:
-	lw t2, 84(sp)
+	addi t2, sp, 84
+	li t1, 0
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 120(sp)
 # add t2, t0, t1
 main_label_21:
@@ -102,7 +174,11 @@ main_label_21:
 	sw t2, 124(sp)
 # load t3, b_main_1, 1
 main_label_22:
-	lw t2, 88(sp)
+	addi t2, sp, 84
+	li t1, 1
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 128(sp)
 # add t4, t2, t3
 main_label_23:
@@ -112,7 +188,11 @@ main_label_23:
 	sw t2, 132(sp)
 # load t5, b_main_1, 4
 main_label_24:
-	lw t2, 100(sp)
+	addi t2, sp, 84
+	li t1, 4
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 136(sp)
 # add t6, t4, t5
 main_label_25:

@@ -39,7 +39,7 @@ main_label_3:
 main_label_4:
 	lw t0, a_global_0
 	lw t1, b_global_0
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 56(sp)
 # if t0 goto [pc, 3]
@@ -57,7 +57,7 @@ main_label_7:
 main_label_8:
 	lw t0, a_global_0
 	li t1, 3
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 64(sp)
 # if t1 goto [pc, 3]

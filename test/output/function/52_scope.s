@@ -20,7 +20,7 @@ func:
 	sw s11, 48(sp)
 # def b_func_1, a_global_0
 func_label_0:
-	la t2, a_global_0
+	lw t2, a_global_0
 	sw t2, 52(sp)
 # def a_func_1, 1
 func_label_1:
@@ -30,7 +30,7 @@ func_label_1:
 func_label_2:
 	lw t0, 56(sp)
 	lw t1, 52(sp)
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 60(sp)
 # if t0 goto [pc, 2]
@@ -78,7 +78,7 @@ func_label_10:
 	addi sp, sp, 96
 	ret
 main:
-	addi sp, sp, -136
+	addi sp, sp, -168
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -123,7 +123,7 @@ main_label_6:
 main_label_7:
 	lw t0, 64(sp)
 	li t1, 1
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 68(sp)
 # if t4 goto [pc, 2]
@@ -199,5 +199,5 @@ main_label_22:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 136
+	addi sp, sp, 168
 	ret

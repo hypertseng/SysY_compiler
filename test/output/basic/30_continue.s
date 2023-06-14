@@ -51,7 +51,7 @@ main_label_7:
 main_label_8:
 	lw t0, 52(sp)
 	li t1, 50
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 64(sp)
 # if t1 goto [pc, 2]

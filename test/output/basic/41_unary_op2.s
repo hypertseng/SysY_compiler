@@ -2,7 +2,7 @@
 	.globl main
 	.align 2
 main:
-	addi sp, sp, -164
+	addi sp, sp, -180
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -122,5 +122,5 @@ main_label_21:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 164
+	addi sp, sp, 180
 	ret

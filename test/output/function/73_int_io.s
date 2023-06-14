@@ -61,8 +61,7 @@ my_getint_label_8:
 my_getint_label_9:
 	lw t0, 56(sp)
 	li t1, 9
-	slt t2, t0, t1
-	seqz t2, t2
+	slt t2, t1, t0
 	sw t2, 72(sp)
 # if t3 goto [pc, 3]
 my_getint_label_10:
@@ -131,7 +130,7 @@ my_getint_label_27:
 	lw t0, 56(sp)
 	li t1, 0
 	slt t2, t0, t1
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 88(sp)
 # if t7 goto [pc, 3]
 my_getint_label_28:
@@ -149,7 +148,7 @@ my_getint_label_31:
 	lw t0, 56(sp)
 	li t1, 9
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 96(sp)
 # if t8 goto [pc, 3]
 my_getint_label_32:
@@ -220,7 +219,7 @@ my_getint_label_45:
 	addi sp, sp, 224
 	ret
 my_putint:
-	addi sp, sp, -420
+	addi sp, sp, -436
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -245,8 +244,7 @@ my_putint_label_1:
 my_putint_label_2:
 	lw t0, 52(sp)
 	li t1, 0
-	slt t2, t0, t1
-	seqz t2, t2
+	slt t2, t1, t0
 	sw t2, 124(sp)
 # if t12 goto [pc, 2]
 my_putint_label_3:
@@ -289,11 +287,12 @@ my_putint_label_10:
 	sw t2, 144(sp)
 # store t17, b_my_putint_8, t13
 my_putint_label_11:
-	lw t0, 128(sp)
-	slli t0, t0, 2
-	add t0, t0, 56
-	lw t2, 144(sp)
-	sw t2, 0(t0)
+	addi t2, sp, 56
+	lw t1, 128(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, 144(sp)
+	sw t1, 0(t2)
 # div t18, a_my_putint_8, 10
 my_putint_label_12:
 	lw t0, 52(sp)
@@ -321,8 +320,7 @@ my_putint_label_16:
 my_putint_label_17:
 	lw t0, 120(sp)
 	li t1, 0
-	slt t2, t0, t1
-	seqz t2, t2
+	slt t2, t1, t0
 	sw t2, 156(sp)
 # if t20 goto [pc, 2]
 my_putint_label_18:
@@ -363,10 +361,11 @@ my_putint_label_25:
 	sw t2, 164(sp)
 # load t26, b_my_putint_8, t23
 my_putint_label_26:
-	lw t0, 164(sp)
-	slli t0, t0, 2
-	add t0, t0, 56
-	lw t2, 0( t0)
+	addi t2, sp, 56
+	lw t1, 164(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 176(sp)
 # call t22, putch(t26)
 my_putint_label_27:
@@ -391,10 +390,10 @@ my_putint_label_29:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 420
+	addi sp, sp, 436
 	ret
 main:
-	addi sp, sp, -104
+	addi sp, sp, -136
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -422,8 +421,7 @@ main_label_2:
 main_label_3:
 	lw t0, 56(sp)
 	li t1, 0
-	slt t2, t0, t1
-	seqz t2, t2
+	slt t2, t1, t0
 	sw t2, 60(sp)
 # if t28 goto [pc, 2]
 main_label_4:
@@ -477,5 +475,5 @@ main_label_13:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 104
+	addi sp, sp, 136
 	ret

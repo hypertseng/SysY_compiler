@@ -51,7 +51,7 @@ main_label_4:
 main_label_5:
 	lw t0, 60(sp)
 	lw t1, 64(sp)
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 68(sp)
 # if t3 goto [pc, 3]
@@ -94,7 +94,7 @@ main_label_13:
 	lw t0, 84(sp)
 	lw t1, 88(sp)
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 92(sp)
 # if t8 goto [pc, 3]
 main_label_14:
@@ -143,7 +143,7 @@ main_label_22:
 main_label_23:
 	lw t0, 100(sp)
 	lw t1, 108(sp)
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 112(sp)
 # if t14 goto [pc, 3]

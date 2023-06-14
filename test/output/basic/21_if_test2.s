@@ -36,7 +36,7 @@ ifElseIf_label_3:
 ifElseIf_label_4:
 	lw t0, 52(sp)
 	li t1, 6
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 60(sp)
 # if t0 goto [pc, 5]
@@ -47,7 +47,7 @@ ifElseIf_label_5:
 ifElseIf_label_6:
 	lw t0, 56(sp)
 	li t1, 0xb
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 64(sp)
 # if t1 goto [pc, 3]
@@ -83,7 +83,7 @@ ifElseIf_label_14:
 ifElseIf_label_15:
 	lw t0, 56(sp)
 	li t1, 10
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 72(sp)
 # if t3 goto [pc, 3]
@@ -101,7 +101,7 @@ ifElseIf_label_18:
 ifElseIf_label_19:
 	lw t0, 52(sp)
 	li t1, 1
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 80(sp)
 # if t4 goto [pc, 3]
@@ -138,7 +138,7 @@ ifElseIf_label_27:
 ifElseIf_label_28:
 	lw t0, 56(sp)
 	li t1, 10
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 84(sp)
 # if t6 goto [pc, 3]
@@ -156,7 +156,7 @@ ifElseIf_label_31:
 ifElseIf_label_32:
 	lw t0, 52(sp)
 	li t1, -5
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 92(sp)
 # if t7 goto [pc, 3]
@@ -234,7 +234,7 @@ ifElseIf_label_48:
 	addi sp, sp, 248
 	ret
 main:
-	addi sp, sp, -56
+	addi sp, sp, -72
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -274,5 +274,5 @@ main_label_3:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 56
+	addi sp, sp, 72
 	ret

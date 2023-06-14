@@ -2,7 +2,7 @@
 	.globl main
 	.align 2
 main:
-	addi sp, sp, -312
+	addi sp, sp, -344
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -90,7 +90,7 @@ main_label_15:
 main_label_16:
 	lw t0, 84(sp)
 	li t1, 0
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 88(sp)
 # if t4 goto [pc, 3]
@@ -120,7 +120,7 @@ main_label_21:
 main_label_22:
 	lw t0, 100(sp)
 	li t1, 0
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 104(sp)
 # if t7 goto [pc, 3]
@@ -196,7 +196,7 @@ main_label_38:
 main_label_39:
 	lw t0, 124(sp)
 	li t1, 0
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 128(sp)
 # if t15 goto [pc, 3]
@@ -226,7 +226,7 @@ main_label_44:
 main_label_45:
 	lw t0, 140(sp)
 	li t1, 0
-	sub t2, t0, t1
+	xor t2, t0, t1
 	snez t2, t2
 	sw t2, 144(sp)
 # if t18 goto [pc, 3]
@@ -290,5 +290,5 @@ main_label_58:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 312
+	addi sp, sp, 344
 	ret

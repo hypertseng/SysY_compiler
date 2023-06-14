@@ -44,7 +44,7 @@ Dijkstra_label_3:
 	lw t0, 52(sp)
 	lw t1, n_global_0
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 60(sp)
 # if t0 goto [pc, 2]
 Dijkstra_label_4:
@@ -112,19 +112,19 @@ Dijkstra_label_16:
 # load t9, e_global_0, t4
 Dijkstra_label_17:
 	la t2, e_global_0
-	lw t0, 76(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 76(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 96(sp)
 # store t9, dis_global_0, t1
 Dijkstra_label_18:
 	la t2, dis_global_0
-	lw t0, 64(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 96(sp)
-	sw t2, 0(t0)
+	lw t1, 64(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, 96(sp)
+	sw t1, 0(t2)
 # def t10, 0
 Dijkstra_label_19:
 	li t2, 0
@@ -148,11 +148,11 @@ Dijkstra_label_22:
 # store 0, book_global_0, t10
 Dijkstra_label_23:
 	la t2, book_global_0
-	lw t0, 100(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	li t2, 0
-	sw t2, 0(t0)
+	lw t1, 100(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 0
+	sw t1, 0(t2)
 # add t13, i_Dijkstra_1, 1
 Dijkstra_label_24:
 	lw t0, 52(sp)
@@ -169,9 +169,11 @@ Dijkstra_label_26:
 # store 1, book_global_0, 1
 Dijkstra_label_27:
 	la t2, book_global_0
-	add t2, t2, 4
-	li t2, 1
-	sw t2, 0(t2)
+	li t1, 1
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 1
+	sw t1, 0(t2)
 # mov i_Dijkstra_1, 1
 Dijkstra_label_28:
 	li t2, 1
@@ -187,7 +189,7 @@ Dijkstra_label_30:
 	lw t0, 52(sp)
 	lw t1, 116(sp)
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 120(sp)
 # if t15 goto [pc, 2]
 Dijkstra_label_31:
@@ -198,7 +200,7 @@ Dijkstra_label_32:
 	j Dijkstra_label_137
 # def min_num_while_3, INF_global_0
 Dijkstra_label_33:
-	la t2, INF_global_0
+	lw t2, INF_global_0
 	sw t2, 124(sp)
 # def min_index_while_3, 0
 Dijkstra_label_34:
@@ -213,7 +215,7 @@ Dijkstra_label_36:
 	lw t0, 132(sp)
 	lw t1, n_global_0
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 136(sp)
 # if t16 goto [pc, 2]
 Dijkstra_label_37:
@@ -245,17 +247,16 @@ Dijkstra_label_42:
 # load t20, dis_global_0, t17
 Dijkstra_label_43:
 	la t2, dis_global_0
-	lw t0, 140(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 140(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 152(sp)
 # gtr t21, min_num_while_3, t20
 Dijkstra_label_44:
 	lw t0, 124(sp)
 	lw t1, 152(sp)
-	slt t2, t0, t1
-	seqz t2, t2
+	slt t2, t1, t0
 	sw t2, 156(sp)
 # if t21 goto [pc, 3]
 Dijkstra_label_45:
@@ -291,16 +292,16 @@ Dijkstra_label_51:
 # load t25, book_global_0, t22
 Dijkstra_label_52:
 	la t2, book_global_0
-	lw t0, 164(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 164(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 176(sp)
 # eq t26, t25, 0
 Dijkstra_label_53:
 	lw t0, 176(sp)
 	li t1, 0
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 180(sp)
 # if t26 goto [pc, 3]
@@ -348,10 +349,10 @@ Dijkstra_label_63:
 # load t31, dis_global_0, t28
 Dijkstra_label_64:
 	la t2, dis_global_0
-	lw t0, 184(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 184(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 196(sp)
 # mov min_num_while_3, t31
 Dijkstra_label_65:
@@ -397,11 +398,11 @@ Dijkstra_label_73:
 # store 1, book_global_0, t33
 Dijkstra_label_74:
 	la t2, book_global_0
-	lw t0, 204(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	li t2, 1
-	sw t2, 0(t0)
+	lw t1, 204(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 1
+	sw t1, 0(t2)
 # def j_while_3, 1
 Dijkstra_label_75:
 	li t2, 1
@@ -411,7 +412,7 @@ Dijkstra_label_76:
 	lw t0, 216(sp)
 	lw t1, n_global_0
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 220(sp)
 # if t36 goto [pc, 2]
 Dijkstra_label_77:
@@ -459,10 +460,10 @@ Dijkstra_label_85:
 # load t42, e_global_0, t37
 Dijkstra_label_86:
 	la t2, e_global_0
-	lw t0, 224(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 224(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 244(sp)
 # lss t43, t42, INF_global_0
 Dijkstra_label_87:
@@ -500,10 +501,10 @@ Dijkstra_label_93:
 # load t47, dis_global_0, t44
 Dijkstra_label_94:
 	la t2, dis_global_0
-	lw t0, 252(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 252(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 264(sp)
 # def t48, 0
 Dijkstra_label_95:
@@ -528,10 +529,10 @@ Dijkstra_label_98:
 # load t51, dis_global_0, t48
 Dijkstra_label_99:
 	la t2, dis_global_0
-	lw t0, 268(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 268(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 280(sp)
 # def t52, 0
 Dijkstra_label_100:
@@ -572,10 +573,10 @@ Dijkstra_label_106:
 # load t57, e_global_0, t52
 Dijkstra_label_107:
 	la t2, e_global_0
-	lw t0, 284(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 284(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 304(sp)
 # add t58, t51, t57
 Dijkstra_label_108:
@@ -587,8 +588,7 @@ Dijkstra_label_108:
 Dijkstra_label_109:
 	lw t0, 264(sp)
 	lw t1, 308(sp)
-	slt t2, t0, t1
-	seqz t2, t2
+	slt t2, t1, t0
 	sw t2, 312(sp)
 # if t59 goto [pc, 2]
 Dijkstra_label_110:
@@ -640,10 +640,10 @@ Dijkstra_label_119:
 # load t66, dis_global_0, t63
 Dijkstra_label_120:
 	la t2, dis_global_0
-	lw t0, 328(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 328(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 340(sp)
 # def t67, 0
 Dijkstra_label_121:
@@ -684,10 +684,10 @@ Dijkstra_label_127:
 # load t72, e_global_0, t67
 Dijkstra_label_128:
 	la t2, e_global_0
-	lw t0, 344(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 344(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 364(sp)
 # add t73, t66, t72
 Dijkstra_label_129:
@@ -698,11 +698,11 @@ Dijkstra_label_129:
 # store t73, dis_global_0, t60
 Dijkstra_label_130:
 	la t2, dis_global_0
-	lw t0, 316(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 368(sp)
-	sw t2, 0(t0)
+	lw t1, 316(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, 368(sp)
+	sw t1, 0(t2)
 # add t74, j_while_3, 1
 Dijkstra_label_131:
 	lw t0, 216(sp)
@@ -748,7 +748,7 @@ Dijkstra_label_137:
 	addi sp, sp, 976
 	ret
 main:
-	addi sp, sp, -484
+	addi sp, sp, -532
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -795,7 +795,7 @@ main_label_7:
 	lw t0, 52(sp)
 	lw t1, n_global_0
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 64(sp)
 # if t78 goto [pc, 2]
 main_label_8:
@@ -813,7 +813,7 @@ main_label_11:
 	lw t0, 68(sp)
 	lw t1, n_global_0
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 72(sp)
 # if t79 goto [pc, 2]
 main_label_12:
@@ -826,7 +826,7 @@ main_label_13:
 main_label_14:
 	lw t0, 52(sp)
 	lw t1, 68(sp)
-	sub t2, t0, t1
+	xor t2, t0, t1
 	seqz t2, t2
 	sw t2, 76(sp)
 # if t80 goto [pc, 2]
@@ -875,11 +875,11 @@ main_label_23:
 # store 0, e_global_0, t81
 main_label_24:
 	la t2, e_global_0
-	lw t0, 80(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	li t2, 0
-	sw t2, 0(t0)
+	lw t1, 80(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	li t1, 0
+	sw t1, 0(t2)
 # if t80 goto [pc, 9]
 main_label_25:
 	lw t0, 76(sp)
@@ -923,11 +923,10 @@ main_label_32:
 # store INF_global_0, e_global_0, t86
 main_label_33:
 	la t2, e_global_0
-	lw t0, 100(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t1, 0(t0)
-	la t2, INF_global_0
+	lw t1, 100(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, INF_global_0
 	sw t1, 0(t2)
 main_label_34:
 	nop
@@ -966,7 +965,7 @@ main_label_42:
 	lw t0, 52(sp)
 	lw t1, m_global_0
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 128(sp)
 # if t93 goto [pc, 2]
 main_label_43:
@@ -1034,11 +1033,11 @@ main_label_56:
 # store t101, e_global_0, t96
 main_label_57:
 	la t2, e_global_0
-	lw t0, 148(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 168(sp)
-	sw t2, 0(t0)
+	lw t1, 148(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t1, 168(sp)
+	sw t1, 0(t2)
 # add t102, i_main_9, 1
 main_label_58:
 	lw t0, 52(sp)
@@ -1064,7 +1063,7 @@ main_label_63:
 	lw t0, 52(sp)
 	lw t1, n_global_0
 	slt t2, t1, t0
-	seqz t2, t2
+	xori t2, t2, 1
 	sw t2, 176(sp)
 # if t104 goto [pc, 2]
 main_label_64:
@@ -1096,10 +1095,10 @@ main_label_69:
 # load t109, dis_global_0, t106
 main_label_70:
 	la t2, dis_global_0
-	lw t0, 180(sp)
-	slli t0, t0, 2
-	add t0, t0, t2
-	lw t2, 0(t0)
+	lw t1, 180(sp)
+	slli t1, t1, 2
+	add t2, t2, t1
+	lw t2, 0(t2)
 	sw t2, 192(sp)
 # call t105, putint(t109)
 main_label_71:
@@ -1142,5 +1141,5 @@ main_label_77:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 484
+	addi sp, sp, 532
 	ret

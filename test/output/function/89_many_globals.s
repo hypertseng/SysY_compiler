@@ -516,7 +516,7 @@ testParam32_label_31:
 	addi sp, sp, 4524
 	ret
 main:
-	addi sp, sp, -88
+	addi sp, sp, -1032
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -843,5 +843,5 @@ main_label_50:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 88
+	addi sp, sp, 1032
 	ret

@@ -48,7 +48,7 @@ func_label_2:
 	addi sp, sp, 84
 	ret
 main:
-	addi sp, sp, -76
+	addi sp, sp, -92
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	sw s1, 8(sp)
@@ -98,5 +98,5 @@ main_label_5:
 	lw s10, 44(sp)
 	lw s11, 48(sp)
 	lw ra, 0(sp)
-	addi sp, sp, 76
+	addi sp, sp, 92
 	ret
