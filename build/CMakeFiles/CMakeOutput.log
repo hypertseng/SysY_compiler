@@ -28,28 +28,28 @@ The CXX compiler identification is GNU, found in "/coursegrader/build/CMakeFiles
 Determining if the C compiler works passed with the following output:
 Change Dir: /coursegrader/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_acb31/fast"
-/usr/bin/make -f CMakeFiles/cmTC_acb31.dir/build.make CMakeFiles/cmTC_acb31.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_e002a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e002a.dir/build.make CMakeFiles/cmTC_e002a.dir/build
 make[1]: Entering directory '/coursegrader/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_acb31.dir/testCCompiler.c.o
-/riscv32/bin/riscv32-unknown-linux-gnu-gcc    -o CMakeFiles/cmTC_acb31.dir/testCCompiler.c.o   -c /coursegrader/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_acb31
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_acb31.dir/link.txt --verbose=1
-/riscv32/bin/riscv32-unknown-linux-gnu-gcc      CMakeFiles/cmTC_acb31.dir/testCCompiler.c.o  -o cmTC_acb31 
+Building C object CMakeFiles/cmTC_e002a.dir/testCCompiler.c.o
+/riscv32/bin/riscv32-unknown-linux-gnu-gcc    -o CMakeFiles/cmTC_e002a.dir/testCCompiler.c.o   -c /coursegrader/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_e002a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e002a.dir/link.txt --verbose=1
+/riscv32/bin/riscv32-unknown-linux-gnu-gcc      CMakeFiles/cmTC_e002a.dir/testCCompiler.c.o  -o cmTC_e002a 
 make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /coursegrader/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_2f57a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_2f57a.dir/build.make CMakeFiles/cmTC_2f57a.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_9410b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_9410b.dir/build.make CMakeFiles/cmTC_9410b.dir/build
 make[1]: Entering directory '/coursegrader/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_2f57a.dir/CMakeCCompilerABI.c.o
-/riscv32/bin/riscv32-unknown-linux-gnu-gcc    -o CMakeFiles/cmTC_2f57a.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_2f57a
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2f57a.dir/link.txt --verbose=1
-/riscv32/bin/riscv32-unknown-linux-gnu-gcc     -v CMakeFiles/cmTC_2f57a.dir/CMakeCCompilerABI.c.o  -o cmTC_2f57a 
+Building C object CMakeFiles/cmTC_9410b.dir/CMakeCCompilerABI.c.o
+/riscv32/bin/riscv32-unknown-linux-gnu-gcc    -o CMakeFiles/cmTC_9410b.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_9410b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9410b.dir/link.txt --verbose=1
+/riscv32/bin/riscv32-unknown-linux-gnu-gcc     -v CMakeFiles/cmTC_9410b.dir/CMakeCCompilerABI.c.o  -o cmTC_9410b 
 Using built-in specs.
 COLLECT_GCC=/riscv32/bin/riscv32-unknown-linux-gnu-gcc
 COLLECT_LTO_WRAPPER=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/lto-wrapper
@@ -59,9 +59,9 @@ Thread model: posix
 gcc version 9.2.0 (GCC) 
 COMPILER_PATH=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/bin/
 LIBRARY_PATH=/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib/:/riscv32/sysroot/lib/:/riscv32/sysroot/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_2f57a' '-mtune=rocket' '-march=rv32gc' '-mabi=ilp32d'
- /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/collect2 -plugin /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/liblto_plugin.so -plugin-opt=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccysKs2J.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/riscv32/sysroot --eh-frame-hdr -melf32lriscv -dynamic-linker /lib/ld-linux-riscv32-ilp32d.so.1 -o cmTC_2f57a /riscv32/sysroot/usr/lib/crt1.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crti.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtbegin.o -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0 -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib -L/riscv32/sysroot/lib -L/riscv32/sysroot/usr/lib CMakeFiles/cmTC_2f57a.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtend.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_2f57a' '-mtune=rocket' '-march=rv32gc' '-mabi=ilp32d'
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9410b' '-mtune=rocket' '-march=rv32gc' '-mabi=ilp32d'
+ /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/collect2 -plugin /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/liblto_plugin.so -plugin-opt=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc59DX2I.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/riscv32/sysroot --eh-frame-hdr -melf32lriscv -dynamic-linker /lib/ld-linux-riscv32-ilp32d.so.1 -o cmTC_9410b /riscv32/sysroot/usr/lib/crt1.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crti.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtbegin.o -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0 -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib -L/riscv32/sysroot/lib -L/riscv32/sysroot/usr/lib CMakeFiles/cmTC_9410b.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtend.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9410b' '-mtune=rocket' '-march=rv32gc' '-mabi=ilp32d'
 make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 
 
@@ -69,14 +69,14 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /coursegrader/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_2f57a/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_2f57a.dir/build.make CMakeFiles/cmTC_2f57a.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_9410b/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_9410b.dir/build.make CMakeFiles/cmTC_9410b.dir/build]
   ignore line: [make[1]: Entering directory '/coursegrader/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_2f57a.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/riscv32/bin/riscv32-unknown-linux-gnu-gcc    -o CMakeFiles/cmTC_2f57a.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_2f57a]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2f57a.dir/link.txt --verbose=1]
-  ignore line: [/riscv32/bin/riscv32-unknown-linux-gnu-gcc     -v CMakeFiles/cmTC_2f57a.dir/CMakeCCompilerABI.c.o  -o cmTC_2f57a ]
+  ignore line: [Building C object CMakeFiles/cmTC_9410b.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/riscv32/bin/riscv32-unknown-linux-gnu-gcc    -o CMakeFiles/cmTC_9410b.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_9410b]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9410b.dir/link.txt --verbose=1]
+  ignore line: [/riscv32/bin/riscv32-unknown-linux-gnu-gcc     -v CMakeFiles/cmTC_9410b.dir/CMakeCCompilerABI.c.o  -o cmTC_9410b ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/riscv32/bin/riscv32-unknown-linux-gnu-gcc]
   ignore line: [COLLECT_LTO_WRAPPER=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/lto-wrapper]
@@ -86,13 +86,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 9.2.0 (GCC) ]
   ignore line: [COMPILER_PATH=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/bin/]
   ignore line: [LIBRARY_PATH=/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib/:/riscv32/sysroot/lib/:/riscv32/sysroot/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_2f57a' '-mtune=rocket' '-march=rv32gc' '-mabi=ilp32d']
-  link line: [ /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/collect2 -plugin /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/liblto_plugin.so -plugin-opt=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccysKs2J.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/riscv32/sysroot --eh-frame-hdr -melf32lriscv -dynamic-linker /lib/ld-linux-riscv32-ilp32d.so.1 -o cmTC_2f57a /riscv32/sysroot/usr/lib/crt1.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crti.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtbegin.o -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0 -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib -L/riscv32/sysroot/lib -L/riscv32/sysroot/usr/lib CMakeFiles/cmTC_2f57a.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtend.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9410b' '-mtune=rocket' '-march=rv32gc' '-mabi=ilp32d']
+  link line: [ /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/collect2 -plugin /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/liblto_plugin.so -plugin-opt=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc59DX2I.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/riscv32/sysroot --eh-frame-hdr -melf32lriscv -dynamic-linker /lib/ld-linux-riscv32-ilp32d.so.1 -o cmTC_9410b /riscv32/sysroot/usr/lib/crt1.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crti.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtbegin.o -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0 -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib -L/riscv32/sysroot/lib -L/riscv32/sysroot/usr/lib CMakeFiles/cmTC_9410b.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtend.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtn.o]
     arg [/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccysKs2J.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cc59DX2I.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -104,7 +104,7 @@ Parsed C implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib/ld-linux-riscv32-ilp32d.so.1] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_2f57a] ==> ignore
+    arg [cmTC_9410b] ==> ignore
     arg [/riscv32/sysroot/usr/lib/crt1.o] ==> ignore
     arg [/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crti.o] ==> ignore
     arg [/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtbegin.o] ==> ignore
@@ -112,7 +112,7 @@ Parsed C implicit link information from above output:
     arg [-L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib] ==> dir [/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib]
     arg [-L/riscv32/sysroot/lib] ==> dir [/riscv32/sysroot/lib]
     arg [-L/riscv32/sysroot/usr/lib] ==> dir [/riscv32/sysroot/usr/lib]
-    arg [CMakeFiles/cmTC_2f57a.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_9410b.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--push-state] ==> ignore
     arg [--as-needed] ==> ignore
@@ -140,14 +140,14 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /coursegrader/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_6a75c/fast"
-/usr/bin/make -f CMakeFiles/cmTC_6a75c.dir/build.make CMakeFiles/cmTC_6a75c.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_0ad40/fast"
+/usr/bin/make -f CMakeFiles/cmTC_0ad40.dir/build.make CMakeFiles/cmTC_0ad40.dir/build
 make[1]: Entering directory '/coursegrader/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_6a75c.dir/feature_tests.c.o
-/riscv32/bin/riscv32-unknown-linux-gnu-gcc   -std=c11 -o CMakeFiles/cmTC_6a75c.dir/feature_tests.c.o   -c /coursegrader/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_6a75c
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6a75c.dir/link.txt --verbose=1
-/riscv32/bin/riscv32-unknown-linux-gnu-gcc      CMakeFiles/cmTC_6a75c.dir/feature_tests.c.o  -o cmTC_6a75c 
+Building C object CMakeFiles/cmTC_0ad40.dir/feature_tests.c.o
+/riscv32/bin/riscv32-unknown-linux-gnu-gcc   -std=c11 -o CMakeFiles/cmTC_0ad40.dir/feature_tests.c.o   -c /coursegrader/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_0ad40
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0ad40.dir/link.txt --verbose=1
+/riscv32/bin/riscv32-unknown-linux-gnu-gcc      CMakeFiles/cmTC_0ad40.dir/feature_tests.c.o  -o cmTC_0ad40 
 make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 
 
@@ -160,14 +160,14 @@ make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /coursegrader/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_6de9b/fast"
-/usr/bin/make -f CMakeFiles/cmTC_6de9b.dir/build.make CMakeFiles/cmTC_6de9b.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_2fe16/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2fe16.dir/build.make CMakeFiles/cmTC_2fe16.dir/build
 make[1]: Entering directory '/coursegrader/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_6de9b.dir/feature_tests.c.o
-/riscv32/bin/riscv32-unknown-linux-gnu-gcc   -std=c99 -o CMakeFiles/cmTC_6de9b.dir/feature_tests.c.o   -c /coursegrader/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_6de9b
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6de9b.dir/link.txt --verbose=1
-/riscv32/bin/riscv32-unknown-linux-gnu-gcc      CMakeFiles/cmTC_6de9b.dir/feature_tests.c.o  -o cmTC_6de9b 
+Building C object CMakeFiles/cmTC_2fe16.dir/feature_tests.c.o
+/riscv32/bin/riscv32-unknown-linux-gnu-gcc   -std=c99 -o CMakeFiles/cmTC_2fe16.dir/feature_tests.c.o   -c /coursegrader/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_2fe16
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2fe16.dir/link.txt --verbose=1
+/riscv32/bin/riscv32-unknown-linux-gnu-gcc      CMakeFiles/cmTC_2fe16.dir/feature_tests.c.o  -o cmTC_2fe16 
 make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 
 
@@ -180,14 +180,14 @@ make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /coursegrader/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_d022c/fast"
-/usr/bin/make -f CMakeFiles/cmTC_d022c.dir/build.make CMakeFiles/cmTC_d022c.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_ef3e5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_ef3e5.dir/build.make CMakeFiles/cmTC_ef3e5.dir/build
 make[1]: Entering directory '/coursegrader/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_d022c.dir/feature_tests.c.o
-/riscv32/bin/riscv32-unknown-linux-gnu-gcc   -std=c90 -o CMakeFiles/cmTC_d022c.dir/feature_tests.c.o   -c /coursegrader/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_d022c
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d022c.dir/link.txt --verbose=1
-/riscv32/bin/riscv32-unknown-linux-gnu-gcc      CMakeFiles/cmTC_d022c.dir/feature_tests.c.o  -o cmTC_d022c 
+Building C object CMakeFiles/cmTC_ef3e5.dir/feature_tests.c.o
+/riscv32/bin/riscv32-unknown-linux-gnu-gcc   -std=c90 -o CMakeFiles/cmTC_ef3e5.dir/feature_tests.c.o   -c /coursegrader/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_ef3e5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ef3e5.dir/link.txt --verbose=1
+/riscv32/bin/riscv32-unknown-linux-gnu-gcc      CMakeFiles/cmTC_ef3e5.dir/feature_tests.c.o  -o cmTC_ef3e5 
 make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 
 
@@ -198,28 +198,28 @@ make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /coursegrader/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_5e6d6/fast"
-/usr/bin/make -f CMakeFiles/cmTC_5e6d6.dir/build.make CMakeFiles/cmTC_5e6d6.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_0db3d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_0db3d.dir/build.make CMakeFiles/cmTC_0db3d.dir/build
 make[1]: Entering directory '/coursegrader/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_5e6d6.dir/testCXXCompiler.cxx.o
-/riscv32/bin/riscv32-unknown-linux-gnu-c++     -o CMakeFiles/cmTC_5e6d6.dir/testCXXCompiler.cxx.o -c /coursegrader/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_5e6d6
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5e6d6.dir/link.txt --verbose=1
-/riscv32/bin/riscv32-unknown-linux-gnu-c++       CMakeFiles/cmTC_5e6d6.dir/testCXXCompiler.cxx.o  -o cmTC_5e6d6 
+Building CXX object CMakeFiles/cmTC_0db3d.dir/testCXXCompiler.cxx.o
+/riscv32/bin/riscv32-unknown-linux-gnu-c++     -o CMakeFiles/cmTC_0db3d.dir/testCXXCompiler.cxx.o -c /coursegrader/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_0db3d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0db3d.dir/link.txt --verbose=1
+/riscv32/bin/riscv32-unknown-linux-gnu-c++       CMakeFiles/cmTC_0db3d.dir/testCXXCompiler.cxx.o  -o cmTC_0db3d 
 make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /coursegrader/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_879dc/fast"
-/usr/bin/make -f CMakeFiles/cmTC_879dc.dir/build.make CMakeFiles/cmTC_879dc.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_14b40/fast"
+/usr/bin/make -f CMakeFiles/cmTC_14b40.dir/build.make CMakeFiles/cmTC_14b40.dir/build
 make[1]: Entering directory '/coursegrader/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_879dc.dir/CMakeCXXCompilerABI.cpp.o
-/riscv32/bin/riscv32-unknown-linux-gnu-c++     -o CMakeFiles/cmTC_879dc.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_879dc
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_879dc.dir/link.txt --verbose=1
-/riscv32/bin/riscv32-unknown-linux-gnu-c++      -v CMakeFiles/cmTC_879dc.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_879dc 
+Building CXX object CMakeFiles/cmTC_14b40.dir/CMakeCXXCompilerABI.cpp.o
+/riscv32/bin/riscv32-unknown-linux-gnu-c++     -o CMakeFiles/cmTC_14b40.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_14b40
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_14b40.dir/link.txt --verbose=1
+/riscv32/bin/riscv32-unknown-linux-gnu-c++      -v CMakeFiles/cmTC_14b40.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_14b40 
 Using built-in specs.
 COLLECT_GCC=/riscv32/bin/riscv32-unknown-linux-gnu-c++
 COLLECT_LTO_WRAPPER=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/lto-wrapper
@@ -229,9 +229,9 @@ Thread model: posix
 gcc version 9.2.0 (GCC) 
 COMPILER_PATH=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/bin/
 LIBRARY_PATH=/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib/:/riscv32/sysroot/lib/:/riscv32/sysroot/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_879dc' '-shared-libgcc' '-mtune=rocket' '-march=rv32gc' '-mabi=ilp32d'
- /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/collect2 -plugin /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/liblto_plugin.so -plugin-opt=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cctl2WpP.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/riscv32/sysroot --eh-frame-hdr -melf32lriscv -dynamic-linker /lib/ld-linux-riscv32-ilp32d.so.1 -o cmTC_879dc /riscv32/sysroot/usr/lib/crt1.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crti.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtbegin.o -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0 -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib -L/riscv32/sysroot/lib -L/riscv32/sysroot/usr/lib CMakeFiles/cmTC_879dc.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtend.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_879dc' '-shared-libgcc' '-mtune=rocket' '-march=rv32gc' '-mabi=ilp32d'
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_14b40' '-shared-libgcc' '-mtune=rocket' '-march=rv32gc' '-mabi=ilp32d'
+ /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/collect2 -plugin /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/liblto_plugin.so -plugin-opt=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc2h3znS.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/riscv32/sysroot --eh-frame-hdr -melf32lriscv -dynamic-linker /lib/ld-linux-riscv32-ilp32d.so.1 -o cmTC_14b40 /riscv32/sysroot/usr/lib/crt1.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crti.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtbegin.o -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0 -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib -L/riscv32/sysroot/lib -L/riscv32/sysroot/usr/lib CMakeFiles/cmTC_14b40.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtend.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_14b40' '-shared-libgcc' '-mtune=rocket' '-march=rv32gc' '-mabi=ilp32d'
 make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 
 
@@ -239,14 +239,14 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /coursegrader/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_879dc/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_879dc.dir/build.make CMakeFiles/cmTC_879dc.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_14b40/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_14b40.dir/build.make CMakeFiles/cmTC_14b40.dir/build]
   ignore line: [make[1]: Entering directory '/coursegrader/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_879dc.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/riscv32/bin/riscv32-unknown-linux-gnu-c++     -o CMakeFiles/cmTC_879dc.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_879dc]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_879dc.dir/link.txt --verbose=1]
-  ignore line: [/riscv32/bin/riscv32-unknown-linux-gnu-c++      -v CMakeFiles/cmTC_879dc.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_879dc ]
+  ignore line: [Building CXX object CMakeFiles/cmTC_14b40.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/riscv32/bin/riscv32-unknown-linux-gnu-c++     -o CMakeFiles/cmTC_14b40.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_14b40]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_14b40.dir/link.txt --verbose=1]
+  ignore line: [/riscv32/bin/riscv32-unknown-linux-gnu-c++      -v CMakeFiles/cmTC_14b40.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_14b40 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/riscv32/bin/riscv32-unknown-linux-gnu-c++]
   ignore line: [COLLECT_LTO_WRAPPER=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/lto-wrapper]
@@ -256,13 +256,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 9.2.0 (GCC) ]
   ignore line: [COMPILER_PATH=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/bin/]
   ignore line: [LIBRARY_PATH=/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/:/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib/:/riscv32/sysroot/lib/:/riscv32/sysroot/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_879dc' '-shared-libgcc' '-mtune=rocket' '-march=rv32gc' '-mabi=ilp32d']
-  link line: [ /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/collect2 -plugin /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/liblto_plugin.so -plugin-opt=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cctl2WpP.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/riscv32/sysroot --eh-frame-hdr -melf32lriscv -dynamic-linker /lib/ld-linux-riscv32-ilp32d.so.1 -o cmTC_879dc /riscv32/sysroot/usr/lib/crt1.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crti.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtbegin.o -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0 -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib -L/riscv32/sysroot/lib -L/riscv32/sysroot/usr/lib CMakeFiles/cmTC_879dc.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtend.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_14b40' '-shared-libgcc' '-mtune=rocket' '-march=rv32gc' '-mabi=ilp32d']
+  link line: [ /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/collect2 -plugin /riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/liblto_plugin.so -plugin-opt=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc2h3znS.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/riscv32/sysroot --eh-frame-hdr -melf32lriscv -dynamic-linker /lib/ld-linux-riscv32-ilp32d.so.1 -o cmTC_14b40 /riscv32/sysroot/usr/lib/crt1.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crti.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtbegin.o -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0 -L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib -L/riscv32/sysroot/lib -L/riscv32/sysroot/usr/lib CMakeFiles/cmTC_14b40.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtend.o /riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtn.o]
     arg [/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/riscv32/libexec/gcc/riscv32-unknown-linux-gnu/9.2.0/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/cctl2WpP.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cc2h3znS.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -274,7 +274,7 @@ Parsed CXX implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib/ld-linux-riscv32-ilp32d.so.1] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_879dc] ==> ignore
+    arg [cmTC_14b40] ==> ignore
     arg [/riscv32/sysroot/usr/lib/crt1.o] ==> ignore
     arg [/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crti.o] ==> ignore
     arg [/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/crtbegin.o] ==> ignore
@@ -282,7 +282,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib] ==> dir [/riscv32/lib/gcc/riscv32-unknown-linux-gnu/9.2.0/../../../../riscv32-unknown-linux-gnu/lib]
     arg [-L/riscv32/sysroot/lib] ==> dir [/riscv32/sysroot/lib]
     arg [-L/riscv32/sysroot/usr/lib] ==> dir [/riscv32/sysroot/usr/lib]
-    arg [CMakeFiles/cmTC_879dc.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_14b40.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -306,14 +306,14 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
 Change Dir: /coursegrader/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_59dc0/fast"
-/usr/bin/make -f CMakeFiles/cmTC_59dc0.dir/build.make CMakeFiles/cmTC_59dc0.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_678f1/fast"
+/usr/bin/make -f CMakeFiles/cmTC_678f1.dir/build.make CMakeFiles/cmTC_678f1.dir/build
 make[1]: Entering directory '/coursegrader/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_59dc0.dir/feature_tests.cxx.o
-/riscv32/bin/riscv32-unknown-linux-gnu-c++    -std=c++1z -o CMakeFiles/cmTC_59dc0.dir/feature_tests.cxx.o -c /coursegrader/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_59dc0
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_59dc0.dir/link.txt --verbose=1
-/riscv32/bin/riscv32-unknown-linux-gnu-c++       CMakeFiles/cmTC_59dc0.dir/feature_tests.cxx.o  -o cmTC_59dc0 
+Building CXX object CMakeFiles/cmTC_678f1.dir/feature_tests.cxx.o
+/riscv32/bin/riscv32-unknown-linux-gnu-c++    -std=c++1z -o CMakeFiles/cmTC_678f1.dir/feature_tests.cxx.o -c /coursegrader/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_678f1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_678f1.dir/link.txt --verbose=1
+/riscv32/bin/riscv32-unknown-linux-gnu-c++       CMakeFiles/cmTC_678f1.dir/feature_tests.cxx.o  -o cmTC_678f1 
 make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 
 
@@ -379,14 +379,14 @@ make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /coursegrader/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_5a396/fast"
-/usr/bin/make -f CMakeFiles/cmTC_5a396.dir/build.make CMakeFiles/cmTC_5a396.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_281a2/fast"
+/usr/bin/make -f CMakeFiles/cmTC_281a2.dir/build.make CMakeFiles/cmTC_281a2.dir/build
 make[1]: Entering directory '/coursegrader/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_5a396.dir/feature_tests.cxx.o
-/riscv32/bin/riscv32-unknown-linux-gnu-c++    -std=c++14 -o CMakeFiles/cmTC_5a396.dir/feature_tests.cxx.o -c /coursegrader/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_5a396
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5a396.dir/link.txt --verbose=1
-/riscv32/bin/riscv32-unknown-linux-gnu-c++       CMakeFiles/cmTC_5a396.dir/feature_tests.cxx.o  -o cmTC_5a396 
+Building CXX object CMakeFiles/cmTC_281a2.dir/feature_tests.cxx.o
+/riscv32/bin/riscv32-unknown-linux-gnu-c++    -std=c++14 -o CMakeFiles/cmTC_281a2.dir/feature_tests.cxx.o -c /coursegrader/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_281a2
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_281a2.dir/link.txt --verbose=1
+/riscv32/bin/riscv32-unknown-linux-gnu-c++       CMakeFiles/cmTC_281a2.dir/feature_tests.cxx.o  -o cmTC_281a2 
 make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 
 
@@ -452,14 +452,14 @@ make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /coursegrader/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_ac9c0/fast"
-/usr/bin/make -f CMakeFiles/cmTC_ac9c0.dir/build.make CMakeFiles/cmTC_ac9c0.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_9e519/fast"
+/usr/bin/make -f CMakeFiles/cmTC_9e519.dir/build.make CMakeFiles/cmTC_9e519.dir/build
 make[1]: Entering directory '/coursegrader/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_ac9c0.dir/feature_tests.cxx.o
-/riscv32/bin/riscv32-unknown-linux-gnu-c++    -std=c++11 -o CMakeFiles/cmTC_ac9c0.dir/feature_tests.cxx.o -c /coursegrader/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_ac9c0
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ac9c0.dir/link.txt --verbose=1
-/riscv32/bin/riscv32-unknown-linux-gnu-c++       CMakeFiles/cmTC_ac9c0.dir/feature_tests.cxx.o  -o cmTC_ac9c0 
+Building CXX object CMakeFiles/cmTC_9e519.dir/feature_tests.cxx.o
+/riscv32/bin/riscv32-unknown-linux-gnu-c++    -std=c++11 -o CMakeFiles/cmTC_9e519.dir/feature_tests.cxx.o -c /coursegrader/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_9e519
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9e519.dir/link.txt --verbose=1
+/riscv32/bin/riscv32-unknown-linux-gnu-c++       CMakeFiles/cmTC_9e519.dir/feature_tests.cxx.o  -o cmTC_9e519 
 make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 
 
@@ -525,14 +525,14 @@ make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /coursegrader/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_5ba21/fast"
-/usr/bin/make -f CMakeFiles/cmTC_5ba21.dir/build.make CMakeFiles/cmTC_5ba21.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_dd4d7/fast"
+/usr/bin/make -f CMakeFiles/cmTC_dd4d7.dir/build.make CMakeFiles/cmTC_dd4d7.dir/build
 make[1]: Entering directory '/coursegrader/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_5ba21.dir/feature_tests.cxx.o
-/riscv32/bin/riscv32-unknown-linux-gnu-c++    -std=c++98 -o CMakeFiles/cmTC_5ba21.dir/feature_tests.cxx.o -c /coursegrader/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_5ba21
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5ba21.dir/link.txt --verbose=1
-/riscv32/bin/riscv32-unknown-linux-gnu-c++       CMakeFiles/cmTC_5ba21.dir/feature_tests.cxx.o  -o cmTC_5ba21 
+Building CXX object CMakeFiles/cmTC_dd4d7.dir/feature_tests.cxx.o
+/riscv32/bin/riscv32-unknown-linux-gnu-c++    -std=c++98 -o CMakeFiles/cmTC_dd4d7.dir/feature_tests.cxx.o -c /coursegrader/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_dd4d7
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dd4d7.dir/link.txt --verbose=1
+/riscv32/bin/riscv32-unknown-linux-gnu-c++       CMakeFiles/cmTC_dd4d7.dir/feature_tests.cxx.o  -o cmTC_dd4d7 
 make[1]: Leaving directory '/coursegrader/build/CMakeFiles/CMakeTmp'
 
 

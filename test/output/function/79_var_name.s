@@ -409,8 +409,10 @@ main_label_63:
 	sw t2, 256(sp)
 # call t25, putint(t29)
 main_label_64:
+	sw a0, 260(sp)
 	lw a0, 256(sp)
 	call putint
+	lw a0, 256(sp)
 # call t30, putch(10)
 main_label_65:
 	li a0, 10
@@ -420,10 +422,10 @@ main_label_66:
 	lw t0, 52(sp)
 	li t1, 1
 	add t2, t0, t1
-	sw t2, 260(sp)
+	sw t2, 264(sp)
 # mov xU4UVdo6fPho5bRhUTjrlIMjqIY_evCyLJf0suh6fNNJ_3DxUYEO_xR1xkH9B68yOd4nSYbkstCnMA1BvxzZHFcKgYsWCq9M6sWFj2hbYtXZAMA2V8pUya5kbMgjwVwR_IKh_EeyZ5EU504YyCm79GrBpe7NMhLcqK5b41z3SzpL6eQTdwdgiZLmh_BbdR_2e0ZcLGxpg0kD_SiCYiQWzh5ekfalc_qYy9ohDjYcW4XpZtkKT0LaIwpKT_eexlt3zRaWJlQTLKmDCqe83zBQAyZx9y79siWba8uMlkcoHe7YzKgeb2Lb44q6WW_vA7Kr9_c_I0LjpZWr2nyAcoFo9aOgYD4DikZLLO3GOQnLPymmJWZGewbfJOKcABxkHBbsjYup399BZw8fM62exxL6Os5P6r8dQxQnUAghxk5yVAElumTAW3cKIKf603d1W9zymy8I006tqdZnh2sUZjqZhYn1ljJCZyFbV6Lnp6IUAuM8pm1v2BE_iBujx7lhYKEvlNGPXjkoQjQXhMudJymkqc7H3mC_695Be7Dzlc_jnHycVoDXb4EczmxL2_UqouAWiUjUCG2hWi3t4QaOucBuNtIPw0nquTOLf5rLgbzuVbRfeTzymEnU08sFsRsach7SVQKOenEZ1N6kTBQFE5SZtqb7KGPp9Who2UvLK2fOKx8CQKNv6_Lc5NXh2p8n4Ob8lqo28dyadcRKyElXXvbl0JVfL9hDNy8S1yrJ5dg3wkEW2Xay5l0rE52vwJAbFxnfJXbAUkEBxeNifGgRB872UPpJ040uyvQAuhHXnakBM_3GjgFBcjAZzr_UJ1c3PglWVrFsLB4fID5bt2SQfC9zL2igpbtoxLeNf8QeUO_faaxtzVXWw015a1xytmdBXlfHIz3zBiOepkTKe8JD2S3xI3aBva2SE6J3Cx7QZgg5lLQ9Va9EONhhN4PLzvmj9uEQsxph6Bb0dhR8l65gFMTQM0zY8Ep1kj15kHfwTtjgp_qYcjjMguuFQxOP_Wuhw8tyRfYFDCaXhacEEXwA3Gp7JaXyLpmlZehZXTaO4w6xKYDyrpkycIiZBvyS6fxEqqzEybbmloWe5atTihpsXm9d6j0iyUP56maXEvx7OaOERJRjyTdx0Q2gdU92GE5Y1vyuc1GNj7gTmL84xjHcNQOiC8Blhf3J77ykaAhFYeWAp0W1TtVz_main_1, t31
 main_label_67:
-	lw t2, 260(sp)
+	lw t2, 264(sp)
 	sw t2, 52(sp)
 # goto [pc, -43]
 main_label_68:

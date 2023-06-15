@@ -369,8 +369,10 @@ my_putint_label_26:
 	sw t2, 176(sp)
 # call t22, putch(t26)
 my_putint_label_27:
+	sw a0, 180(sp)
 	lw a0, 176(sp)
 	call putch
+	lw a0, 176(sp)
 # goto [pc, -11]
 my_putint_label_28:
 	j my_putint_label_17
@@ -440,8 +442,10 @@ main_label_7:
 	sw t2, 68(sp)
 # call t30, my_putint(m_while_12)
 main_label_8:
+	sw a0, 72(sp)
 	lw a0, 68(sp)
 	call my_putint
+	lw a0, 68(sp)
 # call t31, putch(10)
 main_label_9:
 	li a0, 10
@@ -451,10 +455,10 @@ main_label_10:
 	lw t0, 56(sp)
 	li t1, 1
 	sub t2, t0, t1
-	sw t2, 72(sp)
+	sw t2, 76(sp)
 # mov n_main_11, t32
 main_label_11:
-	lw t2, 72(sp)
+	lw t2, 76(sp)
 	sw t2, 56(sp)
 # goto [pc, -9]
 main_label_12:

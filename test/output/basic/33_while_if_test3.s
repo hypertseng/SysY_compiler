@@ -175,13 +175,17 @@ main_label_2:
 	sw t2, 52(sp)
 # call t8, deepWhileBr(p_main_6, p_main_6)
 main_label_3:
+	sw a0, 56(sp)
 	lw a0, 52(sp)
+	sw a1, 60(sp)
 	lw a1, 52(sp)
 	call deepWhileBr
-	sw a0, 56(sp)
+	sw a0, 64(sp)
+	lw a0, 52(sp)
+	lw a1, 52(sp)
 # return t8
 main_label_4:
-	lw a0, 56(sp)
+	lw a0, 64(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)
 	lw s2, 12(sp)

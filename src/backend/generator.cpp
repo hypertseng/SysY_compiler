@@ -484,6 +484,14 @@ void backend::Generator::gen_call_instr(const ir::CallInst &inst)
     // 将参数存入a0-a7
     for (int i = 0; i < inst.argumentList.size(); i++)
     {
+        // 如果参数是变量，则先将其保存到栈上，以免递归调用时被覆盖
+        if (inst.argumentList[i].type != ir::Type::IntLiteral && !is_globalvar(inst.argumentList[i].name))
+        {
+            local_stack.add_operand(inst.argumentList[i], cur_ofs);
+            fout << "\tsw a" << i << ", " << cur_ofs << "(sp)" << std::endl;
+            cur_ofs += 4;
+        }
+
         if (inst.argumentList[i].type == ir::Type::IntLiteral)
             fout << "\tli a" << i << ", " << inst.argumentList[i].name << std::endl;
         else if (inst.argumentList[i].type == ir::Type::IntPtr)
@@ -530,6 +538,17 @@ void backend::Generator::gen_call_instr(const ir::CallInst &inst)
         local_stack.add_operand(inst.des, cur_ofs);
         fout << "\tsw a0, " << cur_ofs << "(sp)" << std::endl;
         cur_ofs += 4;
+    }
+
+    // 恢复之前保存的参数变量
+    for (int i = 0; i < inst.argumentList.size(); i++)
+    {
+        if (inst.argumentList[i].type == ir::Type::IntLiteral)
+            continue;
+        else
+        {
+            fout << "\tlw a" << i << ", " << local_stack.find_operand(inst.argumentList[i]) << "(sp)" << std::endl;
+        }
     }
 }
 
@@ -658,7 +677,8 @@ void backend::Generator::gen_instr(const ir::Instruction &inst)
             // 如果数据为参数，则从a0中取出地址
             if (params.params_list[inst.op1.name] == ir::Type::IntPtr)
             {
-                fout << "\tlw " << rv::toString(getRd(inst.des)) << ", 0(a0)" << std::endl;
+                fout<<"\tlw "<<rv::toString(getRd(inst.des))<<", "<<local_stack.find_operand(inst.op1)<<"(sp)"<<std::endl;
+                // fout << "\tmv " << rv::toString(getRd(inst.des)) << ", a0" << std::endl;
             }
             else
                 fout << "\taddi " << rv ::toString(getRd(inst.des)) << ", sp, " << local_stack.find_operand(inst.op1) << std::endl;
@@ -720,7 +740,8 @@ void backend::Generator::gen_instr(const ir::Instruction &inst)
             // 如果数据为参数，则从a0中取出地址
             if (params.params_list[inst.op1.name] == ir::Type::IntPtr)
             {
-                fout << "\tlw " << rv::toString(getRd(inst.op1)) << ", 0(a0)" << std::endl;
+                fout << "\tlw " << rv::toString(getRd(inst.des)) << ", " << local_stack.find_operand(inst.op1) << "(sp)" << std::endl;
+                // fout << "\tmv " << rv::toString(getRd(inst.op1)) << ", a0" << std::endl;
             }
             else
                 fout << "\taddi " << rv ::toString(getRd(inst.op1)) << ", sp, " << local_stack.find_operand(inst.op1) << std::endl;

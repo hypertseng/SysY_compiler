@@ -18,7 +18,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/bin/compiler",
             "args": [
-                "${workspaceFolder}/test/testcase/function/55_sort_test1.sy",
+                "${workspaceFolder}/test/testcase/function/66_exgcd.sy",
                 "-S",
                 "-o",
                 "./test.s"

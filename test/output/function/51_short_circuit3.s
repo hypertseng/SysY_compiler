@@ -196,6 +196,7 @@ main_label_13:
 main_label_14:
 	lw a0, a_global_0
 	call putint
+	lw a0, -1(sp)
 # call t4, putch(32)
 main_label_15:
 	li a0, 32
@@ -204,6 +205,7 @@ main_label_15:
 main_label_16:
 	lw a0, b_global_0
 	call putint
+	lw a0, -1(sp)
 # call t6, putch(32)
 main_label_17:
 	li a0, 32
@@ -265,6 +267,7 @@ main_label_30:
 main_label_31:
 	lw a0, a_global_0
 	call putint
+	lw a0, -1(sp)
 # call t11, putch(32)
 main_label_32:
 	li a0, 32
@@ -273,6 +276,7 @@ main_label_32:
 main_label_33:
 	lw a0, b_global_0
 	call putint
+	lw a0, -1(sp)
 # call t13, putch(10)
 main_label_34:
 	li a0, 10
@@ -335,6 +339,7 @@ main_label_47:
 main_label_48:
 	lw a0, d_global_0
 	call putint
+	lw a0, -1(sp)
 # call t18, putch(32)
 main_label_49:
 	li a0, 32
@@ -381,6 +386,7 @@ main_label_58:
 main_label_59:
 	lw a0, d_global_0
 	call putint
+	lw a0, -1(sp)
 # call t23, putch(10)
 main_label_60:
 	li a0, 10

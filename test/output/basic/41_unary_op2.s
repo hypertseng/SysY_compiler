@@ -104,8 +104,10 @@ main_label_19:
 	nop
 # call t7, putint(a_main_1)
 main_label_20:
+	sw a0, 88(sp)
 	lw a0, 52(sp)
 	call putint
+	lw a0, 52(sp)
 # return 0
 main_label_21:
 	li a0, 0

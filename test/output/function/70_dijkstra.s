@@ -1102,8 +1102,10 @@ main_label_70:
 	sw t2, 192(sp)
 # call t105, putint(t109)
 main_label_71:
+	sw a0, 196(sp)
 	lw a0, 192(sp)
 	call putint
+	lw a0, 192(sp)
 # call t110, putch(32)
 main_label_72:
 	li a0, 32
@@ -1113,10 +1115,10 @@ main_label_73:
 	lw t0, 52(sp)
 	li t1, 1
 	add t2, t0, t1
-	sw t2, 196(sp)
+	sw t2, 200(sp)
 # mov i_main_9, t111
 main_label_74:
-	lw t2, 196(sp)
+	lw t2, 200(sp)
 	sw t2, 52(sp)
 # goto [pc, -12]
 main_label_75:

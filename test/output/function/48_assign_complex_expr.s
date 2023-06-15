@@ -112,88 +112,92 @@ main_label_19:
 	sw t2, 68(sp)
 # call t8, putint(result_main_1)
 main_label_20:
+	sw a0, 104(sp)
 	lw a0, 68(sp)
 	call putint
+	lw a0, 68(sp)
 # mod t9, d_main_1, 2
 main_label_21:
 	lw t0, 64(sp)
 	li t1, 2
 	rem t2, t0, t1
-	sw t2, 104(sp)
+	sw t2, 108(sp)
 # add t10, t9, 67
 main_label_22:
-	lw t0, 104(sp)
+	lw t0, 108(sp)
 	li t1, 67
 	add t2, t0, t1
-	sw t2, 108(sp)
+	sw t2, 112(sp)
 # sub t11, a_main_1, b_main_1
 main_label_23:
 	lw t0, 52(sp)
 	lw t1, 56(sp)
 	sub t2, t0, t1
-	sw t2, 112(sp)
+	sw t2, 116(sp)
 # mov t12, 0
 main_label_24:
 	li t2, 0
-	sw t2, 116(sp)
+	sw t2, 120(sp)
 # sub t12, t12, t11
 main_label_25:
-	lw t0, 116(sp)
-	lw t1, 112(sp)
+	lw t0, 120(sp)
+	lw t1, 116(sp)
 	sub t2, t0, t1
-	sw t2, 116(sp)
+	sw t2, 120(sp)
 # add t13, t10, t12
 main_label_26:
-	lw t0, 108(sp)
-	lw t1, 116(sp)
+	lw t0, 112(sp)
+	lw t1, 120(sp)
 	add t2, t0, t1
-	sw t2, 120(sp)
+	sw t2, 124(sp)
 # add t14, c_main_1, 2
 main_label_27:
 	lw t0, 60(sp)
 	li t1, 2
 	add t2, t0, t1
-	sw t2, 124(sp)
+	sw t2, 128(sp)
 # mod t15, t14, 2
 main_label_28:
-	lw t0, 124(sp)
+	lw t0, 128(sp)
 	li t1, 2
 	rem t2, t0, t1
-	sw t2, 128(sp)
+	sw t2, 132(sp)
 # mov t16, 0
 main_label_29:
 	li t2, 0
-	sw t2, 132(sp)
+	sw t2, 136(sp)
 # sub t16, t16, t15
 main_label_30:
-	lw t0, 132(sp)
-	lw t1, 128(sp)
-	sub t2, t0, t1
-	sw t2, 132(sp)
-# sub t17, t13, t16
-main_label_31:
-	lw t0, 120(sp)
+	lw t0, 136(sp)
 	lw t1, 132(sp)
 	sub t2, t0, t1
 	sw t2, 136(sp)
+# sub t17, t13, t16
+main_label_31:
+	lw t0, 124(sp)
+	lw t1, 136(sp)
+	sub t2, t0, t1
+	sw t2, 140(sp)
 # mov result_main_1, t17
 main_label_32:
-	lw t2, 136(sp)
+	lw t2, 140(sp)
 	sw t2, 68(sp)
 # add t18, result_main_1, 3
 main_label_33:
 	lw t0, 68(sp)
 	li t1, 3
 	add t2, t0, t1
-	sw t2, 140(sp)
+	sw t2, 144(sp)
 # mov result_main_1, t18
 main_label_34:
-	lw t2, 140(sp)
+	lw t2, 144(sp)
 	sw t2, 68(sp)
 # call t19, putint(result_main_1)
 main_label_35:
+	sw a0, 148(sp)
 	lw a0, 68(sp)
 	call putint
+	lw a0, 68(sp)
 # return 0
 main_label_36:
 	li a0, 0

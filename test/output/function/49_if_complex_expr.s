@@ -162,51 +162,53 @@ main_label_32:
 	j main_label_34
 # call t10, putint(result_main_1)
 main_label_33:
+	sw a0, 112(sp)
 	lw a0, 68(sp)
 	call putint
+	lw a0, 68(sp)
 # mod t11, d_main_1, 2
 main_label_34:
 	lw t0, 64(sp)
 	li t1, 2
 	rem t2, t0, t1
-	sw t2, 112(sp)
+	sw t2, 116(sp)
 # add t12, t11, 67
 main_label_35:
-	lw t0, 112(sp)
+	lw t0, 116(sp)
 	li t1, 67
 	add t2, t0, t1
-	sw t2, 116(sp)
+	sw t2, 120(sp)
 # lss t13, t12, 0
 main_label_36:
-	lw t0, 116(sp)
+	lw t0, 120(sp)
 	li t1, 0
 	slt t2, t0, t1
-	sw t2, 120(sp)
+	sw t2, 124(sp)
 # if t13 goto [pc, 16]
 main_label_37:
-	lw t0, 120(sp)
+	lw t0, 124(sp)
 	bnez t0, main_label_53
 # sub t14, a_main_1, b_main_1
 main_label_38:
 	lw t0, 52(sp)
 	lw t1, 56(sp)
 	sub t2, t0, t1
-	sw t2, 124(sp)
+	sw t2, 128(sp)
 # neq t15, t14, 0
 main_label_39:
-	lw t0, 124(sp)
+	lw t0, 128(sp)
 	li t1, 0
 	xor t2, t0, t1
 	snez t2, t2
-	sw t2, 128(sp)
+	sw t2, 132(sp)
 # if t15 goto [pc, 3]
 main_label_40:
-	lw t0, 128(sp)
+	lw t0, 132(sp)
 	bnez t0, main_label_43
 # mov t19, 0
 main_label_41:
 	li t2, 0
-	sw t2, 132(sp)
+	sw t2, 136(sp)
 # goto [pc, 8]
 main_label_42:
 	j main_label_50
@@ -215,53 +217,53 @@ main_label_43:
 	lw t0, 60(sp)
 	li t1, 2
 	add t2, t0, t1
-	sw t2, 136(sp)
+	sw t2, 140(sp)
 # mod t17, t16, 2
 main_label_44:
-	lw t0, 136(sp)
+	lw t0, 140(sp)
 	li t1, 2
 	rem t2, t0, t1
-	sw t2, 140(sp)
+	sw t2, 144(sp)
 # neq t18, t17, 0
 main_label_45:
-	lw t0, 140(sp)
+	lw t0, 144(sp)
 	li t1, 0
 	xor t2, t0, t1
 	snez t2, t2
-	sw t2, 144(sp)
+	sw t2, 148(sp)
 # if t18 goto [pc, 3]
 main_label_46:
-	lw t0, 144(sp)
+	lw t0, 148(sp)
 	bnez t0, main_label_49
 # mov t19, 0
 main_label_47:
 	li t2, 0
-	sw t2, 132(sp)
+	sw t2, 136(sp)
 # goto [pc, 2]
 main_label_48:
 	j main_label_50
 # mov t19, 1
 main_label_49:
 	li t2, 1
-	sw t2, 132(sp)
+	sw t2, 136(sp)
 # if t19 goto [pc, 3]
 main_label_50:
-	lw t0, 132(sp)
+	lw t0, 136(sp)
 	bnez t0, main_label_53
 # mov t20, 0
 main_label_51:
 	li t2, 0
-	sw t2, 148(sp)
+	sw t2, 152(sp)
 # goto [pc, 2]
 main_label_52:
 	j main_label_54
 # mov t20, 1
 main_label_53:
 	li t2, 1
-	sw t2, 148(sp)
+	sw t2, 152(sp)
 # if t20 goto [pc, 2]
 main_label_54:
-	lw t0, 148(sp)
+	lw t0, 152(sp)
 	bnez t0, main_label_56
 # goto [pc, 3]
 main_label_55:
@@ -272,8 +274,10 @@ main_label_56:
 	sw t2, 68(sp)
 # call t21, putint(result_main_1)
 main_label_57:
+	sw a0, 156(sp)
 	lw a0, 68(sp)
 	call putint
+	lw a0, 68(sp)
 # return 0
 main_label_58:
 	li a0, 0

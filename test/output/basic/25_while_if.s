@@ -214,18 +214,24 @@ main_label_2:
 	sw t2, 52(sp)
 # call t9, deepWhileBr(p_main_7, p_main_7)
 main_label_3:
+	sw a0, 56(sp)
 	lw a0, 52(sp)
+	sw a1, 60(sp)
 	lw a1, 52(sp)
 	call deepWhileBr
-	sw a0, 56(sp)
+	sw a0, 64(sp)
+	lw a0, 52(sp)
+	lw a1, 52(sp)
 # mov p_main_7, t9
 main_label_4:
-	lw t2, 56(sp)
+	lw t2, 64(sp)
 	sw t2, 52(sp)
 # call t10, putint(p_main_7)
 main_label_5:
+	sw a0, 68(sp)
 	lw a0, 52(sp)
 	call putint
+	lw a0, 52(sp)
 # return 0
 main_label_6:
 	li a0, 0

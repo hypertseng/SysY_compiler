@@ -256,8 +256,10 @@ main_label_1:
 	sw a0, 52(sp)
 # call t11, putint(t12)
 main_label_2:
+	sw a0, 56(sp)
 	lw a0, 52(sp)
 	call putint
+	lw a0, 52(sp)
 # return 0
 main_label_3:
 	li a0, 0

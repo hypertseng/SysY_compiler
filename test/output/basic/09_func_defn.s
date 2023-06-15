@@ -78,6 +78,7 @@ main_label_3:
 	lw a0, a_global_0
 	call func
 	sw a0, 56(sp)
+	lw a0, -1(sp)
 # mov b_main_2, t1
 main_label_4:
 	lw t2, 56(sp)

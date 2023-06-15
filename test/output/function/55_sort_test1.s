@@ -101,7 +101,7 @@ bubblesort_label_16:
 	sw t2, 84(sp)
 # load t8, arr_bubblesort_1, t5
 bubblesort_label_17:
-	lw t2, 0(a0)
+	lw t2, 52(sp)
 	lw t1, 84(sp)
 	slli t1, t1, 2
 	add t2, t2, t1
@@ -135,7 +135,7 @@ bubblesort_label_22:
 	sw t2, 104(sp)
 # load t13, arr_bubblesort_1, t10
 bubblesort_label_23:
-	lw t2, 0(a0)
+	lw t2, 52(sp)
 	lw t1, 104(sp)
 	slli t1, t1, 2
 	add t2, t2, t1
@@ -186,7 +186,7 @@ bubblesort_label_32:
 	sw t2, 132(sp)
 # load t19, arr_bubblesort_1, t16
 bubblesort_label_33:
-	lw t2, 0(a0)
+	lw t2, 52(sp)
 	lw t1, 132(sp)
 	slli t1, t1, 2
 	add t2, t2, t1
@@ -244,7 +244,7 @@ bubblesort_label_43:
 	sw t2, 164(sp)
 # load t27, arr_bubblesort_1, t24
 bubblesort_label_44:
-	lw t2, 0(a0)
+	lw t2, 52(sp)
 	lw t1, 164(sp)
 	slli t1, t1, 2
 	add t2, t2, t1
@@ -252,7 +252,7 @@ bubblesort_label_44:
 	sw t2, 176(sp)
 # store t27, arr_bubblesort_1, t21
 bubblesort_label_45:
-	lw t2, 0(a0)
+	lw t2, 52(sp)
 	lw t1, 152(sp)
 	slli t1, t1, 2
 	add t2, t2, t1
@@ -280,7 +280,7 @@ bubblesort_label_49:
 	sw t2, 180(sp)
 # store tmp_if_4, arr_bubblesort_1, t28
 bubblesort_label_50:
-	lw t2, 0(a0)
+	lw t2, 52(sp)
 	lw t1, 180(sp)
 	slli t1, t1, 2
 	add t2, t2, t1
@@ -440,22 +440,24 @@ main_label_13:
 	sw t2, 92(sp)
 # call t33, bubblesort(a_main_5)
 main_label_14:
+	sw a0, 96(sp)
 	addi a0, sp, 52
 	call bubblesort
-	sw a0, 96(sp)
+	sw a0, 100(sp)
+	lw a0, 52(sp)
 # mov i_main_5, t33
 main_label_15:
-	lw t2, 96(sp)
+	lw t2, 100(sp)
 	sw t2, 92(sp)
 # lss t34, i_main_5, n_global_0
 main_label_16:
 	lw t0, 92(sp)
 	lw t1, n_global_0
 	slt t2, t0, t1
-	sw t2, 100(sp)
+	sw t2, 104(sp)
 # if t34 goto [pc, 2]
 main_label_17:
-	lw t0, 100(sp)
+	lw t0, 104(sp)
 	bnez t0, main_label_19
 # goto [pc, 14]
 main_label_18:
@@ -463,60 +465,64 @@ main_label_18:
 # def tmp_while_6, 0
 main_label_19:
 	li t2, 0
-	sw t2, 104(sp)
+	sw t2, 108(sp)
 # def t35, 0
 main_label_20:
 	li t2, 0
-	sw t2, 108(sp)
+	sw t2, 112(sp)
 # def t36, 1
 main_label_21:
 	li t2, 1
-	sw t2, 112(sp)
+	sw t2, 116(sp)
 # mul t37, i_main_5, t36
 main_label_22:
 	lw t0, 92(sp)
-	lw t1, 112(sp)
+	lw t1, 116(sp)
 	mul t2, t0, t1
-	sw t2, 116(sp)
+	sw t2, 120(sp)
 # add t35, t35, t37
 main_label_23:
-	lw t0, 108(sp)
-	lw t1, 116(sp)
+	lw t0, 112(sp)
+	lw t1, 120(sp)
 	add t2, t0, t1
-	sw t2, 108(sp)
+	sw t2, 112(sp)
 # load t38, a_main_5, t35
 main_label_24:
 	addi t2, sp, 52
-	lw t1, 108(sp)
+	lw t1, 112(sp)
 	slli t1, t1, 2
 	add t2, t2, t1
 	lw t2, 0(t2)
-	sw t2, 120(sp)
+	sw t2, 124(sp)
 # mov tmp_while_6, t38
 main_label_25:
-	lw t2, 120(sp)
-	sw t2, 104(sp)
+	lw t2, 124(sp)
+	sw t2, 108(sp)
 # call t39, putint(tmp_while_6)
 main_label_26:
-	lw a0, 104(sp)
+	sw a0, 128(sp)
+	lw a0, 108(sp)
 	call putint
+	lw a0, 108(sp)
 # mov tmp_while_6, 10
 main_label_27:
 	li t2, 10
-	sw t2, 104(sp)
+	sw t2, 108(sp)
 # call t40, putch(tmp_while_6)
 main_label_28:
-	lw a0, 104(sp)
+	sw a0, 132(sp)
+	lw a0, 108(sp)
 	call putch
+	lw a0, 108(sp)
 # add t41, i_main_5, 1
 main_label_29:
 	lw t0, 92(sp)
 	li t1, 1
 	add t2, t0, t1
-	sw t2, 124(sp)
+	sw t2, 136(sp)
 # mov i_main_5, t41
 main_label_30:
-	lw t2, 124(sp)
+	lw t2, 136(sp)
 	sw t2, 92(sp)
 # goto [pc, -15]
 main_label_31:

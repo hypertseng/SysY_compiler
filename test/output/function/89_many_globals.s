@@ -744,6 +744,14 @@ main_label_41:
 	lw a7, a7_global_0
 	call testParam8
 	sw a0, 52(sp)
+	lw a0, -1(sp)
+	lw a1, -1(sp)
+	lw a2, -1(sp)
+	lw a3, -1(sp)
+	lw a4, -1(sp)
+	lw a5, -1(sp)
+	lw a6, -1(sp)
+	lw a7, -1(sp)
 # mov a0_global_0, t53
 main_label_42:
 	lw t2, 52(sp)
@@ -753,6 +761,7 @@ main_label_42:
 main_label_43:
 	lw a0, a0_global_0
 	call putint
+	lw a0, -1(sp)
 # call t55, testParam16(a32_global_0, a33_global_0, a34_global_0, a35_global_0, a36_global_0, a37_global_0, a38_global_0, a39_global_0, a8_global_0, a9_global_0, a10_global_0, a11_global_0, a12_global_0, a13_global_0, a14_global_0, a15_global_0)
 main_label_44:
 	lw a0, a32_global_0
@@ -773,6 +782,22 @@ main_label_44:
 	lw a15, a15_global_0
 	call testParam16
 	sw a0, 56(sp)
+	lw a0, -1(sp)
+	lw a1, -1(sp)
+	lw a2, -1(sp)
+	lw a3, -1(sp)
+	lw a4, -1(sp)
+	lw a5, -1(sp)
+	lw a6, -1(sp)
+	lw a7, -1(sp)
+	lw a8, -1(sp)
+	lw a9, -1(sp)
+	lw a10, -1(sp)
+	lw a11, -1(sp)
+	lw a12, -1(sp)
+	lw a13, -1(sp)
+	lw a14, -1(sp)
+	lw a15, -1(sp)
 # mov a0_global_0, t55
 main_label_45:
 	lw t2, 56(sp)
@@ -782,6 +807,7 @@ main_label_45:
 main_label_46:
 	lw a0, a0_global_0
 	call putint
+	lw a0, -1(sp)
 # call t57, testParam32(a0_global_0, a1_global_0, a2_global_0, a3_global_0, a4_global_0, a5_global_0, a6_global_0, a7_global_0, a8_global_0, a9_global_0, a10_global_0, a11_global_0, a12_global_0, a13_global_0, a14_global_0, a15_global_0, a16_global_0, a17_global_0, a18_global_0, a19_global_0, a20_global_0, a21_global_0, a22_global_0, a23_global_0, a24_global_0, a25_global_0, a26_global_0, a27_global_0, a28_global_0, a29_global_0, a30_global_0, a31_global_0)
 main_label_47:
 	lw a0, a0_global_0
@@ -818,6 +844,38 @@ main_label_47:
 	lw a31, a31_global_0
 	call testParam32
 	sw a0, 60(sp)
+	lw a0, -1(sp)
+	lw a1, -1(sp)
+	lw a2, -1(sp)
+	lw a3, -1(sp)
+	lw a4, -1(sp)
+	lw a5, -1(sp)
+	lw a6, -1(sp)
+	lw a7, -1(sp)
+	lw a8, -1(sp)
+	lw a9, -1(sp)
+	lw a10, -1(sp)
+	lw a11, -1(sp)
+	lw a12, -1(sp)
+	lw a13, -1(sp)
+	lw a14, -1(sp)
+	lw a15, -1(sp)
+	lw a16, -1(sp)
+	lw a17, -1(sp)
+	lw a18, -1(sp)
+	lw a19, -1(sp)
+	lw a20, -1(sp)
+	lw a21, -1(sp)
+	lw a22, -1(sp)
+	lw a23, -1(sp)
+	lw a24, -1(sp)
+	lw a25, -1(sp)
+	lw a26, -1(sp)
+	lw a27, -1(sp)
+	lw a28, -1(sp)
+	lw a29, -1(sp)
+	lw a30, -1(sp)
+	lw a31, -1(sp)
 # mov a0_global_0, t57
 main_label_48:
 	lw t2, 60(sp)
@@ -827,6 +885,7 @@ main_label_48:
 main_label_49:
 	lw a0, a0_global_0
 	call putint
+	lw a0, -1(sp)
 # return 0
 main_label_50:
 	li a0, 0
